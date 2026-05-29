@@ -324,29 +324,26 @@ function renderLeaderboards() {
 
   byId('leaderboards').innerHTML = `
     <h2>Leaderboards</h2>
-    <article class="card">
+    <section class="leaderboard-section">
       <h3>Player standings</h3>
-      ${table(['Rank', 'Player', 'Points', 'Best teams by stage', 'Final placing total'], players.map((player, index) => [
-    index + 1,
+      ${table(['Player', 'Points', 'Best teams by stage', 'Final placing total'], players.map((player) => [
     player.name,
     player.totalPoints,
     htmlCell(player.teams.sort(compareTeamsForTieBreak).map((team) => `${teamLabel(team.name)} (${escapeHtml(stageLabel(team.stageReached))})`).join(', ')),
     formatPlacingTotal(player.combinedFinalPlacing)
-  ]))}
-    </article>
-    <div class="grid" style="margin-top:16px">
-      <article class="card">
-        <h3>Team scores</h3>
-        ${table(['Team', 'Owner', 'Pot', 'Stage', 'Score', 'Final placing'], teams.map((team) => [
+  ]), 'responsive-table')}
+    </section>
+    <section class="leaderboard-section">
+      <h3>Team scores</h3>
+      ${table(['Team', 'Score', 'Owner', 'Pot', 'Stage', 'Final placing'], teams.map((team) => [
     htmlCell(teamLabel(team.name)),
+    team.sweepstakePoints,
     team.owner,
     team.potLabel,
     stageLabel(team.stageReached),
-    team.sweepstakePoints,
     formatPlacing(team.finalPlacing)
-  ]))}
-      </article>
-    </div>
+  ]), 'responsive-table')}
+    </section>
   `;
 }
 
@@ -395,7 +392,7 @@ function renderFixtures() {
     match.group ?? '',
     match.ground ?? '',
     match.status
-  ])) : '<p>No fixtures loaded yet.</p>'}
+  ]), 'responsive-table') : '<p>No fixtures loaded yet.</p>'}
   `;
 
   document.querySelectorAll('.fixture-filter').forEach((button) => {
@@ -425,7 +422,7 @@ function renderRules() {
     '2',
     '3',
     '4'
-  ]))}
+  ]), 'responsive-table')}
       <h3 style="margin-top:20px">Pots</h3>
       <div class="grid">
         ${(config.pots ?? []).map((pot) => `
@@ -440,12 +437,14 @@ function renderRules() {
   `;
 }
 
-function table(headers, rows) {
+function table(headers, rows, tableClass = '') {
+  const classAttribute = tableClass ? ` class="${escapeHtml(tableClass)}"` : '';
+
   return `
     <div class="table-wrap">
-      <table>
+      <table${classAttribute}>
         <thead><tr>${headers.map((header) => `<th>${escapeHtml(header)}</th>`).join('')}</tr></thead>
-        <tbody>${rows.map((row) => `<tr>${row.map((cell) => `<td>${renderCell(cell)}</td>`).join('')}</tr>`).join('')}</tbody>
+        <tbody>${rows.map((row) => `<tr>${row.map((cell, index) => `<td data-label="${escapeHtml(headers[index] ?? '')}">${renderCell(cell)}</td>`).join('')}</tr>`).join('')}</tbody>
       </table>
     </div>
   `;
@@ -515,7 +514,7 @@ function generateDraw() {
   const playersJson = JSON.stringify(assignments, null, 2);
 
   byId('drawOutput').innerHTML = `
-    ${table(['Player', ...potHeaders], rows)}
+    ${table(['Player', ...potHeaders], rows, 'responsive-table')}
     <details class="json-details">
       <summary>Show JSON</summary>
       <pre>${escapeHtml(playersJson)}</pre>

@@ -1,0 +1,30 @@
+name: Refresh data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Refresh JSON data
+        run: node scripts/update-data.mjs
+
+      - name: Commit changed data
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Refresh tournament data
+          file_pattern: public/data/worldcup.json

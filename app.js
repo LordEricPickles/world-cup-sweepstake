@@ -358,8 +358,28 @@ function formatPlacingTotal(value) {
   return value >= FALLBACK_FINAL_PLACING ? 'TBC' : value;
 }
 
+function fixtureTimeMinutes(match) {
+  const [, hours, minutes] = String(match.time ?? '').match(/^(\d{1,2}):(\d{2})/) ?? [];
+  if (hours === undefined) return Number.POSITIVE_INFINITY;
+  return Number(hours) * 60 + Number(minutes);
+}
+
+function compareFixturesByDateTime(left, right) {
+  const leftDate = left.match.date ?? '9999-12-31';
+  const rightDate = right.match.date ?? '9999-12-31';
+  if (leftDate !== rightDate) return leftDate.localeCompare(rightDate);
+
+  const timeDiff = fixtureTimeMinutes(left.match) - fixtureTimeMinutes(right.match);
+  if (timeDiff !== 0) return timeDiff;
+
+  return left.index - right.index;
+}
+
 function renderFixtures() {
-  const fixtures = state.worldcup.fixtures ?? [];
+  const fixtures = (state.worldcup.fixtures ?? [])
+    .map((match, index) => ({ match, index }))
+    .sort(compareFixturesByDateTime)
+    .map(({ match }) => match);
   const filters = ['all', 'finished', 'scheduled'];
   const filtered = fixtures.filter((match) => activeFixtureFilter === 'all' || match.status.toLowerCase() === activeFixtureFilter);
 

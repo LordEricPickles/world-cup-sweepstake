@@ -46,7 +46,9 @@ code { color: #bae6fd; }
 .panel.active { display: block; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
 .card { padding: 18px; }
+.compact-card { padding: 14px; }
 .stat { font-size: 2rem; font-weight: 900; }
+.small-stat { font-size: 1.35rem; }
 .tag-list { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
 .tag { border: 1px solid rgba(255,255,255,.12); border-radius: 999px; padding: 6px 10px; color: #cbd5e1; }
 .tag.alive { color: #86efac; }

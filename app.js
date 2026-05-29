@@ -4,26 +4,17 @@ const DATA_PATHS = {
   overrides: './public/data/manual-overrides.json'
 };
 
-const state = {
-  sweepstake: null,
-  worldcup: null,
-  overrides: null
-};
-
+const state = { sweepstake: null, worldcup: null, overrides: null };
+let activeFixtureFilter = 'all';
 const money = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' });
 
-function byId(id) {
-  return document.getElementById(id);
-}
-
-function escapeHtml(value) {
-  return String(value ?? '')
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#039;');
-}
+const byId = (id) => document.getElementById(id);
+const escapeHtml = (value) => String(value ?? '')
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;')
+  .replaceAll("'", '&#039;');
 
 async function loadJson(path) {
   const response = await fetch(path, { cache: 'no-store' });
@@ -47,8 +38,8 @@ async function init() {
     state.overrides = overrides;
 
     renderAll();
-    byId('statusText').textContent = 'Ready';
-    byId('updatedText').textContent = worldcup.updatedAt ? `Data updated ${new Date(worldcup.updatedAt).toLocaleString('en-GB')}` : 'No live data yet';
+    byId('statusText').textContent = worldcup.competition || 'Ready';
+    byId('updatedText').textContent = worldcup.updatedAt ? `Data updated ${new Date(worldcup.updatedAt).toLocaleString('en-GB')} from ${worldcup.source ?? 'JSON'}` : 'No live data yet';
   } catch (error) {
     console.error(error);
     byId('statusText').textContent = 'Data error';
@@ -59,9 +50,8 @@ async function init() {
 function setupTabs() {
   document.querySelectorAll('[data-tab]').forEach((button) => {
     button.addEventListener('click', () => {
-      const target = button.dataset.tab;
       document.querySelectorAll('[data-tab]').forEach((item) => item.classList.toggle('active', item === button));
-      document.querySelectorAll('.panel').forEach((panel) => panel.classList.toggle('active', panel.id === target));
+      document.querySelectorAll('.panel').forEach((panel) => panel.classList.toggle('active', panel.id === button.dataset.tab));
     });
   });
 }
@@ -93,13 +83,8 @@ function getTeamStats(teamName) {
   };
 }
 
-function goalDifference(team) {
-  return (team.goalsFor ?? 0) - (team.goalsAgainst ?? 0);
-}
-
-function entertainmentScore(team) {
-  return (team.goalsFor ?? 0) + (team.goalsAgainst ?? 0);
-}
+function goalDifference(team) { return (team.goalsFor ?? 0) - (team.goalsAgainst ?? 0); }
+function entertainmentScore(team) { return (team.goalsFor ?? 0) + (team.goalsAgainst ?? 0); }
 
 function sortByFinish(a, b) {
   return (a.finishRank ?? 999) - (b.finishRank ?? 999)
@@ -114,8 +99,19 @@ function allocatedTeamRows() {
 }
 
 function prizeAmount(share) {
-  const pot = state.sweepstake.potTotal ?? 0;
-  return money.format(pot * share);
+  return money.format((state.sweepstake.potTotal ?? 0) * share);
+}
+
+function mergedTopScorers() {
+  const autoRows = state.worldcup.topScorers ?? [];
+  const manualRows = state.overrides.topScorers ?? [];
+  return manualRows.length ? manualRows : autoRows;
+}
+
+function mergedDiscipline() {
+  const autoRows = state.worldcup.discipline?.teams ?? [];
+  const manualRows = state.overrides.discipline?.teams ?? [];
+  return manualRows.length ? manualRows : autoRows;
 }
 
 function renderAll() {
@@ -135,16 +131,16 @@ function renderOverview() {
   byId('overview').innerHTML = `
     <h2>Overview</h2>
     <div class="grid">
+      <article class="card"><span class="label">Competition</span><div>${escapeHtml(state.worldcup.competition ?? 'Not loaded')}</div></article>
       <article class="card"><span class="label">Players</span><div class="stat">${config.players.length}</div></article>
       <article class="card"><span class="label">Allocated teams</span><div class="stat">${allocated.length}</div></article>
       <article class="card"><span class="label">Excluded teams</span><div class="stat">${excluded.length}</div></article>
-      <article class="card"><span class="label">Still alive</span><div class="stat">${aliveCount}</div></article>
+      <article class="card"><span class="label">Still alive / pending</span><div class="stat">${aliveCount}</div></article>
       <article class="card"><span class="label">Pot</span><div class="stat">${money.format(config.potTotal ?? 0)}</div></article>
-      <article class="card"><span class="label">Draw seed</span><div>${escapeHtml(config.drawSeed ?? 'Not set')}</div></article>
     </div>
     <h3 style="margin-top:24px">Prizes</h3>
     ${table(['Prize', 'Share', 'Amount'], config.prizes.map((prize) => [prize.label, `${Math.round(prize.share * 100)}%`, prizeAmount(prize.share)]))}
-    <p class="notice">Tip: use the Draw tool to generate a repeatable allocation, then paste the final teams into <code>public/data/sweepstake.json</code>.</p>
+    <p class="notice">Data source: ${escapeHtml(state.worldcup.sourceUrl ?? state.worldcup.source ?? 'manual JSON')}.</p>
   `;
 }
 
@@ -156,10 +152,7 @@ function renderPlayers() {
         <article class="card">
           <h3>${escapeHtml(player.name)}</h3>
           <div class="tag-list">
-            ${player.teams.map((team) => {
-              const stats = getTeamStats(team);
-              return `<span class="tag ${escapeHtml(stats.status)}">${escapeHtml(team)}</span>`;
-            }).join('')}
+            ${player.teams.map((team) => `<span class="tag ${escapeHtml(getTeamStats(team).status)}">${escapeHtml(team)}</span>`).join('')}
           </div>
         </article>
       `).join('')}
@@ -173,8 +166,8 @@ function renderLeaderboards() {
   const outsiders = rows.filter((team) => state.sweepstake.outsiderTeams?.includes(team.name)).sort(sortByFinish);
   const worst = [...rows].sort((a, b) => (a.points ?? 0) - (b.points ?? 0) || goalDifference(a) - goalDifference(b) || (a.goalsFor ?? 0) - (b.goalsFor ?? 0));
   const entertainers = [...rows].sort((a, b) => entertainmentScore(b) - entertainmentScore(a) || (b.goalsFor ?? 0) - (a.goalsFor ?? 0));
-  const topScorers = state.overrides.topScorers ?? [];
-  const discipline = state.overrides.discipline?.teams ?? [];
+  const topScorers = mergedTopScorers();
+  const discipline = mergedDiscipline();
 
   byId('leaderboards').innerHTML = `
     <h2>Leaderboards</h2>
@@ -184,45 +177,57 @@ function renderLeaderboards() {
       ${leaderboardCard('Wooden spoon candidates', worst.slice(0, 8), 'worst')}
       ${leaderboardCard('Most entertaining teams', entertainers.slice(0, 8), 'entertainers')}
     </div>
-    <h3 style="margin-top:24px">Manual stat prizes</h3>
+    <h3 style="margin-top:24px">Stats</h3>
     <div class="grid">
       <article class="card">
         <h3>Top scorers</h3>
-        ${topScorers.length ? table(['Player', 'Team', 'Owner', 'Goals'], topScorers.map((item) => [item.player, item.team, teamOwner(item.team), item.goals])) : '<p>No top scorer data yet.</p>'}
+        ${topScorers.length ? table(['Rank', 'Player', 'Team', 'Owner', 'Goals', 'Pens'], topScorers.slice(0, 20).map((item, index) => [item.rank ?? index + 1, item.player, item.team, teamOwner(item.team), item.goals, item.penalties ?? 0])) : '<p>No top scorer data yet.</p>'}
       </article>
       <article class="card">
         <h3>Cards</h3>
-        ${discipline.length ? table(['Team', 'Owner', 'Y', 'R', 'Pts'], discipline.map((item) => [item.team, teamOwner(item.team), item.yellowCards, item.redCards, item.cardPoints])) : '<p>No card data yet.</p>'}
+        ${discipline.length ? table(['Team', 'Owner', 'Y', 'R', 'Pts'], discipline.map((item) => [item.team, teamOwner(item.team), item.yellowCards, item.redCards, item.cardPoints])) : `<p>No card data yet.</p><p>${escapeHtml(state.worldcup.discipline?.notes ?? 'Use manual overrides or add a scraper source for card tables.')}</p>`}
       </article>
     </div>
   `;
 }
 
 function leaderboardCard(title, rows, mode) {
-  const body = rows.length
-    ? table(['Team', 'Owner', 'Pts', 'GD', mode === 'entertainers' ? 'Total goals' : 'Rank'], rows.map((team) => [
-        team.name,
-        team.player,
-        team.points ?? 0,
-        goalDifference(team),
-        mode === 'entertainers' ? entertainmentScore(team) : (team.finishRank ?? 'TBC')
-      ]))
-    : '<p>No data yet.</p>';
+  const body = rows.length ? table(['Team', 'Owner', 'Pts', 'GD', mode === 'entertainers' ? 'Total goals' : 'Rank'], rows.map((team) => [
+    team.name,
+    team.player,
+    team.points ?? 0,
+    goalDifference(team),
+    mode === 'entertainers' ? entertainmentScore(team) : (team.finishRank ?? 'TBC')
+  ])) : '<p>No data yet.</p>';
   return `<article class="card"><h3>${escapeHtml(title)}</h3>${body}</article>`;
 }
 
 function renderFixtures() {
   const fixtures = state.worldcup.fixtures ?? [];
+  const filters = ['all', 'finished', 'scheduled'];
+  const filtered = fixtures.filter((match) => activeFixtureFilter === 'all' || match.status.toLowerCase() === activeFixtureFilter);
+
   byId('fixtures').innerHTML = `
     <h2>Fixtures</h2>
-    ${fixtures.length ? table(['Date', 'Home', 'Score', 'Away', 'Status'], fixtures.map((match) => [
+    <div class="tabs">${filters.map((filter) => `<button class="fixture-filter ${activeFixtureFilter === filter ? 'active' : ''}" data-filter="${filter}">${filter}</button>`).join('')}</div>
+    ${filtered.length ? table(['Date', 'Round', 'Home', 'Score', 'Away', 'Group', 'Venue', 'Status'], filtered.map((match) => [
       match.date,
+      match.round ?? '',
       match.home,
       score(match),
       match.away,
+      match.group ?? '',
+      match.ground ?? '',
       match.status
     ])) : '<p>No fixtures loaded yet.</p>'}
   `;
+
+  document.querySelectorAll('.fixture-filter').forEach((button) => {
+    button.addEventListener('click', () => {
+      activeFixtureFilter = button.dataset.filter;
+      renderFixtures();
+    });
+  });
 }
 
 function score(match) {
@@ -236,9 +241,7 @@ function renderRules() {
     <h2>Rules</h2>
     <div class="card">
       <h3>Current setup</h3>
-      <ul>
-        ${(config.rulesSummary ?? []).map((rule) => `<li>${escapeHtml(rule)}</li>`).join('')}
-      </ul>
+      <ul>${(config.rulesSummary ?? []).map((rule) => `<li>${escapeHtml(rule)}</li>`).join('')}</ul>
       <h3>Excluded teams</h3>
       <div class="tag-list">${(config.excludedTeams ?? []).map((team) => `<span class="tag excluded">${escapeHtml(team)}</span>`).join('')}</div>
     </div>
@@ -272,7 +275,6 @@ function setupDrawTool() {
     <h3 style="margin-top:20px">Output</h3>
     <pre id="drawOutput">Click generate to create JSON.</pre>
   `;
-
   byId('generateDraw').addEventListener('click', generateDraw);
 }
 
@@ -289,18 +291,8 @@ function generateDraw() {
   const excludedTeams = allTeams.slice(count);
   const shuffled = seededShuffle(includedTeams, seed);
   const assignments = players.map((name) => ({ name, teams: [] }));
-
-  shuffled.forEach((team, index) => {
-    assignments[index % assignments.length].teams.push(team);
-  });
-
-  const output = {
-    drawSeed: seed,
-    players: assignments,
-    excludedTeams
-  };
-
-  byId('drawOutput').textContent = JSON.stringify(output, null, 2);
+  shuffled.forEach((team, index) => assignments[index % assignments.length].teams.push(team));
+  byId('drawOutput').textContent = JSON.stringify({ drawSeed: seed, players: assignments, excludedTeams }, null, 2);
 }
 
 function seededShuffle(items, seed) {

@@ -1,4 +1,4 @@
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 
 const season = process.env.WORLDCUP_SEASON || '2026';
 const sourceUrl = process.env.WORLDCUP_SOURCE_URL || `https://raw.githubusercontent.com/openfootball/worldcup.json/master/${season}/worldcup.json`;
@@ -16,6 +16,15 @@ async function fetchJson(url) {
   }
 
   return response.json();
+}
+
+async function readCurrentData() {
+  try {
+    return JSON.parse(await readFile(dataPath, 'utf8'));
+  } catch (error) {
+    if (error.code === 'ENOENT') return null;
+    throw error;
+  }
 }
 
 function normaliseMatch(match) {
@@ -133,6 +142,16 @@ function addGoals(scorers, goals, team) {
   }
 }
 
+function withoutUpdatedAt(data) {
+  if (!data) return null;
+  const { updatedAt, ...rest } = data;
+  return rest;
+}
+
+function stableJson(data) {
+  return JSON.stringify(data, null, 2);
+}
+
 async function main() {
   const raw = await fetchJson(sourceUrl);
   const rawMatches = raw.matches ?? [];
@@ -140,8 +159,7 @@ async function main() {
   const teams = buildTeamTable(fixtures);
   const topScorers = buildTopScorers(rawMatches);
 
-  const next = {
-    updatedAt: new Date().toISOString(),
+  const materialData = {
     source: 'openfootball/worldcup.json',
     sourceUrl,
     competition: raw.name ?? `World Cup ${season}`,
@@ -153,6 +171,18 @@ async function main() {
       teams: [],
       notes: 'openfootball/worldcup.json does not include yellow-card/red-card tables. Use manual-overrides.json or add a scraper source for cards.'
     }
+  };
+
+  const current = await readCurrentData();
+
+  if (stableJson(withoutUpdatedAt(current)) === stableJson(materialData)) {
+    console.log(`No material data changes from ${sourceUrl}; leaving ${dataPath.pathname} unchanged.`);
+    return;
+  }
+
+  const next = {
+    updatedAt: new Date().toISOString(),
+    ...materialData
   };
 
   await writeFile(dataPath, `${JSON.stringify(next, null, 2)}\n`);

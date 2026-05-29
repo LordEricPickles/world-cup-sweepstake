@@ -4,31 +4,58 @@
   "potTotal": 100,
   "drawSeed": "world-cup-2026-sweepstake",
   "rulesSummary": [
-    "The draw uses 40 allocated teams and 8 excluded teams.",
-    "Most leaderboards are calculated among allocated teams only.",
-    "Manual overrides can be used for top scorer and cards if no free data source is reliable.",
-    "If an excluded team wins a headline prize, that item can be redistributed according to the written rules."
+    "12 entrants, 48 teams, no excluded teams.",
+    "Each player gets one team from each of the four draw pots.",
+    "Teams score their pot number for every milestone reached: Round of 32, Round of 16, Quarter Final, Semi Final, Final and Winner.",
+    "Ties are broken by best team stage reached, then second-best, third-best and fourth-best team stage reached.",
+    "The final tie-breaker is the lowest combined final placing across all four teams."
   ],
-  "prizes": [
-    { "id": "winner", "label": "Best finishing allocated team", "share": 0.45, "type": "finish" },
-    { "id": "runnerUp", "label": "Second-best allocated team", "share": 0.15, "type": "finish" },
-    { "id": "outsider", "label": "Best outsider", "share": 0.15, "type": "outsider" },
-    { "id": "woodenSpoon", "label": "Wooden spoon", "share": 0.10, "type": "worst" },
-    { "id": "entertainers", "label": "Most entertaining team", "share": 0.10, "type": "entertainers" },
-    { "id": "chaos", "label": "Manual chaos prize", "share": 0.05, "type": "manual" }
+  "milestones": [
+    { "id": "roundOf32", "label": "Round of 32", "rank": 1 },
+    { "id": "roundOf16", "label": "Round of 16", "rank": 2 },
+    { "id": "quarterFinal", "label": "Quarter Final", "rank": 3 },
+    { "id": "semiFinal", "label": "Semi Final", "rank": 4 },
+    { "id": "final", "label": "Final", "rank": 5 },
+    { "id": "winner", "label": "Winner", "rank": 6 }
+  ],
+  "pots": [
+    {
+      "id": 1,
+      "label": "Pot 1",
+      "pointsPerMilestone": 1,
+      "teams": ["Canada", "Mexico", "USA", "Spain", "Argentina", "France", "England", "Brazil", "Portugal", "Netherlands", "Belgium", "Germany"]
+    },
+    {
+      "id": 2,
+      "label": "Pot 2",
+      "pointsPerMilestone": 2,
+      "teams": ["Croatia", "Morocco", "Colombia", "Uruguay", "Switzerland", "Japan", "Senegal", "Iran", "South Korea", "Ecuador", "Austria", "Australia"]
+    },
+    {
+      "id": 3,
+      "label": "Pot 3",
+      "pointsPerMilestone": 3,
+      "teams": ["Norway", "Panama", "Egypt", "Algeria", "Scotland", "Paraguay", "Tunisia", "Ivory Coast", "Uzbekistan", "Qatar", "Saudi Arabia", "South Africa"]
+    },
+    {
+      "id": 4,
+      "label": "Pot 4",
+      "pointsPerMilestone": 4,
+      "teams": ["Jordan", "Cape Verde", "Ghana", "Curaçao", "Haiti", "New Zealand", "Bosnia and Herzegovina", "Sweden", "Turkey", "Czechia", "DR Congo", "Iraq"]
+    }
   ],
   "players": [
-    { "name": "Player 1", "teams": ["England", "Japan", "Ghana", "Panama"] },
-    { "name": "Player 2", "teams": ["Brazil", "Morocco", "Scotland", "New Zealand"] },
-    { "name": "Player 3", "teams": ["France", "South Korea", "Tunisia", "Bolivia"] },
-    { "name": "Player 4", "teams": ["Argentina", "Senegal", "Norway", "South Africa"] },
-    { "name": "Player 5", "teams": ["Spain", "USA", "Egypt", "Jamaica"] },
-    { "name": "Player 6", "teams": ["Portugal", "Mexico", "Algeria", "Honduras"] },
-    { "name": "Player 7", "teams": ["Germany", "Uruguay", "Qatar", "Haiti"] },
-    { "name": "Player 8", "teams": ["Netherlands", "Colombia", "Saudi Arabia", "Jordan"] },
-    { "name": "Player 9", "teams": ["Belgium", "Croatia", "Paraguay", "Curacao"] },
-    { "name": "Player 10", "teams": ["Italy", "Switzerland", "Australia", "Cape Verde"] }
-  ],
-  "excludedTeams": ["Team 41", "Team 42", "Team 43", "Team 44", "Team 45", "Team 46", "Team 47", "Team 48"],
-  "outsiderTeams": ["Ghana", "Panama", "New Zealand", "Tunisia", "Bolivia", "South Africa", "Egypt", "Jamaica", "Algeria", "Honduras", "Qatar", "Haiti", "Saudi Arabia", "Jordan", "Paraguay", "Curacao", "Australia", "Cape Verde"]
+    { "name": "Player 1", "teams": [{ "name": "Canada", "pot": 1 }, { "name": "Croatia", "pot": 2 }, { "name": "Norway", "pot": 3 }, { "name": "Jordan", "pot": 4 }] },
+    { "name": "Player 2", "teams": [{ "name": "Mexico", "pot": 1 }, { "name": "Morocco", "pot": 2 }, { "name": "Panama", "pot": 3 }, { "name": "Cape Verde", "pot": 4 }] },
+    { "name": "Player 3", "teams": [{ "name": "USA", "pot": 1 }, { "name": "Colombia", "pot": 2 }, { "name": "Egypt", "pot": 3 }, { "name": "Ghana", "pot": 4 }] },
+    { "name": "Player 4", "teams": [{ "name": "Spain", "pot": 1 }, { "name": "Uruguay", "pot": 2 }, { "name": "Algeria", "pot": 3 }, { "name": "Curaçao", "pot": 4 }] },
+    { "name": "Player 5", "teams": [{ "name": "Argentina", "pot": 1 }, { "name": "Switzerland", "pot": 2 }, { "name": "Scotland", "pot": 3 }, { "name": "Haiti", "pot": 4 }] },
+    { "name": "Player 6", "teams": [{ "name": "France", "pot": 1 }, { "name": "Japan", "pot": 2 }, { "name": "Paraguay", "pot": 3 }, { "name": "New Zealand", "pot": 4 }] },
+    { "name": "Player 7", "teams": [{ "name": "England", "pot": 1 }, { "name": "Senegal", "pot": 2 }, { "name": "Tunisia", "pot": 3 }, { "name": "Bosnia and Herzegovina", "pot": 4 }] },
+    { "name": "Player 8", "teams": [{ "name": "Brazil", "pot": 1 }, { "name": "Iran", "pot": 2 }, { "name": "Ivory Coast", "pot": 3 }, { "name": "Sweden", "pot": 4 }] },
+    { "name": "Player 9", "teams": [{ "name": "Portugal", "pot": 1 }, { "name": "South Korea", "pot": 2 }, { "name": "Uzbekistan", "pot": 3 }, { "name": "Turkey", "pot": 4 }] },
+    { "name": "Player 10", "teams": [{ "name": "Netherlands", "pot": 1 }, { "name": "Ecuador", "pot": 2 }, { "name": "Qatar", "pot": 3 }, { "name": "Czechia", "pot": 4 }] },
+    { "name": "Player 11", "teams": [{ "name": "Belgium", "pot": 1 }, { "name": "Austria", "pot": 2 }, { "name": "Saudi Arabia", "pot": 3 }, { "name": "DR Congo", "pot": 4 }] },
+    { "name": "Player 12", "teams": [{ "name": "Germany", "pot": 1 }, { "name": "Australia", "pot": 2 }, { "name": "South Africa", "pot": 3 }, { "name": "Iraq", "pot": 4 }] }
+  ]
 }

@@ -15,6 +15,58 @@ const STAGE_LABELS = {
   final: 'Final',
   winner: 'Winner'
 };
+const TEAM_FLAGS = {
+  Algeria: '🇩🇿',
+  Argentina: '🇦🇷',
+  Australia: '🇦🇺',
+  Austria: '🇦🇹',
+  Belgium: '🇧🇪',
+  'Bosnia & Herzegovina': '🇧🇦',
+  'Bosnia and Herzegovina': '🇧🇦',
+  Brazil: '🇧🇷',
+  Canada: '🇨🇦',
+  'Cape Verde': '🇨🇻',
+  Colombia: '🇨🇴',
+  Croatia: '🇭🇷',
+  Curaçao: '🇨🇼',
+  'Czech Republic': '🇨🇿',
+  Czechia: '🇨🇿',
+  'DR Congo': '🇨🇩',
+  Ecuador: '🇪🇨',
+  Egypt: '🇪🇬',
+  England: '\u{1F3F4}\u{E0067}\u{E0062}\u{E0065}\u{E006E}\u{E0067}\u{E007F}',
+  France: '🇫🇷',
+  Germany: '🇩🇪',
+  Ghana: '🇬🇭',
+  Haiti: '🇭🇹',
+  Iran: '🇮🇷',
+  Iraq: '🇮🇶',
+  'Ivory Coast': '🇨🇮',
+  Japan: '🇯🇵',
+  Jordan: '🇯🇴',
+  Mexico: '🇲🇽',
+  Morocco: '🇲🇦',
+  Netherlands: '🇳🇱',
+  'New Zealand': '🇳🇿',
+  Norway: '🇳🇴',
+  Panama: '🇵🇦',
+  Paraguay: '🇵🇾',
+  Portugal: '🇵🇹',
+  Qatar: '🇶🇦',
+  'Saudi Arabia': '🇸🇦',
+  Scotland: '\u{1F3F4}\u{E0067}\u{E0062}\u{E0073}\u{E0063}\u{E0074}\u{E007F}',
+  Senegal: '🇸🇳',
+  'South Africa': '🇿🇦',
+  'South Korea': '🇰🇷',
+  Spain: '🇪🇸',
+  Sweden: '🇸🇪',
+  Switzerland: '🇨🇭',
+  Tunisia: '🇹🇳',
+  Turkey: '🇹🇷',
+  USA: '🇺🇸',
+  Uruguay: '🇺🇾',
+  Uzbekistan: '🇺🇿'
+};
 
 const state = { sweepstake: null, worldcup: null, overrides: null };
 let activeFixtureFilter = 'all';
@@ -27,6 +79,18 @@ const escapeHtml = (value) => String(value ?? '')
   .replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;')
   .replaceAll("'", '&#039;');
+const htmlCell = (html) => ({ html });
+
+function renderCell(cell) {
+  return cell && typeof cell === 'object' && 'html' in cell ? cell.html : escapeHtml(cell);
+}
+
+function teamLabel(teamName) {
+  const name = String(teamName ?? '');
+  const flag = TEAM_FLAGS[name];
+  if (!flag) return escapeHtml(name);
+  return `<span class="team-label"><span class="team-flag" aria-hidden="true">${flag}</span><span>${escapeHtml(name)}</span></span>`;
+}
 
 async function loadJson(path) {
   const response = await fetch(path, { cache: 'no-store' });
@@ -248,7 +312,7 @@ function renderPlayers() {
           <h3>${escapeHtml(player.name)}</h3>
           <p><strong>${player.totalPoints}</strong> points · final placing tie-breaker ${formatPlacingTotal(player.combinedFinalPlacing)}</p>
           <div class="tag-list">
-            ${player.teams.map((team) => `<span class="tag ${escapeHtml(team.stageReached)}">${escapeHtml(team.name)} · ${escapeHtml(team.potLabel)} · ${team.sweepstakePoints} pts</span>`).join('')}
+            ${player.teams.map((team) => `<span class="tag ${escapeHtml(team.stageReached)}">${teamLabel(team.name)} · ${escapeHtml(team.potLabel)} · ${team.sweepstakePoints} pts</span>`).join('')}
           </div>
         </article>
       `).join('')}
@@ -268,7 +332,7 @@ function renderLeaderboards() {
     index + 1,
     player.name,
     player.totalPoints,
-    player.teams.sort(compareTeamsForTieBreak).map((team) => `${team.name} (${stageLabel(team.stageReached)})`).join(', '),
+    htmlCell(player.teams.sort(compareTeamsForTieBreak).map((team) => `${teamLabel(team.name)} (${escapeHtml(stageLabel(team.stageReached))})`).join(', ')),
     formatPlacingTotal(player.combinedFinalPlacing)
   ]))}
     </article>
@@ -276,7 +340,7 @@ function renderLeaderboards() {
       <article class="card">
         <h3>Team scores</h3>
         ${table(['Team', 'Owner', 'Pot', 'Stage', 'Score', 'Final placing'], teams.map((team) => [
-    team.name,
+    htmlCell(teamLabel(team.name)),
     team.owner,
     team.potLabel,
     stageLabel(team.stageReached),
@@ -307,9 +371,9 @@ function renderFixtures() {
     ${filtered.length ? table(['Date', 'Round', 'Home', 'Score', 'Away', 'Group', 'Venue', 'Status'], filtered.map((match) => [
     match.date,
     match.round ?? '',
-    match.home,
+    htmlCell(teamLabel(match.home)),
     score(match),
-    match.away,
+    htmlCell(teamLabel(match.away)),
     match.group ?? '',
     match.ground ?? '',
     match.status
@@ -350,7 +414,7 @@ function renderRules() {
           <article class="card compact-card">
             <h3>${escapeHtml(pot.label ?? `Pot ${pot.id}`)}</h3>
             <p>${pot.pointsPerMilestone ?? pot.id} point${(pot.pointsPerMilestone ?? pot.id) === 1 ? '' : 's'} per milestone</p>
-            <div class="tag-list">${(pot.teams ?? []).map((team) => `<span class="tag">${escapeHtml(team)}</span>`).join('')}</div>
+            <div class="tag-list">${(pot.teams ?? []).map((team) => `<span class="tag">${teamLabel(team)}</span>`).join('')}</div>
           </article>
         `).join('')}
       </div>
@@ -363,7 +427,7 @@ function table(headers, rows) {
     <div class="table-wrap">
       <table>
         <thead><tr>${headers.map((header) => `<th>${escapeHtml(header)}</th>`).join('')}</tr></thead>
-        <tbody>${rows.map((row) => `<tr>${row.map((cell) => `<td>${escapeHtml(cell)}</td>`).join('')}</tr>`).join('')}</tbody>
+        <tbody>${rows.map((row) => `<tr>${row.map((cell) => `<td>${renderCell(cell)}</td>`).join('')}</tr>`).join('')}</tbody>
       </table>
     </div>
   `;
@@ -428,7 +492,7 @@ function generateDraw() {
   const potHeaders = pots.map((pot) => pot.label ?? `Pot ${pot.id}`);
   const rows = assignments.map((player) => [
     player.name,
-    ...pots.map((pot) => player.teams.find((team) => team.pot === pot.id)?.name ?? '')
+    ...pots.map((pot) => htmlCell(teamLabel(player.teams.find((team) => team.pot === pot.id)?.name ?? '')))
   ]);
   const playersJson = JSON.stringify(assignments, null, 2);
 

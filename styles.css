@@ -54,6 +54,8 @@ code { color: #bae6fd; }
 .tag.alive { color: #86efac; }
 .tag.eliminated { color: #fecaca; }
 .tag.excluded { color: #fde68a; }
+.team-label { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; vertical-align: middle; }
+.team-flag { display: inline-block; width: 1.35em; text-align: center; line-height: 1; }
 .table-wrap { overflow-x: auto; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; }
 table { border-collapse: collapse; width: 100%; min-width: 680px; }
 th, td { padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,.12); text-align: left; }

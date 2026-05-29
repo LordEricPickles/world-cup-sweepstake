@@ -325,10 +325,10 @@ function renderLeaderboards() {
     <h2>Leaderboards</h2>
     <section class="leaderboard-section">
       <h3>Player standings</h3>
-      ${table(['Player', 'Points', 'Best teams by stage', { label: 'Final placing total', hideOnMobile: true }], players.map((player) => [
+      ${table(['Player', 'Points', 'Team points', { label: 'Final placing total', hideOnMobile: true }], players.map((player) => [
     player.name,
     player.totalPoints,
-    htmlCell(bestTeamsByStage(player.teams)),
+    htmlCell(teamPointsList(player.teams)),
     formatPlacingTotal(player.combinedFinalPlacing)
   ]), 'responsive-table')}
     </section>
@@ -346,11 +346,11 @@ function renderLeaderboards() {
   `;
 }
 
-function bestTeamsByStage(teams) {
+function teamPointsList(teams) {
   return `
-    <span class="team-stage-list">
+    <span class="team-points-list">
       ${teams.sort(compareTeamsForTieBreak).map((team) => `
-        <span class="team-stage-item">${teamLabel(team.name)} <span class="team-stage">(${escapeHtml(stageLabel(team.stageReached))})</span></span>
+        <span class="team-points-item">${teamLabel(team.name)} <span class="team-points">${team.sweepstakePoints} pts</span></span>
       `).join('')}
     </span>
   `;

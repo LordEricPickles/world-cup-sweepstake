@@ -2,6 +2,15 @@ name: Refresh data
 
 on:
   workflow_dispatch:
+    inputs:
+      season:
+        description: World Cup season to fetch from openfootball, e.g. 2026 or 2022
+        required: true
+        default: '2026'
+      source_url:
+        description: Optional override URL for a compatible worldcup.json file
+        required: false
+        default: ''
   schedule:
     - cron: '17 */6 * * *'
 
@@ -11,6 +20,9 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    env:
+      WORLDCUP_SEASON: ${{ github.event.inputs.season || '2026' }}
+      WORLDCUP_SOURCE_URL: ${{ github.event.inputs.source_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4

@@ -113,7 +113,6 @@ async function init() {
 
     setupDrawTool();
     renderAll();
-    byId('statusText').textContent = worldcup.competition || 'Ready';
     byId('updatedText').textContent = worldcup.updatedAt ? `Data updated ${new Date(worldcup.updatedAt).toLocaleString('en-GB')} from ${worldcup.source ?? 'JSON'}` : 'No live data yet';
   } catch (error) {
     console.error(error);
@@ -326,7 +325,7 @@ function renderLeaderboards() {
     <h2>Leaderboards</h2>
     <section class="leaderboard-section">
       <h3>Player standings</h3>
-      ${table(['Player', 'Points', 'Best teams by stage', 'Final placing total'], players.map((player) => [
+      ${table(['Player', 'Points', 'Best teams by stage', { label: 'Final placing total', hideOnMobile: true }], players.map((player) => [
     player.name,
     player.totalPoints,
     htmlCell(player.teams.sort(compareTeamsForTieBreak).map((team) => `${teamLabel(team.name)} (${escapeHtml(stageLabel(team.stageReached))})`).join(', ')),
@@ -383,15 +382,14 @@ function renderFixtures() {
   byId('fixtures').innerHTML = `
     <h2>Fixtures</h2>
     <div class="tabs">${filters.map((filter) => `<button class="fixture-filter ${activeFixtureFilter === filter ? 'active' : ''}" data-filter="${filter}">${filter}</button>`).join('')}</div>
-    ${filtered.length ? table(['Date', 'Round', 'Home', 'Score', 'Away', 'Group', 'Venue', 'Status'], filtered.map((match) => [
+    ${filtered.length ? table(['Date', { label: 'Round', hideOnMobile: true }, 'Home', 'Score', 'Away', { label: 'Group', hideOnMobile: true }, { label: 'Venue', hideOnMobile: true }], filtered.map((match) => [
     match.date,
     match.round ?? '',
     htmlCell(teamLabel(match.home)),
     score(match),
     htmlCell(teamLabel(match.away)),
     match.group ?? '',
-    match.ground ?? '',
-    match.status
+    match.ground ?? ''
   ]), 'responsive-table') : '<p>No fixtures loaded yet.</p>'}
   `;
 
@@ -438,13 +436,17 @@ function renderRules() {
 }
 
 function table(headers, rows, tableClass = '') {
+  const columns = headers.map((header) => (
+    typeof header === 'object' ? header : { label: header }
+  ));
   const classAttribute = tableClass ? ` class="${escapeHtml(tableClass)}"` : '';
+  const columnClass = (column) => column.hideOnMobile ? ' class="mobile-hidden"' : '';
 
   return `
     <div class="table-wrap">
       <table${classAttribute}>
-        <thead><tr>${headers.map((header) => `<th>${escapeHtml(header)}</th>`).join('')}</tr></thead>
-        <tbody>${rows.map((row) => `<tr>${row.map((cell, index) => `<td data-label="${escapeHtml(headers[index] ?? '')}">${renderCell(cell)}</td>`).join('')}</tr>`).join('')}</tbody>
+        <thead><tr>${columns.map((column) => `<th${columnClass(column)}>${escapeHtml(column.label)}</th>`).join('')}</tr></thead>
+        <tbody>${rows.map((row) => `<tr>${row.map((cell, index) => `<td${columnClass(columns[index] ?? {})} data-label="${escapeHtml(columns[index]?.label ?? '')}">${renderCell(cell)}</td>`).join('')}</tr>`).join('')}</tbody>
       </table>
     </div>
   `;

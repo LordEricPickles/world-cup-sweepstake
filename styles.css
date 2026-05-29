@@ -122,4 +122,8 @@ footer { padding: 16px 0 40px; }
     letter-spacing: .08em;
     text-transform: uppercase;
   }
+
+  .responsive-table .mobile-hidden {
+    display: none;
+  }
 }

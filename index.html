@@ -1,46 +1,49 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Glorious World Cup Sweepstake App Thingy</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="hero">
-      <div>
-        <h1>Glorious World Cup Sweepstake App Thingy</h1>
-        <p class="lede">Track a 12-player pot-based World Cup sweepstake, fixtures and a deterministic draw without needing a backend or database.</p>
-      </div>
-      <div class="hero-card">
-        <span class="label">Status</span>
-        <strong id="statusText">Loading data…</strong>
-        <small id="updatedText"></small>
-      </div>
-    </header>
 
-    <main>
-      <nav class="tabs" aria-label="Sections">
-        <button data-tab="overview" class="active">Overview</button>
-        <button data-tab="players">Players</button>
-        <button data-tab="leaderboards">Leaderboards</button>
-        <button data-tab="fixtures">Fixtures</button>
-        <button data-tab="draw">Draw tool</button>
-        <button data-tab="rules">Rules</button>
-      </nav>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glorious World Cup Sweepstake App Thingy</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-      <section id="overview" class="panel active"></section>
-      <section id="players" class="panel"></section>
-      <section id="leaderboards" class="panel"></section>
-      <section id="fixtures" class="panel"></section>
-      <section id="draw" class="panel"></section>
-      <section id="rules" class="panel"></section>
-    </main>
+<body>
+  <header class="hero">
+    <div>
+      <h1>Glorious World Cup Sweepstake App Thingy</h1>
+    </div>
+    <div class="hero-card">
+      <span class="label">Status</span>
+      <small id="updatedText"></small>
+    </div>
+  </header>
 
-    <footer>
-      <p>Data is loaded from JSON files in <code>public/data</code>. Final results can be corrected with <code>manual-overrides.json</code>.</p>
-    </footer>
+  <main>
+    <nav class="tabs" aria-label="Sections">
+      <button data-tab="overview" class="active">Overview</button>
+      <button data-tab="players">Players</button>
+      <button data-tab="leaderboards">Leaderboards</button>
+      <button data-tab="fixtures">Fixtures</button>
+      <button data-tab="draw">Draw tool</button>
+      <button data-tab="rules">Rules</button>
+    </nav>
 
-    <script type="module" src="app.js"></script>
-  </body>
+    <section id="overview" class="panel active"></section>
+    <section id="players" class="panel"></section>
+    <section id="leaderboards" class="panel"></section>
+    <section id="fixtures" class="panel"></section>
+    <section id="draw" class="panel"></section>
+    <section id="rules" class="panel"></section>
+  </main>
+
+  <footer>
+    <p>Data is loaded from JSON files in <code>public/data</code>. Final results can be corrected with
+      <code>manual-overrides.json</code>.
+    </p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+
 </html>

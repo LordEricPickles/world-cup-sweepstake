@@ -1,0 +1,34 @@
+{
+  "title": "World Cup Sweepstake",
+  "potCurrency": "GBP",
+  "potTotal": 100,
+  "drawSeed": "world-cup-2026-sweepstake",
+  "rulesSummary": [
+    "The draw uses 40 allocated teams and 8 excluded teams.",
+    "Most leaderboards are calculated among allocated teams only.",
+    "Manual overrides can be used for top scorer and cards if no free data source is reliable.",
+    "If an excluded team wins a headline prize, that item can be redistributed according to the written rules."
+  ],
+  "prizes": [
+    { "id": "winner", "label": "Best finishing allocated team", "share": 0.45, "type": "finish" },
+    { "id": "runnerUp", "label": "Second-best allocated team", "share": 0.15, "type": "finish" },
+    { "id": "outsider", "label": "Best outsider", "share": 0.15, "type": "outsider" },
+    { "id": "woodenSpoon", "label": "Wooden spoon", "share": 0.10, "type": "worst" },
+    { "id": "entertainers", "label": "Most entertaining team", "share": 0.10, "type": "entertainers" },
+    { "id": "chaos", "label": "Manual chaos prize", "share": 0.05, "type": "manual" }
+  ],
+  "players": [
+    { "name": "Player 1", "teams": ["England", "Japan", "Ghana", "Panama"] },
+    { "name": "Player 2", "teams": ["Brazil", "Morocco", "Scotland", "New Zealand"] },
+    { "name": "Player 3", "teams": ["France", "South Korea", "Tunisia", "Bolivia"] },
+    { "name": "Player 4", "teams": ["Argentina", "Senegal", "Norway", "South Africa"] },
+    { "name": "Player 5", "teams": ["Spain", "USA", "Egypt", "Jamaica"] },
+    { "name": "Player 6", "teams": ["Portugal", "Mexico", "Algeria", "Honduras"] },
+    { "name": "Player 7", "teams": ["Germany", "Uruguay", "Qatar", "Haiti"] },
+    { "name": "Player 8", "teams": ["Netherlands", "Colombia", "Saudi Arabia", "Jordan"] },
+    { "name": "Player 9", "teams": ["Belgium", "Croatia", "Paraguay", "Curacao"] },
+    { "name": "Player 10", "teams": ["Italy", "Switzerland", "Australia", "Cape Verde"] }
+  ],
+  "excludedTeams": ["Team 41", "Team 42", "Team 43", "Team 44", "Team 45", "Team 46", "Team 47", "Team 48"],
+  "outsiderTeams": ["Ghana", "Panama", "New Zealand", "Tunisia", "Bolivia", "South Africa", "Egypt", "Jamaica", "Algeria", "Honduras", "Qatar", "Haiti", "Saudi Arabia", "Jordan", "Paraguay", "Curacao", "Australia", "Cape Verde"]
+}

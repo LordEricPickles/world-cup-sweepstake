@@ -265,24 +265,24 @@ function renderLeaderboards() {
     <article class="card">
       <h3>Player standings</h3>
       ${table(['Rank', 'Player', 'Points', 'Best teams by stage', 'Final placing total'], players.map((player, index) => [
-        index + 1,
-        player.name,
-        player.totalPoints,
-        player.teams.sort(compareTeamsForTieBreak).map((team) => `${team.name} (${stageLabel(team.stageReached)})`).join(', '),
-        formatPlacingTotal(player.combinedFinalPlacing)
-      ]))}
+    index + 1,
+    player.name,
+    player.totalPoints,
+    player.teams.sort(compareTeamsForTieBreak).map((team) => `${team.name} (${stageLabel(team.stageReached)})`).join(', '),
+    formatPlacingTotal(player.combinedFinalPlacing)
+  ]))}
     </article>
     <div class="grid" style="margin-top:16px">
       <article class="card">
         <h3>Team scores</h3>
         ${table(['Team', 'Owner', 'Pot', 'Stage', 'Score', 'Final placing'], teams.map((team) => [
-          team.name,
-          team.owner,
-          team.potLabel,
-          stageLabel(team.stageReached),
-          team.sweepstakePoints,
-          formatPlacing(team.finalPlacing)
-        ]))}
+    team.name,
+    team.owner,
+    team.potLabel,
+    stageLabel(team.stageReached),
+    team.sweepstakePoints,
+    formatPlacing(team.finalPlacing)
+  ]))}
       </article>
     </div>
   `;
@@ -305,15 +305,15 @@ function renderFixtures() {
     <h2>Fixtures</h2>
     <div class="tabs">${filters.map((filter) => `<button class="fixture-filter ${activeFixtureFilter === filter ? 'active' : ''}" data-filter="${filter}">${filter}</button>`).join('')}</div>
     ${filtered.length ? table(['Date', 'Round', 'Home', 'Score', 'Away', 'Group', 'Venue', 'Status'], filtered.map((match) => [
-      match.date,
-      match.round ?? '',
-      match.home,
-      score(match),
-      match.away,
-      match.group ?? '',
-      match.ground ?? '',
-      match.status
-    ])) : '<p>No fixtures loaded yet.</p>'}
+    match.date,
+    match.round ?? '',
+    match.home,
+    score(match),
+    match.away,
+    match.group ?? '',
+    match.ground ?? '',
+    match.status
+  ])) : '<p>No fixtures loaded yet.</p>'}
   `;
 
   document.querySelectorAll('.fixture-filter').forEach((button) => {
@@ -338,12 +338,12 @@ function renderRules() {
       <ul>${(config.rulesSummary ?? []).map((rule) => `<li>${escapeHtml(rule)}</li>`).join('')}</ul>
       <h3>Scoring milestones</h3>
       ${table(['Milestone', 'Pot 1', 'Pot 2', 'Pot 3', 'Pot 4'], milestones().map((milestone) => [
-        milestone.label,
-        '1',
-        '2',
-        '3',
-        '4'
-      ]))}
+    milestone.label,
+    '1',
+    '2',
+    '3',
+    '4'
+  ]))}
       <h3 style="margin-top:20px">Pots</h3>
       <div class="grid">
         ${(config.pots ?? []).map((pot) => `
@@ -371,19 +371,18 @@ function table(headers, rows) {
 
 function setupDrawTool() {
   const configuredPots = state.sweepstake?.pots ?? defaultDrawPots();
+  const playerNames = state.sweepstake?.players?.map((player) => player.name)
+    ?? Array.from({ length: 12 }, (_, index) => `Player ${index + 1}`);
+  const seed = state.sweepstake?.drawSeed ?? 'world-cup-2026-sweepstake';
   byId('draw').innerHTML = `
     <h2>Draw tool</h2>
-    <p>Paste 12 player names and 12 teams in each pot, then generate a repeatable pot-aware draw from a seed.</p>
+    <p>Paste 12 player names, then generate a repeatable draw using the official pots from the sweepstake data.</p>
     <label>Players, one per line</label>
-    <textarea id="drawPlayers">${Array.from({ length: 12 }, (_, index) => `Player ${index + 1}`).join('\n')}</textarea>
-    ${configuredPots.map((pot) => `
-      <label>${escapeHtml(pot.label ?? `Pot ${pot.id}`)}, one team per line</label>
-      <textarea id="drawPot${pot.id}">${(pot.teams ?? []).join('\n')}</textarea>
-    `).join('')}
-    <label>Seed<input id="drawSeed" value="world-cup-2026-sweepstake" /></label>
+    <textarea id="drawPlayers">${escapeHtml(playerNames.join('\n'))}</textarea>
+    <label>Seed<input id="drawSeed" value="${escapeHtml(seed)}" /></label>
     <button class="primary" id="generateDraw">Generate draw</button>
     <h3 style="margin-top:20px">Output</h3>
-    <pre id="drawOutput">Click generate to create JSON.</pre>
+    <div id="drawOutput" class="draw-output"><p>Click generate to create the draw.</p></div>
   `;
   byId('generateDraw').addEventListener('click', generateDraw);
 }
@@ -399,28 +398,26 @@ function lines(id) {
 function generateDraw() {
   const players = lines('drawPlayers');
   const seed = byId('drawSeed').value.trim() || 'sweepstake';
-  const pots = (state.sweepstake?.pots ?? defaultDrawPots()).map((pot) => ({
-    ...pot,
-    teams: lines(`drawPot${pot.id}`)
-  }));
+  const pots = state.sweepstake?.pots ?? defaultDrawPots();
 
   const errors = [];
   if (players.length !== 12) errors.push(`Expected 12 players, found ${players.length}.`);
   for (const pot of pots) {
-    if (pot.teams.length !== 12) errors.push(`Expected 12 teams in ${pot.label ?? `Pot ${pot.id}`}, found ${pot.teams.length}.`);
+    const teams = pot.teams ?? [];
+    if (teams.length !== 12) errors.push(`Expected 12 teams in ${pot.label ?? `Pot ${pot.id}`}, found ${teams.length}.`);
   }
 
-  const duplicates = duplicateValues(pots.flatMap((pot) => pot.teams));
+  const duplicates = duplicateValues(pots.flatMap((pot) => pot.teams ?? []));
   if (duplicates.length) errors.push(`Duplicate teams: ${duplicates.join(', ')}.`);
 
   if (errors.length) {
-    byId('drawOutput').textContent = errors.join('\n');
+    byId('drawOutput').innerHTML = `<pre>${escapeHtml(errors.join('\n'))}</pre>`;
     return;
   }
 
   const shuffledPots = pots.map((pot) => ({
     ...pot,
-    teams: seededShuffle(pot.teams, `${seed}:${pot.id}`)
+    teams: seededShuffle(pot.teams ?? [], `${seed}:${pot.id}`)
   }));
 
   const assignments = players.map((name, playerIndex) => ({
@@ -428,11 +425,20 @@ function generateDraw() {
     teams: shuffledPots.map((pot) => ({ name: pot.teams[playerIndex], pot: pot.id }))
   }));
 
-  byId('drawOutput').textContent = JSON.stringify({
-    drawSeed: seed,
-    pots,
-    players: assignments
-  }, null, 2);
+  const potHeaders = pots.map((pot) => pot.label ?? `Pot ${pot.id}`);
+  const rows = assignments.map((player) => [
+    player.name,
+    ...pots.map((pot) => player.teams.find((team) => team.pot === pot.id)?.name ?? '')
+  ]);
+  const playersJson = JSON.stringify(assignments, null, 2);
+
+  byId('drawOutput').innerHTML = `
+    ${table(['Player', ...potHeaders], rows)}
+    <details class="json-details">
+      <summary>Show JSON</summary>
+      <pre>${escapeHtml(playersJson)}</pre>
+    </details>
+  `;
 }
 
 function duplicateValues(items) {

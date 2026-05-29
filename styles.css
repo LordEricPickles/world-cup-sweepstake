@@ -61,6 +61,8 @@ th { color: #cbd5e1; font-size: .82rem; text-transform: uppercase; letter-spacin
 textarea, input { width: 100%; color: #f8fafc; padding: 12px; margin: 8px 0 14px; font: inherit; }
 textarea { min-height: 120px; }
 pre { white-space: pre-wrap; overflow: auto; background: #020617; padding: 14px; border-radius: 14px; }
+details.json-details { margin-top: 16px; }
+details.json-details summary { color: #bae6fd; cursor: pointer; font-weight: 700; }
 .notice { border-left: 4px solid #38bdf8; padding: 12px 14px; background: #082f49; border-radius: 12px; }
 footer { padding: 16px 0 40px; }
 @media (max-width: 760px) { .hero { grid-template-columns: 1fr; padding-top: 32px; } }

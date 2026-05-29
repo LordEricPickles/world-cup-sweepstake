@@ -1,6 +1,2126 @@
 {
-  "updatedAt": null,
-  "source": "empty",
-  "teams": [],
-  "fixtures": []
+  "updatedAt": "2026-05-29T14:44:03.365Z",
+  "source": "openfootball/worldcup.json",
+  "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2022/worldcup.json",
+  "competition": "World Cup 2022",
+  "season": "2022",
+  "teams": [
+    {
+      "name": "France",
+      "status": "alive",
+      "played": 7,
+      "won": 5,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 15,
+      "goalsAgainst": 7,
+      "points": 16,
+      "finishRank": 1,
+      "goalDifference": 8
+    },
+    {
+      "name": "Argentina",
+      "status": "alive",
+      "played": 7,
+      "won": 4,
+      "drawn": 2,
+      "lost": 1,
+      "goalsFor": 14,
+      "goalsAgainst": 7,
+      "points": 14,
+      "finishRank": 2,
+      "goalDifference": 7
+    },
+    {
+      "name": "Netherlands",
+      "status": "alive",
+      "played": 5,
+      "won": 3,
+      "drawn": 2,
+      "lost": 0,
+      "goalsFor": 10,
+      "goalsAgainst": 4,
+      "points": 11,
+      "finishRank": 3,
+      "goalDifference": 6
+    },
+    {
+      "name": "Morocco",
+      "status": "alive",
+      "played": 7,
+      "won": 3,
+      "drawn": 2,
+      "lost": 2,
+      "goalsFor": 6,
+      "goalsAgainst": 5,
+      "points": 11,
+      "finishRank": 4,
+      "goalDifference": 1
+    },
+    {
+      "name": "England",
+      "status": "alive",
+      "played": 5,
+      "won": 3,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 13,
+      "goalsAgainst": 4,
+      "points": 10,
+      "finishRank": 5,
+      "goalDifference": 9
+    },
+    {
+      "name": "Brazil",
+      "status": "alive",
+      "played": 5,
+      "won": 3,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 7,
+      "goalsAgainst": 2,
+      "points": 10,
+      "finishRank": 6,
+      "goalDifference": 5
+    },
+    {
+      "name": "Croatia",
+      "status": "alive",
+      "played": 7,
+      "won": 2,
+      "drawn": 4,
+      "lost": 1,
+      "goalsFor": 7,
+      "goalsAgainst": 6,
+      "points": 10,
+      "finishRank": 7,
+      "goalDifference": 1
+    },
+    {
+      "name": "Portugal",
+      "status": "alive",
+      "played": 5,
+      "won": 3,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 12,
+      "goalsAgainst": 6,
+      "points": 9,
+      "finishRank": 8,
+      "goalDifference": 6
+    },
+    {
+      "name": "Japan",
+      "status": "alive",
+      "played": 4,
+      "won": 2,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 5,
+      "goalsAgainst": 4,
+      "points": 7,
+      "finishRank": 9,
+      "goalDifference": 1
+    },
+    {
+      "name": "Senegal",
+      "status": "alive",
+      "played": 4,
+      "won": 2,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 5,
+      "goalsAgainst": 7,
+      "points": 6,
+      "finishRank": 10,
+      "goalDifference": -2
+    },
+    {
+      "name": "Australia",
+      "status": "alive",
+      "played": 4,
+      "won": 2,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 4,
+      "goalsAgainst": 6,
+      "points": 6,
+      "finishRank": 11,
+      "goalDifference": -2
+    },
+    {
+      "name": "Switzerland",
+      "status": "alive",
+      "played": 4,
+      "won": 2,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 5,
+      "goalsAgainst": 9,
+      "points": 6,
+      "finishRank": 12,
+      "goalDifference": -4
+    },
+    {
+      "name": "Spain",
+      "status": "alive",
+      "played": 4,
+      "won": 1,
+      "drawn": 2,
+      "lost": 1,
+      "goalsFor": 9,
+      "goalsAgainst": 3,
+      "points": 5,
+      "finishRank": 13,
+      "goalDifference": 6
+    },
+    {
+      "name": "USA",
+      "status": "alive",
+      "played": 4,
+      "won": 1,
+      "drawn": 2,
+      "lost": 1,
+      "goalsFor": 3,
+      "goalsAgainst": 4,
+      "points": 5,
+      "finishRank": 14,
+      "goalDifference": -1
+    },
+    {
+      "name": "Germany",
+      "status": "alive",
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 6,
+      "goalsAgainst": 5,
+      "points": 4,
+      "finishRank": 15,
+      "goalDifference": 1
+    },
+    {
+      "name": "Ecuador",
+      "status": "alive",
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 4,
+      "goalsAgainst": 3,
+      "points": 4,
+      "finishRank": 16,
+      "goalDifference": 1
+    },
+    {
+      "name": "Cameroon",
+      "status": "alive",
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 4,
+      "goalsAgainst": 4,
+      "points": 4,
+      "finishRank": 17,
+      "goalDifference": 0
+    },
+    {
+      "name": "Uruguay",
+      "status": "alive",
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 2,
+      "goalsAgainst": 2,
+      "points": 4,
+      "finishRank": 18,
+      "goalDifference": 0
+    },
+    {
+      "name": "Tunisia",
+      "status": "alive",
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 1,
+      "goalsAgainst": 1,
+      "points": 4,
+      "finishRank": 19,
+      "goalDifference": 0
+    },
+    {
+      "name": "Mexico",
+      "status": "alive",
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 2,
+      "goalsAgainst": 3,
+      "points": 4,
+      "finishRank": 20,
+      "goalDifference": -1
+    },
+    {
+      "name": "Belgium",
+      "status": "alive",
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 1,
+      "goalsAgainst": 2,
+      "points": 4,
+      "finishRank": 21,
+      "goalDifference": -1
+    },
+    {
+      "name": "Poland",
+      "status": "alive",
+      "played": 4,
+      "won": 1,
+      "drawn": 1,
+      "lost": 2,
+      "goalsFor": 3,
+      "goalsAgainst": 5,
+      "points": 4,
+      "finishRank": 22,
+      "goalDifference": -2
+    },
+    {
+      "name": "South Korea",
+      "status": "alive",
+      "played": 4,
+      "won": 1,
+      "drawn": 1,
+      "lost": 2,
+      "goalsFor": 5,
+      "goalsAgainst": 8,
+      "points": 4,
+      "finishRank": 23,
+      "goalDifference": -3
+    },
+    {
+      "name": "Ghana",
+      "status": "alive",
+      "played": 3,
+      "won": 1,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 5,
+      "goalsAgainst": 7,
+      "points": 3,
+      "finishRank": 24,
+      "goalDifference": -2
+    },
+    {
+      "name": "Saudi Arabia",
+      "status": "alive",
+      "played": 3,
+      "won": 1,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 3,
+      "goalsAgainst": 5,
+      "points": 3,
+      "finishRank": 25,
+      "goalDifference": -2
+    },
+    {
+      "name": "Iran",
+      "status": "alive",
+      "played": 3,
+      "won": 1,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 4,
+      "goalsAgainst": 7,
+      "points": 3,
+      "finishRank": 26,
+      "goalDifference": -3
+    },
+    {
+      "name": "Costa Rica",
+      "status": "alive",
+      "played": 3,
+      "won": 1,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 3,
+      "goalsAgainst": 11,
+      "points": 3,
+      "finishRank": 27,
+      "goalDifference": -8
+    },
+    {
+      "name": "Denmark",
+      "status": "alive",
+      "played": 3,
+      "won": 0,
+      "drawn": 1,
+      "lost": 2,
+      "goalsFor": 1,
+      "goalsAgainst": 3,
+      "points": 1,
+      "finishRank": 28,
+      "goalDifference": -2
+    },
+    {
+      "name": "Serbia",
+      "status": "alive",
+      "played": 3,
+      "won": 0,
+      "drawn": 1,
+      "lost": 2,
+      "goalsFor": 5,
+      "goalsAgainst": 8,
+      "points": 1,
+      "finishRank": 29,
+      "goalDifference": -3
+    },
+    {
+      "name": "Wales",
+      "status": "alive",
+      "played": 3,
+      "won": 0,
+      "drawn": 1,
+      "lost": 2,
+      "goalsFor": 1,
+      "goalsAgainst": 6,
+      "points": 1,
+      "finishRank": 30,
+      "goalDifference": -5
+    },
+    {
+      "name": "Canada",
+      "status": "alive",
+      "played": 3,
+      "won": 0,
+      "drawn": 0,
+      "lost": 3,
+      "goalsFor": 2,
+      "goalsAgainst": 7,
+      "points": 0,
+      "finishRank": 31,
+      "goalDifference": -5
+    },
+    {
+      "name": "Qatar",
+      "status": "alive",
+      "played": 3,
+      "won": 0,
+      "drawn": 0,
+      "lost": 3,
+      "goalsFor": 1,
+      "goalsAgainst": 7,
+      "points": 0,
+      "finishRank": 32,
+      "goalDifference": -6
+    }
+  ],
+  "fixtures": [
+    {
+      "round": "Matchday 1",
+      "date": "2022-11-20",
+      "time": "19:00",
+      "home": "Qatar",
+      "away": "Ecuador",
+      "homeScore": 0,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": "Group A",
+      "ground": "Al Bayt Stadium, Al Khor",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 2",
+      "date": "2022-11-21",
+      "time": "19:00",
+      "home": "Senegal",
+      "away": "Netherlands",
+      "homeScore": 0,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": "Group A",
+      "ground": "Al Thumama Stadium, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 6",
+      "date": "2022-11-25",
+      "time": "16:00",
+      "home": "Qatar",
+      "away": "Senegal",
+      "homeScore": 1,
+      "awayScore": 3,
+      "status": "FINISHED",
+      "group": "Group A",
+      "ground": "Al Thumama Stadium, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 6",
+      "date": "2022-11-25",
+      "time": "19:00",
+      "home": "Netherlands",
+      "away": "Ecuador",
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": "Group A",
+      "ground": "Khalifa International Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 10",
+      "date": "2022-11-29",
+      "time": "18:00",
+      "home": "Ecuador",
+      "away": "Senegal",
+      "homeScore": 1,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": "Group A",
+      "ground": "Khalifa International Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 10",
+      "date": "2022-11-29",
+      "time": "18:00",
+      "home": "Netherlands",
+      "away": "Qatar",
+      "homeScore": 2,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group A",
+      "ground": "Al Bayt Stadium, Al Khor",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 2",
+      "date": "2022-11-21",
+      "time": "16:00",
+      "home": "England",
+      "away": "Iran",
+      "homeScore": 6,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": "Group B",
+      "ground": "Khalifa International Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 2",
+      "date": "2022-11-21",
+      "time": "22:00",
+      "home": "USA",
+      "away": "Wales",
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": "Group B",
+      "ground": "Ahmad bin Ali Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 6",
+      "date": "2022-11-25",
+      "time": "13:00",
+      "home": "Wales",
+      "away": "Iran",
+      "homeScore": 0,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": "Group B",
+      "ground": "Ahmad bin Ali Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 6",
+      "date": "2022-11-25",
+      "time": "22:00",
+      "home": "England",
+      "away": "USA",
+      "homeScore": 0,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group B",
+      "ground": "Al Bayt Stadium, Al Khor",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 10",
+      "date": "2022-11-29",
+      "time": "22:00",
+      "home": "Wales",
+      "away": "England",
+      "homeScore": 0,
+      "awayScore": 3,
+      "status": "FINISHED",
+      "group": "Group B",
+      "ground": "Ahmad bin Ali Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 10",
+      "date": "2022-11-29",
+      "time": "22:00",
+      "home": "Iran",
+      "away": "USA",
+      "homeScore": 0,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": "Group B",
+      "ground": "Al Thumama Stadium, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 3",
+      "date": "2022-11-22",
+      "time": "13:00",
+      "home": "Argentina",
+      "away": "Saudi Arabia",
+      "homeScore": 1,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": "Group C",
+      "ground": "Lusail Iconic Stadium, Lusail",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 3",
+      "date": "2022-11-22",
+      "time": "19:00",
+      "home": "Mexico",
+      "away": "Poland",
+      "homeScore": 0,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group C",
+      "ground": "Stadium 974, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 7",
+      "date": "2022-11-26",
+      "time": "16:00",
+      "home": "Poland",
+      "away": "Saudi Arabia",
+      "homeScore": 2,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group C",
+      "ground": "Education City Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 7",
+      "date": "2022-11-26",
+      "time": "22:00",
+      "home": "Argentina",
+      "away": "Mexico",
+      "homeScore": 2,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group C",
+      "ground": "Lusail Iconic Stadium, Lusail",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 11",
+      "date": "2022-11-30",
+      "time": "22:00",
+      "home": "Poland",
+      "away": "Argentina",
+      "homeScore": 0,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": "Group C",
+      "ground": "Stadium 974, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 11",
+      "date": "2022-11-30",
+      "time": "22:00",
+      "home": "Saudi Arabia",
+      "away": "Mexico",
+      "homeScore": 1,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": "Group C",
+      "ground": "Lusail Iconic Stadium, Lusail",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 3",
+      "date": "2022-11-22",
+      "time": "16:00",
+      "home": "Denmark",
+      "away": "Tunisia",
+      "homeScore": 0,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group D",
+      "ground": "Education City Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 3",
+      "date": "2022-11-22",
+      "time": "22:00",
+      "home": "France",
+      "away": "Australia",
+      "homeScore": 4,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": "Group D",
+      "ground": "Al Janoub Stadium, Al Wakrah",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 7",
+      "date": "2022-11-26",
+      "time": "13:00",
+      "home": "Tunisia",
+      "away": "Australia",
+      "homeScore": 0,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": "Group D",
+      "ground": "Al Janoub Stadium, Al Wakrah",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 7",
+      "date": "2022-11-26",
+      "time": "19:00",
+      "home": "France",
+      "away": "Denmark",
+      "homeScore": 2,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": "Group D",
+      "ground": "Stadium 974, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 11",
+      "date": "2022-11-30",
+      "time": "18:00",
+      "home": "Australia",
+      "away": "Denmark",
+      "homeScore": 1,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group D",
+      "ground": "Al Janoub Stadium, Al Wakrah",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 11",
+      "date": "2022-11-30",
+      "time": "18:00",
+      "home": "Tunisia",
+      "away": "France",
+      "homeScore": 1,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group D",
+      "ground": "Education City Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 4",
+      "date": "2022-11-23",
+      "time": "16:00",
+      "home": "Germany",
+      "away": "Japan",
+      "homeScore": 1,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": "Group E",
+      "ground": "Khalifa International Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 4",
+      "date": "2022-11-23",
+      "time": "19:00",
+      "home": "Spain",
+      "away": "Costa Rica",
+      "homeScore": 7,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group E",
+      "ground": "Al Thumama Stadium, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 8",
+      "date": "2022-11-27",
+      "time": "13:00",
+      "home": "Japan",
+      "away": "Costa Rica",
+      "homeScore": 0,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": "Group E",
+      "ground": "Ahmad bin Ali Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 8",
+      "date": "2022-11-27",
+      "time": "22:00",
+      "home": "Spain",
+      "away": "Germany",
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": "Group E",
+      "ground": "Al Bayt Stadium, Al Khor",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 12",
+      "date": "2022-12-01",
+      "time": "22:00",
+      "home": "Japan",
+      "away": "Spain",
+      "homeScore": 2,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": "Group E",
+      "ground": "Khalifa International Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 12",
+      "date": "2022-12-01",
+      "time": "22:00",
+      "home": "Costa Rica",
+      "away": "Germany",
+      "homeScore": 2,
+      "awayScore": 4,
+      "status": "FINISHED",
+      "group": "Group E",
+      "ground": "Al Bayt Stadium, Al Khor",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 4",
+      "date": "2022-11-23",
+      "time": "13:00",
+      "home": "Morocco",
+      "away": "Croatia",
+      "homeScore": 0,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group F",
+      "ground": "Al Bayt Stadium, Al Khor",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 4",
+      "date": "2022-11-23",
+      "time": "22:00",
+      "home": "Belgium",
+      "away": "Canada",
+      "homeScore": 1,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group F",
+      "ground": "Ahmad bin Ali Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 8",
+      "date": "2022-11-27",
+      "time": "16:00",
+      "home": "Belgium",
+      "away": "Morocco",
+      "homeScore": 0,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": "Group F",
+      "ground": "Al Thumama Stadium, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 8",
+      "date": "2022-11-27",
+      "time": "19:00",
+      "home": "Croatia",
+      "away": "Canada",
+      "homeScore": 4,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": "Group F",
+      "ground": "Khalifa International Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 12",
+      "date": "2022-12-01",
+      "time": "18:00",
+      "home": "Croatia",
+      "away": "Belgium",
+      "homeScore": 0,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group F",
+      "ground": "Ahmad bin Ali Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 12",
+      "date": "2022-12-01",
+      "time": "18:00",
+      "home": "Canada",
+      "away": "Morocco",
+      "homeScore": 1,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": "Group F",
+      "ground": "Al Thumama Stadium, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 5",
+      "date": "2022-11-24",
+      "time": "13:00",
+      "home": "Switzerland",
+      "away": "Cameroon",
+      "homeScore": 1,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group G",
+      "ground": "Al Janoub Stadium, Al Wakrah",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 5",
+      "date": "2022-11-24",
+      "time": "22:00",
+      "home": "Brazil",
+      "away": "Serbia",
+      "homeScore": 2,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group G",
+      "ground": "Lusail Iconic Stadium, Lusail",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 9",
+      "date": "2022-11-28",
+      "time": "13:00",
+      "home": "Cameroon",
+      "away": "Serbia",
+      "homeScore": 3,
+      "awayScore": 3,
+      "status": "FINISHED",
+      "group": "Group G",
+      "ground": "Al Janoub Stadium, Al Wakrah",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 9",
+      "date": "2022-11-28",
+      "time": "19:00",
+      "home": "Brazil",
+      "away": "Switzerland",
+      "homeScore": 1,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group G",
+      "ground": "Stadium 974, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 13",
+      "date": "2022-12-02",
+      "time": "22:00",
+      "home": "Serbia",
+      "away": "Switzerland",
+      "homeScore": 2,
+      "awayScore": 3,
+      "status": "FINISHED",
+      "group": "Group G",
+      "ground": "Stadium 974, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 13",
+      "date": "2022-12-02",
+      "time": "22:00",
+      "home": "Cameroon",
+      "away": "Brazil",
+      "homeScore": 1,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group G",
+      "ground": "Lusail Iconic Stadium, Lusail",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 5",
+      "date": "2022-11-24",
+      "time": "16:00",
+      "home": "Uruguay",
+      "away": "South Korea",
+      "homeScore": 0,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group H",
+      "ground": "Education City Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 5",
+      "date": "2022-11-24",
+      "time": "19:00",
+      "home": "Portugal",
+      "away": "Ghana",
+      "homeScore": 3,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": "Group H",
+      "ground": "Stadium 974, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 9",
+      "date": "2022-11-28",
+      "time": "16:00",
+      "home": "South Korea",
+      "away": "Ghana",
+      "homeScore": 2,
+      "awayScore": 3,
+      "status": "FINISHED",
+      "group": "Group H",
+      "ground": "Education City Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 9",
+      "date": "2022-11-28",
+      "time": "22:00",
+      "home": "Portugal",
+      "away": "Uruguay",
+      "homeScore": 2,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": "Group H",
+      "ground": "Lusail Iconic Stadium, Lusail",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 13",
+      "date": "2022-12-02",
+      "time": "18:00",
+      "home": "Ghana",
+      "away": "Uruguay",
+      "homeScore": 0,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": "Group H",
+      "ground": "Al Janoub Stadium, Al Wakrah",
+      "source": "openfootball"
+    },
+    {
+      "round": "Matchday 13",
+      "date": "2022-12-02",
+      "time": "18:00",
+      "home": "South Korea",
+      "away": "Portugal",
+      "homeScore": 2,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": "Group H",
+      "ground": "Lusail Iconic Stadium, Lusail",
+      "source": "openfootball"
+    },
+    {
+      "round": "Round of 16",
+      "date": "2022-12-03",
+      "time": "18:00",
+      "home": "Netherlands",
+      "away": "USA",
+      "homeScore": 3,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Khalifa International Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Round of 16",
+      "date": "2022-12-03",
+      "time": "22:00",
+      "home": "Argentina",
+      "away": "Australia",
+      "homeScore": 2,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Ahmad bin Ali Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Round of 16",
+      "date": "2022-12-04",
+      "time": "18:00",
+      "home": "France",
+      "away": "Poland",
+      "homeScore": 3,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Al Thumama Stadium, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Round of 16",
+      "date": "2022-12-04",
+      "time": "22:00",
+      "home": "England",
+      "away": "Senegal",
+      "homeScore": 3,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Al Bayt Stadium, Al Khor",
+      "source": "openfootball"
+    },
+    {
+      "round": "Round of 16",
+      "date": "2022-12-05",
+      "time": "18:00",
+      "home": "Japan",
+      "away": "Croatia",
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Al Janoub Stadium, Al Wakrah",
+      "source": "openfootball"
+    },
+    {
+      "round": "Round of 16",
+      "date": "2022-12-05",
+      "time": "22:00",
+      "home": "Brazil",
+      "away": "South Korea",
+      "homeScore": 4,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Stadium 974, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Round of 16",
+      "date": "2022-12-06",
+      "time": "18:00",
+      "home": "Morocco",
+      "away": "Spain",
+      "homeScore": 0,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Education City Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Round of 16",
+      "date": "2022-12-06",
+      "time": "22:00",
+      "home": "Portugal",
+      "away": "Switzerland",
+      "homeScore": 6,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Lusail Iconic Stadium, Lusail",
+      "source": "openfootball"
+    },
+    {
+      "round": "Quarter-finals",
+      "date": "2022-12-09",
+      "time": "18:00",
+      "home": "Croatia",
+      "away": "Brazil",
+      "homeScore": 0,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Education City Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Quarter-finals",
+      "date": "2022-12-09",
+      "time": "22:00",
+      "home": "Netherlands",
+      "away": "Argentina",
+      "homeScore": 2,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Lusail Iconic Stadium, Lusail",
+      "source": "openfootball"
+    },
+    {
+      "round": "Quarter-finals",
+      "date": "2022-12-10",
+      "time": "18:00",
+      "home": "Morocco",
+      "away": "Portugal",
+      "homeScore": 1,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Al Thumama Stadium, Doha",
+      "source": "openfootball"
+    },
+    {
+      "round": "Quarter-finals",
+      "date": "2022-12-10",
+      "time": "22:00",
+      "home": "England",
+      "away": "France",
+      "homeScore": 1,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Al Bayt Stadium, Al Khor",
+      "source": "openfootball"
+    },
+    {
+      "round": "Semi-finals",
+      "date": "2022-12-13",
+      "time": "22:00",
+      "home": "Argentina",
+      "away": "Croatia",
+      "homeScore": 3,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Lusail Iconic Stadium, Lusail",
+      "source": "openfootball"
+    },
+    {
+      "round": "Semi-finals",
+      "date": "2022-12-14",
+      "time": "22:00",
+      "home": "France",
+      "away": "Morocco",
+      "homeScore": 2,
+      "awayScore": 0,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Al Bayt Stadium, Al Khor",
+      "source": "openfootball"
+    },
+    {
+      "round": "Match for third place",
+      "date": "2022-12-17",
+      "time": "18:00",
+      "home": "Croatia",
+      "away": "Morocco",
+      "homeScore": 2,
+      "awayScore": 1,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Khalifa International Stadium, Al Rayyan",
+      "source": "openfootball"
+    },
+    {
+      "round": "Final",
+      "date": "2022-12-18",
+      "time": "18:00",
+      "home": "Argentina",
+      "away": "France",
+      "homeScore": 2,
+      "awayScore": 2,
+      "status": "FINISHED",
+      "group": null,
+      "ground": "Lusail Iconic Stadium, Lusail",
+      "source": "openfootball"
+    }
+  ],
+  "topScorers": [
+    {
+      "rank": 1,
+      "player": "Lionel Messi",
+      "team": "Argentina",
+      "goals": 7,
+      "penalties": 4
+    },
+    {
+      "rank": 2,
+      "player": "Kylian Mbappé",
+      "team": "France",
+      "goals": 6,
+      "penalties": 2
+    },
+    {
+      "rank": 3,
+      "player": "Julián Álvarez",
+      "team": "Argentina",
+      "goals": 4,
+      "penalties": 0
+    },
+    {
+      "rank": 4,
+      "player": "Olivier Giroud",
+      "team": "France",
+      "goals": 4,
+      "penalties": 0
+    },
+    {
+      "rank": 5,
+      "player": "Álvaro Morata",
+      "team": "Spain",
+      "goals": 3,
+      "penalties": 0
+    },
+    {
+      "rank": 6,
+      "player": "Bukayo Saka",
+      "team": "England",
+      "goals": 3,
+      "penalties": 0
+    },
+    {
+      "rank": 7,
+      "player": "Cody Gakpo",
+      "team": "Netherlands",
+      "goals": 3,
+      "penalties": 0
+    },
+    {
+      "rank": 8,
+      "player": "Enner Valencia",
+      "team": "Ecuador",
+      "goals": 3,
+      "penalties": 1
+    },
+    {
+      "rank": 9,
+      "player": "Gonçalo Ramos",
+      "team": "Portugal",
+      "goals": 3,
+      "penalties": 0
+    },
+    {
+      "rank": 10,
+      "player": "Richarlison",
+      "team": "Brazil",
+      "goals": 3,
+      "penalties": 0
+    },
+    {
+      "rank": 11,
+      "player": "Aleksandar Mitrović",
+      "team": "Serbia",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "rank": 12,
+      "player": "Andrej Kramarić",
+      "team": "Croatia",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "rank": 13,
+      "player": "Breel Embolo",
+      "team": "Switzerland",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "rank": 14,
+      "player": "Bruno Fernandes",
+      "team": "Portugal",
+      "goals": 2,
+      "penalties": 1
+    },
+    {
+      "rank": 15,
+      "player": "Cho Gue-sung",
+      "team": "South Korea",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "rank": 16,
+      "player": "Ferran Torres",
+      "team": "Spain",
+      "goals": 2,
+      "penalties": 1
+    },
+    {
+      "rank": 17,
+      "player": "Giorgian De Arrascaeta",
+      "team": "Uruguay",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "rank": 18,
+      "player": "Harry Kane",
+      "team": "England",
+      "goals": 2,
+      "penalties": 1
+    },
+    {
+      "rank": 19,
+      "player": "Kai Lukas Havertz",
+      "team": "Germany",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "rank": 20,
+      "player": "Mbappé",
+      "team": "France",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "rank": 21,
+      "player": "Mehdi Taremi",
+      "team": "Iran",
+      "goals": 2,
+      "penalties": 1
+    },
+    {
+      "rank": 22,
+      "player": "Mohammed Kudus",
+      "team": "Ghana",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "rank": 23,
+      "player": "Neymar",
+      "team": "Brazil",
+      "goals": 2,
+      "penalties": 1
+    },
+    {
+      "rank": 24,
+      "player": "Niclas Füllkrug",
+      "team": "Germany",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "rank": 25,
+      "player": "Rafael Leão",
+      "team": "Portugal",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "rank": 26,
+      "player": "Rashford",
+      "team": "England",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "rank": 27,
+      "player": "Robert Lewandowski",
+      "team": "Poland",
+      "goals": 2,
+      "penalties": 1
+    },
+    {
+      "rank": 28,
+      "player": "Vincent Aboubakar",
+      "team": "Cameroon",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "rank": 29,
+      "player": "Wout Werghost",
+      "team": "Netherlands",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "rank": 30,
+      "player": "Youssef En-Nesyri",
+      "team": "Morocco",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "rank": 31,
+      "player": "Achraf Dari",
+      "team": "Morocco",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 32,
+      "player": "Adrien Rabiot",
+      "team": "France",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 33,
+      "player": "Alphonso Davies",
+      "team": "Canada",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 34,
+      "player": "André Ayew",
+      "team": "Ghana",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 35,
+      "player": "Andreas Christensen",
+      "team": "Denmark",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 36,
+      "player": "Ángel Di María",
+      "team": "Argentina",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 37,
+      "player": "Ao Tanaka",
+      "team": "Japan",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 38,
+      "player": "Aurelién Tchouaméni",
+      "team": "France",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 39,
+      "player": "Bamba Dieng",
+      "team": "Senegal",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 40,
+      "player": "Boulaye Dia",
+      "team": "Senegal",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 41,
+      "player": "Bruno Petković",
+      "team": "Croatia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 42,
+      "player": "Carlos Soler",
+      "team": "Spain",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 43,
+      "player": "Casemiro",
+      "team": "Brazil",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 44,
+      "player": "Craig Goodwin",
+      "team": "Australia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 45,
+      "player": "Cristiano Ronaldo",
+      "team": "Portugal",
+      "goals": 1,
+      "penalties": 1
+    },
+    {
+      "rank": 46,
+      "player": "Daizen Maeda",
+      "team": "Japan",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 47,
+      "player": "Daley Blind",
+      "team": "Netherlands",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 48,
+      "player": "Dani Olmo",
+      "team": "Spain",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 49,
+      "player": "Davy Klaassen",
+      "team": "Netherlands",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 50,
+      "player": "Denzel Dumfries",
+      "team": "Netherlands",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 51,
+      "player": "Dušan Vlahović",
+      "team": "Serbia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 52,
+      "player": "Enzo Fernández",
+      "team": "Argentina",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 53,
+      "player": "Enzo Fernández",
+      "team": "Australia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 54,
+      "player": "Famara Diédhiou",
+      "team": "Senegal",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 55,
+      "player": "Foden",
+      "team": "England",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 56,
+      "player": "Frenkie de Jong",
+      "team": "Netherlands",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 57,
+      "player": "Freuler",
+      "team": "Switzerland",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 58,
+      "player": "Gareth Bale",
+      "team": "Wales",
+      "goals": 1,
+      "penalties": 1
+    },
+    {
+      "rank": 59,
+      "player": "Gavi",
+      "team": "Spain",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 60,
+      "player": "Haji Wright",
+      "team": "USA",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 61,
+      "player": "Hakim Zyiech",
+      "team": "Morocco",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 62,
+      "player": "Henry Martín",
+      "team": "Mexico",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 63,
+      "player": "Hwang Hee-chan",
+      "team": "South Korea",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 64,
+      "player": "Ilkay Gündogan",
+      "team": "Germany",
+      "goals": 1,
+      "penalties": 1
+    },
+    {
+      "rank": 65,
+      "player": "Ismaila Sarr",
+      "team": "Senegal",
+      "goals": 1,
+      "penalties": 1
+    },
+    {
+      "rank": 66,
+      "player": "Ivan Perišić",
+      "team": "Croatia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 67,
+      "player": "Jack Grealish",
+      "team": "England",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 68,
+      "player": "Jean-Charles Castelletto",
+      "team": "Cameroon",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 69,
+      "player": "Jean-Eric Choupo-Moting",
+      "team": "Cameroon",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 70,
+      "player": "João Félix",
+      "team": "Portugal",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 71,
+      "player": "Jordan Henderson",
+      "team": "England",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 72,
+      "player": "Joško Gvardiol",
+      "team": "Croatia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 73,
+      "player": "Juan Vargas",
+      "team": "Costa Rica",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 74,
+      "player": "Jude Bellingham",
+      "team": "England",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 75,
+      "player": "Keysher Fuller",
+      "team": "Costa Rica",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 76,
+      "player": "Kim Young-gwon",
+      "team": "South Korea",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 77,
+      "player": "Kolo Muani",
+      "team": "France",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 78,
+      "player": "Koulibaly",
+      "team": "Senegal",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 79,
+      "player": "Lovro Majer",
+      "team": "Croatia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 80,
+      "player": "Lucas Paquetá",
+      "team": "Brazil",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 81,
+      "player": "Luis Chávez",
+      "team": "Mexico",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 82,
+      "player": "Mac Allister",
+      "team": "Argentina",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 83,
+      "player": "Manuel Akanji",
+      "team": "Switzerland",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 84,
+      "player": "Marco Asensio",
+      "team": "Spain",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 85,
+      "player": "Marcus Rashford",
+      "team": "England",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 86,
+      "player": "Marko Livaja",
+      "team": "Croatia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 87,
+      "player": "Mathew Leckie",
+      "team": "Australia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 88,
+      "player": "Memphis Depay",
+      "team": "Netherlands",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 89,
+      "player": "Michy Batshuayi",
+      "team": "Belgium",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 90,
+      "player": "Mislav Oršić",
+      "team": "Croatia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 91,
+      "player": "Mitchell Duke",
+      "team": "Australia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 92,
+      "player": "Mohammed Muntari",
+      "team": "Qatar",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 93,
+      "player": "Mohammed Salisu",
+      "team": "Ghana",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 94,
+      "player": "Moisés Caicedo",
+      "team": "Ecuador",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 95,
+      "player": "Nahuel Molina",
+      "team": "Argentina",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 96,
+      "player": "Nayef Aguerd",
+      "team": "Canada",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 97,
+      "player": "Osman Bukari",
+      "team": "Ghana",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 98,
+      "player": "Paik Seung-ho",
+      "team": "South Korea",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 99,
+      "player": "Pepe",
+      "team": "Portugal",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 100,
+      "player": "Piotr Zielinski",
+      "team": "Poland",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 101,
+      "player": "Pulisic",
+      "team": "USA",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 102,
+      "player": "Raheem Sterling",
+      "team": "England",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 103,
+      "player": "Ramin Rezaeian",
+      "team": "Iran",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 104,
+      "player": "Raphaël Guerreiro",
+      "team": "Portugal",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 105,
+      "player": "Ricardo Horta",
+      "team": "Portugal",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 106,
+      "player": "Ritsu Doan",
+      "team": "Japan",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 107,
+      "player": "Ritsu Dōan",
+      "team": "Japan",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 108,
+      "player": "Romain Saïss",
+      "team": "Morocco",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 109,
+      "player": "Roozbeh Cheshmi",
+      "team": "Iran",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 110,
+      "player": "Saleh Al Shehri",
+      "team": "Saudi Arabia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 111,
+      "player": "Salem Al Dawasari",
+      "team": "Saudi Arabia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 112,
+      "player": "Salem Al Dawsari",
+      "team": "Saudi Arabia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 113,
+      "player": "Serge Gnabry",
+      "team": "Germany",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 114,
+      "player": "Sergej Milinković-Savić",
+      "team": "Serbia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 115,
+      "player": "Strahinja Pavlović",
+      "team": "Serbia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 116,
+      "player": "Takuma Asano",
+      "team": "Japan",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 117,
+      "player": "Théo Hernandez",
+      "team": "France",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 118,
+      "player": "Timothy Weah",
+      "team": "USA",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 119,
+      "player": "Vinícius Jr.",
+      "team": "Brazil",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 120,
+      "player": "Wahbi Khazri",
+      "team": "Tunisia",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 121,
+      "player": "Xherdan Shaqiri",
+      "team": "Switzerland",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 122,
+      "player": "Yeltsin Tejeda",
+      "team": "Costa Rica",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "rank": 123,
+      "player": "Zakaria Aboukhlal",
+      "team": "Morocco",
+      "goals": 1,
+      "penalties": 0
+    }
+  ],
+  "discipline": {
+    "teams": [],
+    "notes": "openfootball/worldcup.json does not include yellow-card/red-card tables. Use manual-overrides.json or add a scraper source for cards."
+  }
 }

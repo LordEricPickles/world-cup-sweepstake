@@ -41,7 +41,7 @@
       "id": 4,
       "label": "Pot 4",
       "pointsPerMilestone": 4,
-      "teams": ["Jordan", "Cape Verde", "Ghana", "Curaçao", "Haiti", "New Zealand", "Bosnia and Herzegovina", "Sweden", "Turkey", "Czechia", "DR Congo", "Iraq"]
+      "teams": ["Jordan", "Cape Verde", "Ghana", "Curaçao", "Haiti", "New Zealand", "Bosnia & Herzegovina", "Sweden", "Turkey", "Czech Republic", "DR Congo", "Iraq"]
     }
   ],
   "players": [
@@ -51,10 +51,10 @@
     { "name": "Player 4", "teams": [{ "name": "Spain", "pot": 1 }, { "name": "Uruguay", "pot": 2 }, { "name": "Algeria", "pot": 3 }, { "name": "Curaçao", "pot": 4 }] },
     { "name": "Player 5", "teams": [{ "name": "Argentina", "pot": 1 }, { "name": "Switzerland", "pot": 2 }, { "name": "Scotland", "pot": 3 }, { "name": "Haiti", "pot": 4 }] },
     { "name": "Player 6", "teams": [{ "name": "France", "pot": 1 }, { "name": "Japan", "pot": 2 }, { "name": "Paraguay", "pot": 3 }, { "name": "New Zealand", "pot": 4 }] },
-    { "name": "Player 7", "teams": [{ "name": "England", "pot": 1 }, { "name": "Senegal", "pot": 2 }, { "name": "Tunisia", "pot": 3 }, { "name": "Bosnia and Herzegovina", "pot": 4 }] },
+    { "name": "Player 7", "teams": [{ "name": "England", "pot": 1 }, { "name": "Senegal", "pot": 2 }, { "name": "Tunisia", "pot": 3 }, { "name": "Bosnia & Herzegovina", "pot": 4 }] },
     { "name": "Player 8", "teams": [{ "name": "Brazil", "pot": 1 }, { "name": "Iran", "pot": 2 }, { "name": "Ivory Coast", "pot": 3 }, { "name": "Sweden", "pot": 4 }] },
     { "name": "Player 9", "teams": [{ "name": "Portugal", "pot": 1 }, { "name": "South Korea", "pot": 2 }, { "name": "Uzbekistan", "pot": 3 }, { "name": "Turkey", "pot": 4 }] },
-    { "name": "Player 10", "teams": [{ "name": "Netherlands", "pot": 1 }, { "name": "Ecuador", "pot": 2 }, { "name": "Qatar", "pot": 3 }, { "name": "Czechia", "pot": 4 }] },
+    { "name": "Player 10", "teams": [{ "name": "Netherlands", "pot": 1 }, { "name": "Ecuador", "pot": 2 }, { "name": "Qatar", "pot": 3 }, { "name": "Czech Republic", "pot": 4 }] },
     { "name": "Player 11", "teams": [{ "name": "Belgium", "pot": 1 }, { "name": "Austria", "pot": 2 }, { "name": "Saudi Arabia", "pot": 3 }, { "name": "DR Congo", "pot": 4 }] },
     { "name": "Player 12", "teams": [{ "name": "Germany", "pot": 1 }, { "name": "Australia", "pot": 2 }, { "name": "South Africa", "pot": 3 }, { "name": "Iraq", "pot": 4 }] }
   ]

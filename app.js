@@ -328,7 +328,7 @@ function renderLeaderboards() {
       ${table(['Player', 'Points', 'Best teams by stage', { label: 'Final placing total', hideOnMobile: true }], players.map((player) => [
     player.name,
     player.totalPoints,
-    htmlCell(player.teams.sort(compareTeamsForTieBreak).map((team) => `${teamLabel(team.name)} (${escapeHtml(stageLabel(team.stageReached))})`).join(', ')),
+    htmlCell(bestTeamsByStage(player.teams)),
     formatPlacingTotal(player.combinedFinalPlacing)
   ]), 'responsive-table')}
     </section>
@@ -343,6 +343,16 @@ function renderLeaderboards() {
     formatPlacing(team.finalPlacing)
   ]), 'responsive-table')}
     </section>
+  `;
+}
+
+function bestTeamsByStage(teams) {
+  return `
+    <span class="team-stage-list">
+      ${teams.sort(compareTeamsForTieBreak).map((team) => `
+        <span class="team-stage-item">${teamLabel(team.name)} <span class="team-stage">(${escapeHtml(stageLabel(team.stageReached))})</span></span>
+      `).join('')}
+    </span>
   `;
 }
 

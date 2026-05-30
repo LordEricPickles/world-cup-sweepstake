@@ -60,6 +60,8 @@ code { color: #bae6fd; }
 .team-points-list { display: flex; flex-wrap: wrap; gap: 6px 12px; }
 .team-points-item { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
 .team-points { color: #cbd5e1; font-size: .92em; }
+.fixture-team-item { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.team-owner { color: #cbd5e1; font-size: .92em; white-space: nowrap; }
 .table-wrap { overflow-x: auto; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; }
 table { border-collapse: collapse; width: 100%; min-width: 680px; }
 th, td { padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,.12); text-align: left; }

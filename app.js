@@ -90,6 +90,10 @@ function teamLabel(teamName) {
   return `<span class="team-label"><span class="team-flag" aria-hidden="true">${flag}</span><span>${escapeHtml(name)}</span></span>`;
 }
 
+function fixtureTeamLabel(teamName) {
+  return `<span class="fixture-team-item">${teamLabel(teamName)} <span class="team-owner">(${escapeHtml(teamOwner(teamName))})</span></span>`;
+}
+
 async function loadJson(path) {
   const response = await fetch(path, { cache: 'no-store' });
   if (!response.ok) throw new Error(`Failed to load ${path}: ${response.status}`);
@@ -395,9 +399,9 @@ function renderFixtures() {
     ${filtered.length ? table(['Date', { label: 'Round', hideOnMobile: true }, 'Home', 'Score', 'Away', { label: 'Group', hideOnMobile: true }, { label: 'Venue', hideOnMobile: true }], filtered.map((match) => [
     match.date,
     match.round ?? '',
-    htmlCell(teamLabel(match.home)),
+    htmlCell(fixtureTeamLabel(match.home)),
     score(match),
-    htmlCell(teamLabel(match.away)),
+    htmlCell(fixtureTeamLabel(match.away)),
     match.group ?? '',
     match.ground ?? ''
   ]), 'responsive-table') : '<p>No fixtures loaded yet.</p>'}

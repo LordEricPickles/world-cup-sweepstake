@@ -120,8 +120,7 @@ async function init() {
     byId('updatedText').textContent = worldcup.updatedAt ? `Data updated ${new Date(worldcup.updatedAt).toLocaleString('en-GB')} from ${worldcup.source ?? 'JSON'}` : 'No live data yet';
   } catch (error) {
     console.error(error);
-    byId('statusText').textContent = 'Data error';
-    byId('updatedText').textContent = error.message;
+    byId('updatedText').textContent = `Data error: ${error.message}`;
   }
 }
 
@@ -194,28 +193,59 @@ function manualResultMap() {
   return new Map((state.overrides.teamResults ?? []).map((team) => [team.name ?? team.team, team]));
 }
 
-function deriveStage(team) {
-  if (team.stageReached) return team.stageReached;
-  if ((team.status ?? 'pending') === 'pending' || (team.finishRank ?? FALLBACK_FINAL_PLACING) === FALLBACK_FINAL_PLACING) return 'pending';
-  const rank = team.finishRank ?? FALLBACK_FINAL_PLACING;
-  if (rank === 1) return 'winner';
-  if (rank <= 2) return 'final';
-  if (rank <= 4) return 'semiFinal';
-  if (rank <= 8) return 'quarterFinal';
-  if (rank <= 16) return 'roundOf16';
-  if (rank <= 32) return 'roundOf32';
-  return 'groupStage';
+function isPlaceholderTeam(teamName) {
+  const name = String(teamName ?? '').trim();
+  return /^[WL]\d+$/i.test(name)
+    || /^[123][A-L]$/i.test(name)
+    || /^3[A-L](\/[A-L])+$/i.test(name);
+}
+
+function fixtureStage(round) {
+  const label = String(round ?? '').trim().toLowerCase();
+  if (label.includes('round of 32')) return 'roundOf32';
+  if (label.includes('round of 16')) return 'roundOf16';
+  if (label.includes('quarter-final') || label.includes('quarter final')) return 'quarterFinal';
+  if (label.includes('semi-final') || label.includes('semi final')) return 'semiFinal';
+  if (label === 'final') return 'final';
+  return null;
+}
+
+function winnerName(match) {
+  if (match.homeScore === null || match.homeScore === undefined || match.awayScore === null || match.awayScore === undefined) return null;
+  if (match.homeScore === match.awayScore) return null;
+  return match.homeScore > match.awayScore ? match.home : match.away;
+}
+
+function automaticStage(teamName) {
+  let stage = 'pending';
+
+  for (const match of state.worldcup.fixtures ?? []) {
+    const currentStage = fixtureStage(match.round);
+    if (!currentStage) continue;
+
+    const teams = [match.home, match.away].filter((team) => team && !isPlaceholderTeam(team));
+    if (!teams.includes(teamName)) continue;
+    if (stageRank(currentStage) > stageRank(stage)) stage = currentStage;
+
+    if (winnerName(match) === teamName) {
+      const nextStage = currentStage === 'final' ? 'winner' : milestones()[stageRank(currentStage)]?.id;
+      if (nextStage && stageRank(nextStage) > stageRank(stage)) stage = nextStage;
+    }
+  }
+
+  return stage;
 }
 
 function getTeamStats(teamName) {
   const live = teamDataMap().get(teamName) ?? { name: teamName, status: 'pending', finishRank: FALLBACK_FINAL_PLACING };
   const manual = manualResultMap().get(teamName) ?? {};
   const merged = { ...live, ...manual, name: teamName };
+  const manualFinalPlacing = Number(manual.finalPlacing);
   return {
     ...merged,
-    stageReached: deriveStage(merged),
-    finalPlacing: Number.isFinite(Number(merged.finalPlacing ?? merged.finishRank))
-      ? Number(merged.finalPlacing ?? merged.finishRank)
+    stageReached: manual.stageReached ?? automaticStage(teamName),
+    finalPlacing: Number.isFinite(manualFinalPlacing)
+      ? manualFinalPlacing
       : FALLBACK_FINAL_PLACING
   };
 }
@@ -422,22 +452,20 @@ function score(match) {
 
 function renderRules() {
   const config = state.sweepstake;
+  const pots = config.pots ?? [];
   byId('rules').innerHTML = `
     <h2>Rules</h2>
     <div class="card">
       <h3>Current setup</h3>
       <ul>${(config.rulesSummary ?? []).map((rule) => `<li>${escapeHtml(rule)}</li>`).join('')}</ul>
       <h3>Scoring milestones</h3>
-      ${table(['Milestone', 'Pot 1', 'Pot 2', 'Pot 3', 'Pot 4'], milestones().map((milestone) => [
+      ${table(['Milestone', ...pots.map((pot) => pot.label ?? `Pot ${pot.id}`)], milestones().map((milestone) => [
     milestone.label,
-    '1',
-    '2',
-    '3',
-    '4'
+    ...pots.map((pot) => pot.pointsPerMilestone ?? pot.id)
   ]), 'responsive-table')}
       <h3 style="margin-top:20px">Pots</h3>
       <div class="grid">
-        ${(config.pots ?? []).map((pot) => `
+        ${pots.map((pot) => `
           <article class="card compact-card">
             <h3>${escapeHtml(pot.label ?? `Pot ${pot.id}`)}</h3>
             <p>${pot.pointsPerMilestone ?? pot.id} point${(pot.pointsPerMilestone ?? pot.id) === 1 ? '' : 's'} per milestone</p>
@@ -467,7 +495,6 @@ function table(headers, rows, tableClass = '') {
 }
 
 function setupDrawTool() {
-  const configuredPots = state.sweepstake?.pots ?? defaultDrawPots();
   const playerNames = state.sweepstake?.players?.map((player) => player.name)
     ?? Array.from({ length: 12 }, (_, index) => `Player ${index + 1}`);
   const seed = state.sweepstake?.drawSeed ?? 'world-cup-2026-sweepstake';

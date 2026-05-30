@@ -28,4 +28,4 @@ For CSS, use class names that describe UI roles, for example `.team-label` or `.
 
 ## Testing Guidelines
 
-There is no automated test suite. Before submitting changes, run a local static server and verify the core views in a browser: rankings, teams, fixtures, statistics, and the draw tool. After editing JSON, confirm the page loads without console errors. After changing `scripts/update-data.mjs`, run the refresh command and inspect the resulting diff for expected data-only changes.
+There is no automated test suite. Before submitting changes, run a local static server and verify the core views in a browser: overview, players, leaderboards, fixtures, rules, and the draw tool. After editing JSON, confirm the page loads without console errors. After changing `scripts/update-data.mjs`, run the refresh command and inspect the resulting diff for expected data-only changes.

@@ -63,9 +63,15 @@ function emptyTeam(name) {
 }
 
 function addTeam(teams, name) {
-  if (!name || /^W\d+$/i.test(name) || /^L\d+$/i.test(name)) return null;
+  if (!name || isPlaceholderTeam(name)) return null;
   if (!teams.has(name)) teams.set(name, emptyTeam(name));
   return teams.get(name);
+}
+
+function isPlaceholderTeam(name) {
+  return /^[WL]\d+$/i.test(name)
+    || /^[123][A-L]$/i.test(name)
+    || /^3[A-L](\/[A-L])+$/i.test(name);
 }
 
 function buildTeamTable(matches) {
@@ -112,36 +118,6 @@ function buildTeamTable(matches) {
     .map((team, index) => ({ ...team, finishRank: team.played > 0 ? index + 1 : 999 }));
 }
 
-function buildTopScorers(rawMatches) {
-  const scorers = new Map();
-
-  for (const match of rawMatches) {
-    addGoals(scorers, match.goals1 ?? [], match.team1);
-    addGoals(scorers, match.goals2 ?? [], match.team2);
-  }
-
-  return [...scorers.values()]
-    .sort((a, b) => b.goals - a.goals || a.player.localeCompare(b.player))
-    .map((row, index) => ({ rank: index + 1, ...row }));
-}
-
-function addGoals(scorers, goals, team) {
-  for (const goal of goals) {
-    if (goal.own_goal || !goal.name) continue;
-    const key = `${goal.name}::${team}`;
-    const current = scorers.get(key) ?? {
-      player: goal.name,
-      team,
-      goals: 0,
-      penalties: 0
-    };
-
-    current.goals += 1;
-    if (goal.penalty) current.penalties += 1;
-    scorers.set(key, current);
-  }
-}
-
 function withoutUpdatedAt(data) {
   if (!data) return null;
   const { updatedAt, ...rest } = data;
@@ -157,7 +133,6 @@ async function main() {
   const rawMatches = raw.matches ?? [];
   const fixtures = rawMatches.map(normaliseMatch);
   const teams = buildTeamTable(fixtures);
-  const topScorers = buildTopScorers(rawMatches);
 
   const materialData = {
     source: 'openfootball/worldcup.json',
@@ -165,12 +140,7 @@ async function main() {
     competition: raw.name ?? `World Cup ${season}`,
     season,
     teams,
-    fixtures,
-    topScorers,
-    discipline: {
-      teams: [],
-      notes: 'openfootball/worldcup.json does not include yellow-card/red-card tables. Use manual-overrides.json or add a scraper source for cards.'
-    }
+    fixtures
   };
 
   const current = await readCurrentData();
@@ -186,7 +156,7 @@ async function main() {
   };
 
   await writeFile(dataPath, `${JSON.stringify(next, null, 2)}\n`);
-  console.log(`Wrote ${fixtures.length} fixtures, ${teams.length} teams and ${topScorers.length} scorers from ${sourceUrl}`);
+  console.log(`Wrote ${fixtures.length} fixtures and ${teams.length} teams from ${sourceUrl}`);
 }
 
 main().catch((error) => {

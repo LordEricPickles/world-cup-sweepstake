@@ -1,9 +1,4 @@
 {
-  "notes": "Use this file for final corrections or stats that are not available from a free source.",
-  "manualPrizes": {},
-  "teamResults": [],
-  "topScorers": [],
-  "discipline": {
-    "teams": []
-  }
+  "notes": "Use this file for manual stage and final placing corrections.",
+  "teamResults": []
 }

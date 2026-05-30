@@ -21,8 +21,6 @@ h2 { margin: 0 0 16px; }
 h3 { margin: 0 0 8px; }
 p { color: #cbd5e1; line-height: 1.6; }
 code { color: #bae6fd; }
-.eyebrow { color: #38bdf8; text-transform: uppercase; letter-spacing: .14em; font-size: .78rem; font-weight: 800; margin: 0 0 10px; }
-.lede { max-width: 720px; font-size: 1.08rem; }
 .hero-card, .card, .panel, textarea, input {
   border: 1px solid rgba(255,255,255,.12);
   background: #111827;
@@ -30,7 +28,6 @@ code { color: #bae6fd; }
 }
 .hero-card { padding: 22px; }
 .label { display: block; color: #cbd5e1; font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 8px; }
-.hero-card strong { display: block; font-size: 1.5rem; }
 .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
 .tabs button, .primary {
   border: 1px solid rgba(255,255,255,.12);
@@ -52,9 +49,6 @@ code { color: #bae6fd; }
 .small-stat { font-size: 1.35rem; }
 .tag-list { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
 .tag { border: 1px solid rgba(255,255,255,.12); border-radius: 999px; padding: 6px 10px; color: #cbd5e1; }
-.tag.alive { color: #86efac; }
-.tag.eliminated { color: #fecaca; }
-.tag.excluded { color: #fde68a; }
 .team-label { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; vertical-align: middle; }
 .team-flag { display: inline-block; width: 1.35em; text-align: center; line-height: 1; }
 .team-points-list { display: flex; flex-wrap: wrap; gap: 6px 12px; }

@@ -94,6 +94,10 @@ function fixtureTeamLabel(teamName) {
   return `<span class="fixture-team-item">${teamLabel(teamName)} <span class="team-owner">(${escapeHtml(teamOwner(teamName))})</span></span>`;
 }
 
+function groupTeamLabel(teamName) {
+  return `<span class="group-team-item">${teamLabel(teamName)} <span class="team-owner">(${escapeHtml(teamOwner(teamName))})</span></span>`;
+}
+
 async function loadJson(path) {
   const response = await fetch(path, { cache: 'no-store' });
   if (!response.ok) throw new Error(`Failed to load ${path}: ${response.status}`);
@@ -306,10 +310,50 @@ function comparePlayers(a, b) {
   return a.combinedFinalPlacing - b.combinedFinalPlacing || a.name.localeCompare(b.name);
 }
 
+function goalDifference(team) {
+  return (team.goalsFor ?? 0) - (team.goalsAgainst ?? 0);
+}
+
+function compareGroupTeams(a, b) {
+  return (b.points ?? 0) - (a.points ?? 0)
+    || goalDifference(b) - goalDifference(a)
+    || (b.goalsFor ?? 0) - (a.goalsFor ?? 0)
+    || a.name.localeCompare(b.name);
+}
+
+function groupNameSortValue(groupName) {
+  const [, letter] = String(groupName ?? '').match(/Group\s+([A-Z])/i) ?? [];
+  return letter ? letter.toUpperCase().charCodeAt(0) : Number.POSITIVE_INFINITY;
+}
+
+function groupRows() {
+  const groups = new Map();
+
+  for (const match of state.worldcup.fixtures ?? []) {
+    if (!match.group) continue;
+    if (!groups.has(match.group)) groups.set(match.group, new Set());
+    const groupTeams = groups.get(match.group);
+    for (const team of [match.home, match.away]) {
+      if (team && !isPlaceholderTeam(team)) groupTeams.add(team);
+    }
+  }
+
+  return [...groups.entries()]
+    .sort(([left], [right]) => groupNameSortValue(left) - groupNameSortValue(right) || left.localeCompare(right))
+    .map(([name, teams]) => ({
+      name,
+      teams: [...teams].map((teamName) => {
+        const owner = teamOwner(teamName);
+        return teamContribution({ player: owner, ...normaliseAssignment(teamName) });
+      }).sort(compareGroupTeams)
+    }));
+}
+
 function renderAll() {
   renderOverview();
   renderPlayers();
   renderLeaderboards();
+  renderGroups();
   renderFixtures();
   renderRules();
 }
@@ -396,6 +440,30 @@ function formatPlacing(value) {
 
 function formatPlacingTotal(value) {
   return value >= FALLBACK_FINAL_PLACING ? 'TBC' : value;
+}
+
+function renderGroups() {
+  const groups = groupRows();
+
+  byId('groups').innerHTML = `
+    <h2>Groups</h2>
+    <p class="section-intro">Current group standings with each team's sweepstake owner shown alongside the team name.</p>
+    ${groups.length ? `
+      <div class="groups-grid">
+        ${groups.map((group) => `
+          <article class="card group-card">
+            <h3>${escapeHtml(group.name)}</h3>
+            ${table(['Team', 'P', 'Pts', { label: 'Sweepstake', hideOnMobile: true }], group.teams.map((team) => [
+    htmlCell(groupTeamLabel(team.name)),
+    team.played ?? 0,
+    team.points ?? 0,
+    team.sweepstakePoints
+  ]), 'group-table')}
+          </article>
+        `).join('')}
+      </div>
+    ` : '<p>No group data loaded yet.</p>'}
+  `;
 }
 
 function fixtureTimeMinutes(match) {

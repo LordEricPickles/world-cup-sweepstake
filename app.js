@@ -211,6 +211,7 @@ function fixtureStage(round) {
 }
 
 function winnerName(match) {
+  if (match.winner) return match.winner;
   if (match.homeScore === null || match.homeScore === undefined || match.awayScore === null || match.awayScore === undefined) return null;
   if (match.homeScore === match.awayScore) return null;
   return match.homeScore > match.awayScore ? match.home : match.away;
@@ -237,15 +238,15 @@ function automaticStage(teamName) {
 }
 
 function getTeamStats(teamName) {
-  const live = teamDataMap().get(teamName) ?? { name: teamName, status: 'pending', finishRank: FALLBACK_FINAL_PLACING };
+  const live = teamDataMap().get(teamName) ?? { name: teamName, finishRank: FALLBACK_FINAL_PLACING };
   const manual = manualResultMap().get(teamName) ?? {};
   const merged = { ...live, ...manual, name: teamName };
-  const manualFinalPlacing = Number(manual.finalPlacing);
+  const finalPlacing = Number(manual.finalPlacing ?? live.finalPlacing ?? live.finishRank);
   return {
     ...merged,
     stageReached: manual.stageReached ?? automaticStage(teamName),
-    finalPlacing: Number.isFinite(manualFinalPlacing)
-      ? manualFinalPlacing
+    finalPlacing: Number.isFinite(finalPlacing)
+      ? finalPlacing
       : FALLBACK_FINAL_PLACING
   };
 }

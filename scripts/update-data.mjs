@@ -31,6 +31,7 @@ function normaliseMatch(match) {
   const homeScore = match.score?.ft?.[0] ?? null;
   const awayScore = match.score?.ft?.[1] ?? null;
   const hasScore = homeScore !== null && awayScore !== null;
+  const winner = decisiveWinner(match, homeScore, awayScore);
 
   return {
     round: match.round ?? null,
@@ -40,6 +41,7 @@ function normaliseMatch(match) {
     away: match.team2 ?? null,
     homeScore,
     awayScore,
+    winner,
     status: hasScore ? 'FINISHED' : 'SCHEDULED',
     group: match.group ?? null,
     ground: match.ground ?? null,
@@ -47,18 +49,28 @@ function normaliseMatch(match) {
   };
 }
 
+function decisiveWinner(match, homeScore, awayScore) {
+  if (homeScore === null || awayScore === null) return null;
+  if (homeScore > awayScore) return match.team1 ?? null;
+  if (awayScore > homeScore) return match.team2 ?? null;
+
+  for (const scoreKey of ['et', 'p']) {
+    const [homeDecider, awayDecider] = match.score?.[scoreKey] ?? [];
+    if (homeDecider === undefined || awayDecider === undefined) continue;
+    if (homeDecider > awayDecider) return match.team1 ?? null;
+    if (awayDecider > homeDecider) return match.team2 ?? null;
+  }
+
+  return null;
+}
+
 function emptyTeam(name) {
   return {
     name,
-    status: 'pending',
     played: 0,
-    won: 0,
-    drawn: 0,
-    lost: 0,
     goalsFor: 0,
     goalsAgainst: 0,
-    points: 0,
-    finishRank: 999
+    points: 0
   };
 }
 
@@ -92,16 +104,10 @@ function buildTeamTable(matches) {
     away.goalsAgainst += match.homeScore;
 
     if (match.homeScore > match.awayScore) {
-      home.won += 1;
       home.points += 3;
-      away.lost += 1;
     } else if (match.homeScore < match.awayScore) {
-      away.won += 1;
       away.points += 3;
-      home.lost += 1;
     } else {
-      home.drawn += 1;
-      away.drawn += 1;
       home.points += 1;
       away.points += 1;
     }
@@ -110,12 +116,11 @@ function buildTeamTable(matches) {
   const rows = [...teams.values()].map((team) => ({
     ...team,
     goalDifference: team.goalsFor - team.goalsAgainst,
-    status: team.played > 0 ? 'alive' : 'pending'
   }));
 
   return rows
     .sort((a, b) => b.points - a.points || b.goalDifference - a.goalDifference || b.goalsFor - a.goalsFor || a.name.localeCompare(b.name))
-    .map((team, index) => ({ ...team, finishRank: team.played > 0 ? index + 1 : 999 }));
+    .map((team, index) => ({ name: team.name, finishRank: team.played > 0 ? index + 1 : 999 }));
 }
 
 function withoutUpdatedAt(data) {

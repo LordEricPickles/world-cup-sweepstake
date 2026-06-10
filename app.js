@@ -160,11 +160,27 @@ function potMap() {
       map.set(team, {
         id: pot.id,
         label: pot.label ?? `Pot ${pot.id}`,
-        pointsPerMilestone: pot.pointsPerMilestone ?? pot.id
+        startingPoints: potStartingPoints(pot)
       });
     }
   }
   return map;
+}
+
+function potStartingPoints(pot) {
+  return pot.startingPoints ?? pot.id ?? 0;
+}
+
+function milestoneAward(startingPoints, rank) {
+  return startingPoints + rank - 1;
+}
+
+function cumulativeSweepstakePoints(startingPoints, reachedRank) {
+  let total = 0;
+  for (let rank = 1; rank <= reachedRank; rank += 1) {
+    total += milestoneAward(startingPoints, rank);
+  }
+  return total;
 }
 
 function normaliseAssignment(entry) {
@@ -256,7 +272,7 @@ function teamContribution(assignment) {
   const pot = potMap().get(assignment.name) ?? {
     id: assignment.pot,
     label: assignment.pot ? `Pot ${assignment.pot}` : 'Pot TBC',
-    pointsPerMilestone: assignment.pot ?? 0
+    startingPoints: assignment.pot ?? 0
   };
   const reached = stageRank(team.stageReached);
 
@@ -265,9 +281,9 @@ function teamContribution(assignment) {
     owner: assignment.player,
     potId: pot.id,
     potLabel: pot.label,
-    pointsPerMilestone: pot.pointsPerMilestone,
+    startingPoints: pot.startingPoints,
     stageRank: reached,
-    sweepstakePoints: reached * pot.pointsPerMilestone
+    sweepstakePoints: cumulativeSweepstakePoints(pot.startingPoints, reached)
   };
 }
 
@@ -453,22 +469,29 @@ function score(match) {
 function renderRules() {
   const config = state.sweepstake;
   const pots = config.pots ?? [];
+  const scoringRows = [
+    ...milestones().map((milestone) => [
+      milestone.label,
+      ...pots.map((pot) => milestoneAward(potStartingPoints(pot), milestone.rank))
+    ]),
+    [
+      'Possible winning total',
+      ...pots.map((pot) => cumulativeSweepstakePoints(potStartingPoints(pot), milestones().length))
+    ]
+  ];
   byId('rules').innerHTML = `
     <h2>Rules</h2>
     <div class="card">
       <h3>Current setup</h3>
       <ul>${(config.rulesSummary ?? []).map((rule) => `<li>${escapeHtml(rule)}</li>`).join('')}</ul>
       <h3>Scoring milestones</h3>
-      ${table(['Milestone', ...pots.map((pot) => pot.label ?? `Pot ${pot.id}`)], milestones().map((milestone) => [
-    milestone.label,
-    ...pots.map((pot) => pot.pointsPerMilestone ?? pot.id)
-  ]), 'responsive-table')}
+      ${table(['Milestone', ...pots.map((pot) => pot.label ?? `Pot ${pot.id}`)], scoringRows, 'responsive-table')}
       <h3 style="margin-top:20px">Pots</h3>
       <div class="grid">
         ${pots.map((pot) => `
           <article class="card compact-card">
             <h3>${escapeHtml(pot.label ?? `Pot ${pot.id}`)}</h3>
-            <p>${pot.pointsPerMilestone ?? pot.id} point${(pot.pointsPerMilestone ?? pot.id) === 1 ? '' : 's'} per milestone</p>
+            <p>Starts at ${potStartingPoints(pot)} point${potStartingPoints(pot) === 1 ? '' : 's'}, +1 each milestone</p>
             <div class="tag-list">${(pot.teams ?? []).map((team) => `<span class="tag">${teamLabel(team)}</span>`).join('')}</div>
           </article>
         `).join('')}

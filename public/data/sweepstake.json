@@ -4,7 +4,7 @@
   "rulesSummary": [
     "12 entrants, 48 teams, no excluded teams.",
     "Each player gets one team from each of the four draw pots.",
-    "Teams score their pot number for every milestone reached: Round of 32, Round of 16, Quarter Final, Semi Final, Final and Winner.",
+    "Teams score their pot number for Round of 32, then one additional point for each later milestone reached: Round of 16, Quarter Final, Semi Final, Final and Winner.",
     "Ties are broken by best team stage reached, then second-best, third-best and fourth-best team stage reached.",
     "The final tie-breaker is the lowest combined final placing across all four teams."
   ],
@@ -20,25 +20,25 @@
     {
       "id": 1,
       "label": "Pot 1",
-      "pointsPerMilestone": 1,
+      "startingPoints": 1,
       "teams": ["Canada", "Mexico", "USA", "Spain", "Argentina", "France", "England", "Brazil", "Portugal", "Netherlands", "Belgium", "Germany"]
     },
     {
       "id": 2,
       "label": "Pot 2",
-      "pointsPerMilestone": 2,
+      "startingPoints": 2,
       "teams": ["Croatia", "Morocco", "Colombia", "Uruguay", "Switzerland", "Japan", "Senegal", "Iran", "South Korea", "Ecuador", "Austria", "Australia"]
     },
     {
       "id": 3,
       "label": "Pot 3",
-      "pointsPerMilestone": 3,
+      "startingPoints": 3,
       "teams": ["Norway", "Panama", "Egypt", "Algeria", "Scotland", "Paraguay", "Tunisia", "Ivory Coast", "Uzbekistan", "Qatar", "Saudi Arabia", "South Africa"]
     },
     {
       "id": 4,
       "label": "Pot 4",
-      "pointsPerMilestone": 4,
+      "startingPoints": 4,
       "teams": ["Jordan", "Cape Verde", "Ghana", "Curaçao", "Haiti", "New Zealand", "Bosnia & Herzegovina", "Sweden", "Turkey", "Czech Republic", "DR Congo", "Iraq"]
     }
   ],

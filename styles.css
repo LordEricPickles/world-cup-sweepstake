@@ -66,20 +66,6 @@ footer {
   padding: 24px 0;
 }
 
-.hero-copy::before {
-  content: "2026";
-  display: inline-block;
-  margin-bottom: 18px;
-  padding: 8px 14px;
-  border: 2px solid var(--gold);
-  border-radius: 999px;
-  color: var(--ink);
-  background: linear-gradient(180deg, #fff2ad, var(--gold));
-  box-shadow: 0 8px 0 #6d3f00, 0 15px 28px rgba(0, 0, 0, .28);
-  font-weight: 1000;
-  letter-spacing: .16em;
-}
-
 h1 {
   max-width: 760px;
   margin: 0;
@@ -571,7 +557,11 @@ footer p {
   .hero {
     grid-template-columns: 1fr;
     min-height: 0;
-    padding-top: 30px;
+    padding-top: 18px;
+  }
+
+  .hero-copy {
+    padding: 10px 0 4px;
   }
 
   .hero-visual {
@@ -673,6 +663,16 @@ footer p {
 @media (max-width: 480px) {
   h1 {
     font-size: clamp(2.25rem, 16vw, 4rem);
+    line-height: .82;
+  }
+
+  .hero {
+    gap: 20px;
+    padding-top: 12px;
+  }
+
+  .hero-copy {
+    padding: 6px 0 0;
   }
 
   .hero-card {

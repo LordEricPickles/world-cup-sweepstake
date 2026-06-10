@@ -317,17 +317,13 @@ function renderAll() {
 
 function renderOverview() {
   const config = state.sweepstake;
-  const allocated = allocatedTeams();
   const rows = playerRows();
   const leader = rows[0];
 
   byId('overview').innerHTML = `
     <h2>Overview</h2>
     <div class="grid overview-grid">
-      <article class="card stat-card"><span class="label">Competition</span><div class="stat-text">${escapeHtml(state.worldcup.competition ?? 'Not loaded')}</div></article>
       <article class="card stat-card"><span class="label">Players</span><div class="stat">${config.players.length}</div></article>
-      <article class="card stat-card"><span class="label">Allocated teams</span><div class="stat">${allocated.length}</div></article>
-      <article class="card stat-card"><span class="label">Draw pots</span><div class="stat">${config.pots?.length ?? 0}</div></article>
       <article class="card stat-card leader-card"><span class="label">Current leader</span><div class="stat small-stat">${escapeHtml(leader?.name ?? 'TBC')}</div></article>
       <article class="card stat-card pot-card"><span class="label">Pot</span><div class="stat">${money.format(config.potTotal ?? 0)}</div></article>
     </div>

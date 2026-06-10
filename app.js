@@ -325,7 +325,6 @@ function comparePlayers(a, b) {
 
 function renderAll() {
   renderOverview();
-  renderPlayers();
   renderLeaderboards();
   renderFixtures();
   renderRules();
@@ -335,23 +334,17 @@ function renderOverview() {
   const config = state.sweepstake;
   const rows = playerRows();
   const leader = rows[0];
+  const leaderName = leader?.totalPoints > 0 ? leader.name : 'N/A';
 
   byId('overview').innerHTML = `
     <h2>Overview</h2>
     <div class="grid overview-grid">
-      <article class="card stat-card"><span class="label">Players</span><div class="stat">${config.players.length}</div></article>
-      <article class="card stat-card leader-card"><span class="label">Current leader</span><div class="stat small-stat">${escapeHtml(leader?.name ?? 'TBC')}</div></article>
+      <article class="card stat-card leader-card"><span class="label">Current leader</span><div class="stat small-stat">${escapeHtml(leaderName)}</div></article>
       <article class="card stat-card pot-card"><span class="label">Pot</span><div class="stat">${money.format(config.potTotal ?? 0)}</div></article>
     </div>
-    <p class="notice">Data source: ${escapeHtml(state.worldcup.sourceUrl ?? state.worldcup.source ?? 'manual JSON')}. Use manual overrides for stages or final placings that the source cannot infer.</p>
-  `;
-}
-
-function renderPlayers() {
-  byId('players').innerHTML = `
     <h2>Players</h2>
     <div class="grid players-grid">
-      ${playerRows().map((player) => `
+      ${rows.map((player) => `
         <article class="card player-card">
           <div class="player-card-header">
             <h3>${escapeHtml(player.name)}</h3>
@@ -364,27 +357,16 @@ function renderPlayers() {
         </article>
       `).join('')}
     </div>
+    <p class="notice">Data source: ${escapeHtml(state.worldcup.sourceUrl ?? state.worldcup.source ?? 'manual JSON')}. Use manual overrides for stages or final placings that the source cannot infer.</p>
   `;
 }
 
 function renderLeaderboards() {
-  const players = playerRows();
   const teams = allocatedTeams().map(teamContribution).sort(compareTeamsForTieBreak);
 
   byId('leaderboards').innerHTML = `
-    <h2>Leaderboards</h2>
-    <section class="leaderboard-section standings-section">
-      <h3>Player standings</h3>
-      ${table(['Player', 'Points', 'Team points', { label: 'Final placing total', hideOnMobile: true }], players.map((player) => [
-    player.name,
-    player.totalPoints,
-    htmlCell(teamPointsList(player.teams)),
-    formatPlacingTotal(player.combinedFinalPlacing)
-  ]), 'responsive-table')}
-    </section>
-    <section class="leaderboard-section teams-section">
-      <h3>Team scores</h3>
-      ${table(['Team', 'Score', 'Owner', 'Pot', 'Stage', 'Final placing'], teams.map((team) => [
+    <h2>Team scores</h2>
+    ${table(['Team', 'Score', 'Owner', 'Pot', 'Stage', 'Final placing'], teams.map((team) => [
     htmlCell(teamLabel(team.name)),
     team.sweepstakePoints,
     team.owner,
@@ -392,17 +374,6 @@ function renderLeaderboards() {
     stageLabel(team.stageReached),
     formatPlacing(team.finalPlacing)
   ]), 'responsive-table')}
-    </section>
-  `;
-}
-
-function teamPointsList(teams) {
-  return `
-    <span class="team-points-list">
-      ${teams.sort(compareTeamsForTieBreak).map((team) => `
-        <span class="team-points-item">${teamLabel(team.name)} <span class="team-points">${team.sweepstakePoints} pts</span></span>
-      `).join('')}
-    </span>
   `;
 }
 

@@ -272,6 +272,7 @@ input {
 
 .overview-grid {
   grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  margin-bottom: 28px;
 }
 
 .stat-card {
@@ -341,17 +342,6 @@ input {
   white-space: nowrap;
 }
 
-.leaderboard-section {
-  padding: 18px;
-  border: 1px solid rgba(255, 224, 131, .22);
-  border-radius: 6px;
-  background: rgba(5, 11, 8, .25);
-}
-
-.leaderboard-section + .leaderboard-section {
-  margin-top: 24px;
-}
-
 .tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -397,25 +387,6 @@ input {
   width: 1.35em;
   text-align: center;
   line-height: 1;
-}
-
-.team-points-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 12px;
-}
-
-.team-points-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  white-space: nowrap;
-}
-
-.team-points {
-  color: #ffe9a6;
-  font-size: .92em;
-  font-weight: 800;
 }
 
 .fixture-team-item {
@@ -472,12 +443,6 @@ tbody tr:nth-child(even) {
 
 tbody tr:hover {
   background: rgba(255, 209, 92, .12);
-}
-
-.standings-section tbody tr:first-child {
-  background:
-    linear-gradient(90deg, rgba(255, 209, 92, .28), transparent 58%),
-    rgba(255, 255, 255, .06);
 }
 
 label {
@@ -580,6 +545,27 @@ footer p {
     padding: 16px;
   }
 
+  .overview-grid {
+    margin-bottom: 24px;
+  }
+
+  .stat-card {
+    min-height: 104px;
+    padding: 14px;
+  }
+
+  .stat-card .label {
+    margin-bottom: 6px;
+  }
+
+  .stat {
+    font-size: 2rem;
+  }
+
+  .small-stat {
+    font-size: 1.55rem;
+  }
+
   .hero-visual {
     min-height: 260px;
   }
@@ -644,12 +630,6 @@ footer p {
     text-transform: uppercase;
   }
 
-  .responsive-table .team-points-list {
-    display: grid;
-    gap: 6px;
-  }
-
-  .responsive-table .team-points-item,
   .fixture-team-item,
   .team-label {
     white-space: normal;

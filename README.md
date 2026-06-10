@@ -13,22 +13,24 @@ A static sweepstake tracker for a 12-player, pot-based World Cup draw.
 
 ## Scoring
 
-Teams earn points for each tournament milestone they reach. The points awarded for each milestone are based on the team's pot.
+Teams earn cumulative points for each tournament milestone they reach. The Round of 32 award is based on the team's pot, then each later milestone is worth one additional point.
 
 | Milestone reached | Pot 1 | Pot 2 | Pot 3 | Pot 4 |
 | --- | ---: | ---: | ---: | ---: |
 | Round of 32 | 1 | 2 | 3 | 4 |
-| Round of 16 | 1 | 2 | 3 | 4 |
-| Quarter Final | 1 | 2 | 3 | 4 |
-| Semi Final | 1 | 2 | 3 | 4 |
-| Final | 1 | 2 | 3 | 4 |
-| Winner | 1 | 2 | 3 | 4 |
+| Round of 16 | 2 | 3 | 4 | 5 |
+| Quarter Final | 3 | 4 | 5 | 6 |
+| Semi Final | 4 | 5 | 6 | 7 |
+| Final | 5 | 6 | 7 | 8 |
+| Winner | 6 | 7 | 8 | 9 |
+| Winner cumulative total | 21 | 27 | 33 | 39 |
 
 Examples:
 
 - A Pot 1 team that reaches the Round of 32 earns 1 point.
 - A Pot 4 team that reaches the Round of 32 earns 4 points.
-- A Pot 4 team that wins the tournament earns 24 points.
+- A Pot 1 team that reaches the Quarter Final earns 6 points: 1 + 2 + 3.
+- A Pot 4 team that wins the tournament earns 39 points: 4 + 5 + 6 + 7 + 8 + 9.
 
 ## Player Ranking
 

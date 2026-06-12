@@ -1,10 +1,18 @@
 {
-  "updatedAt": "2026-06-03T16:38:35.012Z",
+  "updatedAt": "2026-06-12T10:41:46.174Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
   "season": "2026",
   "teams": [
+    {
+      "name": "Mexico",
+      "finishRank": 1
+    },
+    {
+      "name": "South Korea",
+      "finishRank": 2
+    },
     {
       "name": "Algeria",
       "finishRank": 999
@@ -51,10 +59,6 @@
     },
     {
       "name": "Curaçao",
-      "finishRank": 999
-    },
-    {
-      "name": "Czech Republic",
       "finishRank": 999
     },
     {
@@ -110,10 +114,6 @@
       "finishRank": 999
     },
     {
-      "name": "Mexico",
-      "finishRank": 999
-    },
-    {
       "name": "Morocco",
       "finishRank": 999
     },
@@ -158,14 +158,6 @@
       "finishRank": 999
     },
     {
-      "name": "South Africa",
-      "finishRank": 999
-    },
-    {
-      "name": "South Korea",
-      "finishRank": 999
-    },
-    {
       "name": "Spain",
       "finishRank": 999
     },
@@ -196,6 +188,14 @@
     {
       "name": "Uzbekistan",
       "finishRank": 999
+    },
+    {
+      "name": "Czech Republic",
+      "finishRank": 47
+    },
+    {
+      "name": "South Africa",
+      "finishRank": 48
     }
   ],
   "fixtures": [
@@ -205,10 +205,10 @@
       "time": "13:00 UTC-6",
       "home": "Mexico",
       "away": "South Africa",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": null,
-      "status": "SCHEDULED",
+      "homeScore": 2,
+      "awayScore": 0,
+      "winner": "Mexico",
+      "status": "FINISHED",
       "group": "Group A",
       "ground": "Mexico City",
       "source": "openfootball"
@@ -219,10 +219,10 @@
       "time": "20:00 UTC-6",
       "home": "South Korea",
       "away": "Czech Republic",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": null,
-      "status": "SCHEDULED",
+      "homeScore": 2,
+      "awayScore": 1,
+      "winner": "South Korea",
+      "status": "FINISHED",
       "group": "Group A",
       "ground": "Guadalajara (Zapopan)",
       "source": "openfootball"

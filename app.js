@@ -201,10 +201,6 @@ function teamOwner(teamName) {
   return allocatedTeams().find((entry) => entry.name === teamName)?.player ?? 'Unallocated';
 }
 
-function teamDataMap() {
-  return new Map((state.worldcup.teams ?? []).map((team) => [team.name, team]));
-}
-
 function manualResultMap() {
   return new Map((state.overrides.teamResults ?? []).map((team) => [team.name ?? team.team, team]));
 }
@@ -254,12 +250,11 @@ function automaticStage(teamName) {
 }
 
 function getTeamStats(teamName) {
-  const live = teamDataMap().get(teamName) ?? { name: teamName };
   const manual = manualResultMap().get(teamName) ?? {};
-  const merged = { ...live, ...manual, name: teamName };
-  const finalPlacing = Number(manual.finalPlacing ?? live.finalPlacing);
+  const finalPlacing = Number(manual.finalPlacing);
   return {
-    ...merged,
+    ...manual,
+    name: teamName,
     stageReached: manual.stageReached ?? automaticStage(teamName),
     finalPlacing: Number.isFinite(finalPlacing)
       ? finalPlacing
@@ -450,7 +445,7 @@ function ukFixtureDateTime(match) {
 
 function fixtureDateCell(match) {
   const { date, time } = ukFixtureDateTime(match);
-  const inlineTime = time ? ` <span class="fixture-time-inline">(${escapeHtml(time)})</span>` : '';
+  const inlineTime = time ? ` <span class="fixture-time-inline">${escapeHtml(time)}</span>` : '';
   return `<span class="fixture-date-item">${escapeHtml(date)}${inlineTime}</span>`;
 }
 
@@ -497,8 +492,8 @@ function renderFixtures() {
 }
 
 function score(match) {
-  if (match.homeScore === null || match.homeScore === undefined) return 'v';
-  return `${match.homeScore}-${match.awayScore}`;
+  if (match.homeScore === null || match.homeScore === undefined) return htmlCell('<span class="fixture-score fixture-score-pending">v</span>');
+  return htmlCell(`<span class="fixture-score">${escapeHtml(match.homeScore)}-${escapeHtml(match.awayScore)}</span>`);
 }
 
 function renderRules() {

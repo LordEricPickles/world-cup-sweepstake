@@ -406,6 +406,26 @@ input {
   white-space: nowrap;
 }
 
+.fixture-score {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.6ch;
+  border-radius: 4px;
+  color: var(--ink);
+  background: #ffe08c;
+  padding: 4px 7px;
+  font-size: 1.04rem;
+  font-weight: 1000;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.fixture-score-pending {
+  color: #fff0bd;
+  background: rgba(255, 224, 131, .14);
+}
+
 .team-owner {
   color: var(--muted);
   font-size: .92em;
@@ -545,6 +565,7 @@ footer p {
 }
 
 @media (max-width: 760px) {
+
   .hero,
   main,
   footer {
@@ -647,6 +668,13 @@ footer p {
 
   .fixture-time-inline {
     display: inline;
+    margin-left: 4px;
+    padding-left: 8px;
+    border-left: 1px solid rgba(255, 224, 131, .42);
+  }
+
+  .fixture-score {
+    justify-self: start;
   }
 
   .responsive-table .mobile-hidden {

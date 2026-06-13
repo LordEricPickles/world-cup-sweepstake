@@ -64,29 +64,6 @@ function decisiveWinner(match, homeScore, awayScore) {
   return null;
 }
 
-function addTeam(teams, name) {
-  if (!name || isPlaceholderTeam(name)) return null;
-  if (!teams.has(name)) teams.set(name, { name });
-  return teams.get(name);
-}
-
-function isPlaceholderTeam(name) {
-  return /^[WL]\d+$/i.test(name)
-    || /^[123][A-L]$/i.test(name)
-    || /^3[A-L](\/[A-L])+$/i.test(name);
-}
-
-function buildTeamTable(matches) {
-  const teams = new Map();
-
-  for (const match of matches) {
-    addTeam(teams, match.home);
-    addTeam(teams, match.away);
-  }
-
-  return [...teams.values()].sort((a, b) => a.name.localeCompare(b.name));
-}
-
 function withoutUpdatedAt(data) {
   if (!data) return null;
   const { updatedAt, ...rest } = data;
@@ -101,14 +78,12 @@ async function main() {
   const raw = await fetchJson(sourceUrl);
   const rawMatches = raw.matches ?? [];
   const fixtures = rawMatches.map(normaliseMatch);
-  const teams = buildTeamTable(fixtures);
 
   const materialData = {
     source: 'openfootball/worldcup.json',
     sourceUrl,
     competition: raw.name ?? `World Cup ${season}`,
     season,
-    teams,
     fixtures
   };
 
@@ -125,7 +100,7 @@ async function main() {
   };
 
   await writeFile(dataPath, `${JSON.stringify(next, null, 2)}\n`);
-  console.log(`Wrote ${fixtures.length} fixtures and ${teams.length} teams from ${sourceUrl}`);
+  console.log(`Wrote ${fixtures.length} fixtures from ${sourceUrl}`);
 }
 
 main().catch((error) => {

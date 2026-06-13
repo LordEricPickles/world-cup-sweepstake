@@ -90,6 +90,11 @@ function teamLabel(teamName) {
   return `<span class="team-label"><span class="team-flag" aria-hidden="true">${flag}</span><span>${escapeHtml(name)}</span></span>`;
 }
 
+function teamFlag(teamName) {
+  const flag = TEAM_FLAGS[String(teamName ?? '')];
+  return flag ? `<span class="team-flag" aria-hidden="true">${flag}</span>` : '';
+}
+
 function fixtureTeamLabel(teamName) {
   return `<span class="fixture-team-item">${teamLabel(teamName)} <span class="team-owner">(${escapeHtml(teamOwner(teamName))})</span></span>`;
 }
@@ -449,6 +454,18 @@ function fixtureDateCell(match) {
   return `<span class="fixture-date-item">${escapeHtml(date)}${inlineTime}</span>`;
 }
 
+function compactFixtureDate(date) {
+  const [, year, month, day] = String(date ?? '').match(/^(\d{4})-(\d{2})-(\d{2})$/) ?? [];
+  if (year === undefined) return date ?? '';
+
+  return new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/London',
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short'
+  }).format(new Date(Date.UTC(Number(year), Number(month) - 1, Number(day), 12)));
+}
+
 function compareFixturesByDateTime(left, right) {
   const leftDate = left.match.date ?? '9999-12-31';
   const rightDate = right.match.date ?? '9999-12-31';
@@ -458,6 +475,49 @@ function compareFixturesByDateTime(left, right) {
   if (timeDiff !== 0) return timeDiff;
 
   return left.index - right.index;
+}
+
+function fixtureScoreMarkup(match) {
+  if (match.homeScore === null || match.homeScore === undefined) return '<span class="fixture-score fixture-score-pending">v</span>';
+  return `<span class="fixture-score">${escapeHtml(match.homeScore)}-${escapeHtml(match.awayScore)}</span>`;
+}
+
+function mobileFixtureTeam(match, side) {
+  const teamName = side === 'home' ? match.home : match.away;
+  const team = `<span class="fixture-card-team-name">${escapeHtml(teamName)}</span>`;
+  const flag = teamFlag(teamName);
+
+  if (side === 'home') {
+    return `<span class="fixture-card-team fixture-card-team-home">${team} ${flag}</span>`;
+  }
+
+  return `<span class="fixture-card-team fixture-card-team-away">${flag} ${team}</span>`;
+}
+
+function mobileFixtureOwner(match, side) {
+  const teamName = side === 'home' ? match.home : match.away;
+  return `<span class="fixture-card-owner fixture-card-owner-${side}">(${escapeHtml(teamOwner(teamName))})</span>`;
+}
+
+function mobileFixtureCard(match) {
+  const { date, time } = ukFixtureDateTime(match);
+  const meta = [compactFixtureDate(date), time].filter(Boolean).map(escapeHtml).join(' · ');
+
+  return `
+    <article class="fixture-card">
+      <div class="fixture-card-meta">${meta}</div>
+      <div class="fixture-card-match">
+        ${mobileFixtureTeam(match, 'home')}
+        ${fixtureScoreMarkup(match)}
+        ${mobileFixtureTeam(match, 'away')}
+      </div>
+      <div class="fixture-card-owners">
+        ${mobileFixtureOwner(match, 'home')}
+        <span class="fixture-card-owner-spacer" aria-hidden="true"></span>
+        ${mobileFixtureOwner(match, 'away')}
+      </div>
+    </article>
+  `;
 }
 
 function renderFixtures() {
@@ -471,7 +531,9 @@ function renderFixtures() {
   byId('fixtures').innerHTML = `
     <h2>Fixtures</h2>
     <div class="tabs">${filters.map((filter) => `<button class="fixture-filter ${activeFixtureFilter === filter ? 'active' : ''}" data-filter="${filter}">${filter}</button>`).join('')}</div>
-    ${filtered.length ? table(['Date', { label: 'Time', hideOnMobile: true }, { label: 'Round', hideOnMobile: true }, 'Home', 'Score', 'Away', { label: 'Group', hideOnMobile: true }, { label: 'Venue', hideOnMobile: true }], filtered.map((match) => [
+    ${filtered.length ? `
+      <div class="fixture-desktop-table">
+        ${table(['Date', { label: 'Time', hideOnMobile: true }, { label: 'Round', hideOnMobile: true }, 'Home', 'Score', 'Away', { label: 'Group', hideOnMobile: true }, { label: 'Venue', hideOnMobile: true }], filtered.map((match) => [
     htmlCell(fixtureDateCell(match)),
     ukFixtureDateTime(match).time,
     match.round ?? '',
@@ -480,7 +542,10 @@ function renderFixtures() {
     htmlCell(fixtureTeamLabel(match.away)),
     match.group ?? '',
     match.ground ?? ''
-  ]), 'responsive-table') : '<p>No fixtures loaded yet.</p>'}
+  ]), 'responsive-table fixture-table')}
+      </div>
+      <div class="mobile-fixture-list">${filtered.map(mobileFixtureCard).join('')}</div>
+    ` : '<p>No fixtures loaded yet.</p>'}
   `;
 
   document.querySelectorAll('.fixture-filter').forEach((button) => {
@@ -492,8 +557,7 @@ function renderFixtures() {
 }
 
 function score(match) {
-  if (match.homeScore === null || match.homeScore === undefined) return htmlCell('<span class="fixture-score fixture-score-pending">v</span>');
-  return htmlCell(`<span class="fixture-score">${escapeHtml(match.homeScore)}-${escapeHtml(match.awayScore)}</span>`);
+  return htmlCell(fixtureScoreMarkup(match));
 }
 
 function renderRules() {

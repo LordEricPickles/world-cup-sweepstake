@@ -426,6 +426,81 @@ input {
   background: rgba(255, 224, 131, .14);
 }
 
+.mobile-fixture-list {
+  display: none;
+}
+
+.fixture-card {
+  border: 1px solid rgba(255, 224, 131, .3);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, .045);
+  padding: 10px 12px;
+}
+
+.fixture-card-meta {
+  margin-bottom: 8px;
+  color: #ffe08c;
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.fixture-card-match {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+}
+
+.fixture-card-owners {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.fixture-card-owner-spacer {
+  width: 4.8ch;
+}
+
+.fixture-card-team {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.fixture-card-team-home {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.fixture-card-team-away {
+  justify-content: flex-start;
+}
+
+.fixture-card-team-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.fixture-card-owner {
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.fixture-card-owner-home {
+  text-align: right;
+}
+
+.fixture-card-owner-away {
+  text-align: left;
+}
+
 .team-owner {
   color: var(--muted);
   font-size: .92em;
@@ -675,6 +750,19 @@ footer p {
 
   .fixture-score {
     justify-self: start;
+  }
+
+  .fixture-desktop-table {
+    display: none;
+  }
+
+  .mobile-fixture-list {
+    display: grid;
+    gap: 8px;
+  }
+
+  .fixture-card .fixture-score {
+    justify-self: center;
   }
 
   .responsive-table .mobile-hidden {

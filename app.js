@@ -412,6 +412,48 @@ function fixtureTimeMinutes(match) {
   return Number(hours) * 60 + Number(minutes);
 }
 
+function ukFixtureDateTime(match) {
+  const [, year, month, day] = String(match.date ?? '').match(/^(\d{4})-(\d{2})-(\d{2})$/) ?? [];
+  const [, hours, minutes, utcOffset] = String(match.time ?? '').match(/^(\d{1,2}):(\d{2}) UTC([+-]\d{1,2})$/) ?? [];
+  if (year === undefined || hours === undefined) {
+    return {
+      date: match.date ?? '',
+      time: match.time ?? ''
+    };
+  }
+
+  const utcDate = new Date(Date.UTC(
+    Number(year),
+    Number(month) - 1,
+    Number(day),
+    Number(hours) - Number(utcOffset),
+    Number(minutes)
+  ));
+  const dateParts = Object.fromEntries(new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/London',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(utcDate).map((part) => [part.type, part.value]));
+  const time = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/London',
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23'
+  }).format(utcDate);
+
+  return {
+    date: `${dateParts.year}-${dateParts.month}-${dateParts.day}`,
+    time
+  };
+}
+
+function fixtureDateCell(match) {
+  const { date, time } = ukFixtureDateTime(match);
+  const inlineTime = time ? ` <span class="fixture-time-inline">(${escapeHtml(time)})</span>` : '';
+  return `<span class="fixture-date-item">${escapeHtml(date)}${inlineTime}</span>`;
+}
+
 function compareFixturesByDateTime(left, right) {
   const leftDate = left.match.date ?? '9999-12-31';
   const rightDate = right.match.date ?? '9999-12-31';
@@ -434,8 +476,9 @@ function renderFixtures() {
   byId('fixtures').innerHTML = `
     <h2>Fixtures</h2>
     <div class="tabs">${filters.map((filter) => `<button class="fixture-filter ${activeFixtureFilter === filter ? 'active' : ''}" data-filter="${filter}">${filter}</button>`).join('')}</div>
-    ${filtered.length ? table(['Date', { label: 'Round', hideOnMobile: true }, 'Home', 'Score', 'Away', { label: 'Group', hideOnMobile: true }, { label: 'Venue', hideOnMobile: true }], filtered.map((match) => [
-    match.date,
+    ${filtered.length ? table(['Date', { label: 'Time', hideOnMobile: true }, { label: 'Round', hideOnMobile: true }, 'Home', 'Score', 'Away', { label: 'Group', hideOnMobile: true }, { label: 'Venue', hideOnMobile: true }], filtered.map((match) => [
+    htmlCell(fixtureDateCell(match)),
+    ukFixtureDateTime(match).time,
     match.round ?? '',
     htmlCell(fixtureTeamLabel(match.home)),
     score(match),

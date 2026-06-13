@@ -392,6 +392,20 @@ input {
   white-space: nowrap;
 }
 
+.fixture-date-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.fixture-time-inline {
+  display: none;
+  color: var(--muted);
+  font-size: .92em;
+  white-space: nowrap;
+}
+
 .team-owner {
   color: var(--muted);
   font-size: .92em;
@@ -629,6 +643,10 @@ footer p {
   .fixture-team-item,
   .team-label {
     white-space: normal;
+  }
+
+  .fixture-time-inline {
+    display: inline;
   }
 
   .responsive-table .mobile-hidden {

@@ -1,4 +1,4 @@
 {
-  "notes": "Use this file for manual stage and final placing corrections.",
+  "notes": "Use teamResults for manual corrections, for example { \"name\": \"Argentina\", \"stageReached\": \"winner\", \"finalPlacing\": 1 }.",
   "teamResults": []
 }

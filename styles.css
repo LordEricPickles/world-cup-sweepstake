@@ -6,12 +6,9 @@
   --ink: #17120a;
   --text: #fff7df;
   --muted: #f2d99d;
-  --paper: #fff4c7;
   --gold: #ffd15c;
-  --gold-deep: #a65f00;
   --red: #c91f32;
   --green: #076f49;
-  --pitch: #063c2f;
   --blue: #114e8a;
   --panel: rgba(20, 14, 6, .88);
   --panel-solid: #1d1408;
@@ -282,7 +279,6 @@ input {
     linear-gradient(155deg, rgba(70, 36, 3, .94), rgba(12, 34, 24, .9));
 }
 
-.stat-text,
 .stat {
   color: #fff8d5;
   font-weight: 1000;

@@ -6,196 +6,148 @@
   "season": "2026",
   "teams": [
     {
-      "name": "USA",
-      "finishRank": 1
+      "name": "Algeria"
     },
     {
-      "name": "Mexico",
-      "finishRank": 2
+      "name": "Argentina"
     },
     {
-      "name": "South Korea",
-      "finishRank": 3
+      "name": "Australia"
     },
     {
-      "name": "Bosnia & Herzegovina",
-      "finishRank": 4
+      "name": "Austria"
     },
     {
-      "name": "Canada",
-      "finishRank": 5
+      "name": "Belgium"
     },
     {
-      "name": "Algeria",
-      "finishRank": 999
+      "name": "Bosnia & Herzegovina"
     },
     {
-      "name": "Argentina",
-      "finishRank": 999
+      "name": "Brazil"
     },
     {
-      "name": "Australia",
-      "finishRank": 999
+      "name": "Canada"
     },
     {
-      "name": "Austria",
-      "finishRank": 999
+      "name": "Cape Verde"
     },
     {
-      "name": "Belgium",
-      "finishRank": 999
+      "name": "Colombia"
     },
     {
-      "name": "Brazil",
-      "finishRank": 999
+      "name": "Croatia"
     },
     {
-      "name": "Cape Verde",
-      "finishRank": 999
+      "name": "Curaçao"
     },
     {
-      "name": "Colombia",
-      "finishRank": 999
+      "name": "Czech Republic"
     },
     {
-      "name": "Croatia",
-      "finishRank": 999
+      "name": "DR Congo"
     },
     {
-      "name": "Curaçao",
-      "finishRank": 999
+      "name": "Ecuador"
     },
     {
-      "name": "DR Congo",
-      "finishRank": 999
+      "name": "Egypt"
     },
     {
-      "name": "Ecuador",
-      "finishRank": 999
+      "name": "England"
     },
     {
-      "name": "Egypt",
-      "finishRank": 999
+      "name": "France"
     },
     {
-      "name": "England",
-      "finishRank": 999
+      "name": "Germany"
     },
     {
-      "name": "France",
-      "finishRank": 999
+      "name": "Ghana"
     },
     {
-      "name": "Germany",
-      "finishRank": 999
+      "name": "Haiti"
     },
     {
-      "name": "Ghana",
-      "finishRank": 999
+      "name": "Iran"
     },
     {
-      "name": "Haiti",
-      "finishRank": 999
+      "name": "Iraq"
     },
     {
-      "name": "Iran",
-      "finishRank": 999
+      "name": "Ivory Coast"
     },
     {
-      "name": "Iraq",
-      "finishRank": 999
+      "name": "Japan"
     },
     {
-      "name": "Ivory Coast",
-      "finishRank": 999
+      "name": "Jordan"
     },
     {
-      "name": "Japan",
-      "finishRank": 999
+      "name": "Mexico"
     },
     {
-      "name": "Jordan",
-      "finishRank": 999
+      "name": "Morocco"
     },
     {
-      "name": "Morocco",
-      "finishRank": 999
+      "name": "Netherlands"
     },
     {
-      "name": "Netherlands",
-      "finishRank": 999
+      "name": "New Zealand"
     },
     {
-      "name": "New Zealand",
-      "finishRank": 999
+      "name": "Norway"
     },
     {
-      "name": "Norway",
-      "finishRank": 999
+      "name": "Panama"
     },
     {
-      "name": "Panama",
-      "finishRank": 999
+      "name": "Paraguay"
     },
     {
-      "name": "Portugal",
-      "finishRank": 999
+      "name": "Portugal"
     },
     {
-      "name": "Qatar",
-      "finishRank": 999
+      "name": "Qatar"
     },
     {
-      "name": "Saudi Arabia",
-      "finishRank": 999
+      "name": "Saudi Arabia"
     },
     {
-      "name": "Scotland",
-      "finishRank": 999
+      "name": "Scotland"
     },
     {
-      "name": "Senegal",
-      "finishRank": 999
+      "name": "Senegal"
     },
     {
-      "name": "Spain",
-      "finishRank": 999
+      "name": "South Africa"
     },
     {
-      "name": "Sweden",
-      "finishRank": 999
+      "name": "South Korea"
     },
     {
-      "name": "Switzerland",
-      "finishRank": 999
+      "name": "Spain"
     },
     {
-      "name": "Tunisia",
-      "finishRank": 999
+      "name": "Sweden"
     },
     {
-      "name": "Turkey",
-      "finishRank": 999
+      "name": "Switzerland"
     },
     {
-      "name": "Uruguay",
-      "finishRank": 999
+      "name": "Tunisia"
     },
     {
-      "name": "Uzbekistan",
-      "finishRank": 999
+      "name": "Turkey"
     },
     {
-      "name": "Czech Republic",
-      "finishRank": 46
+      "name": "Uruguay"
     },
     {
-      "name": "South Africa",
-      "finishRank": 47
+      "name": "USA"
     },
     {
-      "name": "Paraguay",
-      "finishRank": 48
+      "name": "Uzbekistan"
     }
   ],
   "fixtures": [

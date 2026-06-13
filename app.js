@@ -254,10 +254,10 @@ function automaticStage(teamName) {
 }
 
 function getTeamStats(teamName) {
-  const live = teamDataMap().get(teamName) ?? { name: teamName, finishRank: FALLBACK_FINAL_PLACING };
+  const live = teamDataMap().get(teamName) ?? { name: teamName };
   const manual = manualResultMap().get(teamName) ?? {};
   const merged = { ...live, ...manual, name: teamName };
-  const finalPlacing = Number(manual.finalPlacing ?? live.finalPlacing ?? live.finishRank);
+  const finalPlacing = Number(manual.finalPlacing ?? live.finalPlacing);
   return {
     ...merged,
     stageReached: manual.stageReached ?? automaticStage(teamName),
@@ -288,7 +288,7 @@ function teamContribution(assignment) {
 }
 
 function playerRows() {
-  return state.sweepstake.players.map((player) => {
+  const rows = state.sweepstake.players.map((player) => {
     const teams = player.teams.map((entry) => teamContribution({ player: player.name, ...normaliseAssignment(entry) }));
     const stageTieBreakers = [...teams].sort(compareTeamsForTieBreak).map((team) => team.stageRank);
     const totalPoints = teams.reduce((sum, team) => sum + team.sweepstakePoints, 0);
@@ -302,6 +302,17 @@ function playerRows() {
       combinedFinalPlacing
     };
   }).sort(comparePlayers);
+  const rankedRows = [];
+
+  for (const [index, player] of rows.entries()) {
+    const previous = rows[index - 1];
+    const rank = previous && comparePlayerStanding(player, previous) === 0
+      ? rankedRows[index - 1].rank
+      : index + 1;
+    rankedRows.push({ ...player, rank });
+  }
+
+  return rankedRows;
 }
 
 function compareTeamsForTieBreak(a, b) {
@@ -311,7 +322,16 @@ function compareTeamsForTieBreak(a, b) {
     || a.name.localeCompare(b.name);
 }
 
+function compareTeamsByScore(a, b) {
+  return b.sweepstakePoints - a.sweepstakePoints
+    || a.name.localeCompare(b.name);
+}
+
 function comparePlayers(a, b) {
+  return comparePlayerStanding(a, b) || a.name.localeCompare(b.name);
+}
+
+function comparePlayerStanding(a, b) {
   const pointDiff = b.totalPoints - a.totalPoints;
   if (pointDiff) return pointDiff;
 
@@ -320,7 +340,7 @@ function comparePlayers(a, b) {
     if (stageDiff) return stageDiff;
   }
 
-  return a.combinedFinalPlacing - b.combinedFinalPlacing || a.name.localeCompare(b.name);
+  return a.combinedFinalPlacing - b.combinedFinalPlacing;
 }
 
 function renderAll() {
@@ -333,13 +353,14 @@ function renderAll() {
 function renderOverview() {
   const config = state.sweepstake;
   const rows = playerRows();
-  const leader = rows[0];
-  const leaderName = leader?.totalPoints > 0 ? leader.name : 'N/A';
+  const leaderNames = rows[0]?.totalPoints > 0
+    ? rows.filter((player) => player.rank === 1).map((player) => player.name).join(', ')
+    : 'N/A';
 
   byId('overview').innerHTML = `
     <h2>Overview</h2>
     <div class="grid overview-grid">
-      <article class="card stat-card leader-card"><span class="label">Current leader</span><div class="stat small-stat">${escapeHtml(leaderName)}</div></article>
+      <article class="card stat-card leader-card"><span class="label">Current leader</span><div class="stat small-stat">${escapeHtml(leaderNames)}</div></article>
       <article class="card stat-card pot-card"><span class="label">Pot</span><div class="stat">${money.format(config.potTotal ?? 0)}</div></article>
     </div>
     <h2>Players</h2>
@@ -362,7 +383,7 @@ function renderOverview() {
 }
 
 function renderLeaderboards() {
-  const teams = allocatedTeams().map(teamContribution).sort(compareTeamsForTieBreak);
+  const teams = allocatedTeams().map(teamContribution).sort(compareTeamsByScore);
 
   byId('leaderboards').innerHTML = `
     <h2>Team scores</h2>

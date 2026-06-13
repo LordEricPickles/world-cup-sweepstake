@@ -64,19 +64,9 @@ function decisiveWinner(match, homeScore, awayScore) {
   return null;
 }
 
-function emptyTeam(name) {
-  return {
-    name,
-    played: 0,
-    goalsFor: 0,
-    goalsAgainst: 0,
-    points: 0
-  };
-}
-
 function addTeam(teams, name) {
   if (!name || isPlaceholderTeam(name)) return null;
-  if (!teams.has(name)) teams.set(name, emptyTeam(name));
+  if (!teams.has(name)) teams.set(name, { name });
   return teams.get(name);
 }
 
@@ -90,37 +80,11 @@ function buildTeamTable(matches) {
   const teams = new Map();
 
   for (const match of matches) {
-    const home = addTeam(teams, match.home);
-    const away = addTeam(teams, match.away);
-
-    if (!home || !away) continue;
-    if (match.homeScore === null || match.awayScore === null) continue;
-
-    home.played += 1;
-    away.played += 1;
-    home.goalsFor += match.homeScore;
-    home.goalsAgainst += match.awayScore;
-    away.goalsFor += match.awayScore;
-    away.goalsAgainst += match.homeScore;
-
-    if (match.homeScore > match.awayScore) {
-      home.points += 3;
-    } else if (match.homeScore < match.awayScore) {
-      away.points += 3;
-    } else {
-      home.points += 1;
-      away.points += 1;
-    }
+    addTeam(teams, match.home);
+    addTeam(teams, match.away);
   }
 
-  const rows = [...teams.values()].map((team) => ({
-    ...team,
-    goalDifference: team.goalsFor - team.goalsAgainst,
-  }));
-
-  return rows
-    .sort((a, b) => b.points - a.points || b.goalDifference - a.goalDifference || b.goalsFor - a.goalsFor || a.name.localeCompare(b.name))
-    .map((team, index) => ({ name: team.name, finishRank: team.played > 0 ? index + 1 : 999 }));
+  return [...teams.values()].sort((a, b) => a.name.localeCompare(b.name));
 }
 
 function withoutUpdatedAt(data) {

@@ -371,7 +371,6 @@ function renderOverview() {
             <h3>${escapeHtml(player.name)}</h3>
             <strong class="score-pill">${player.totalPoints} pts</strong>
           </div>
-          <p>Final placing tie-breaker ${formatPlacingTotal(player.combinedFinalPlacing)}</p>
           <div class="tag-list">
             ${player.teams.map((team) => `<span class="tag ${escapeHtml(team.stageReached)}">${teamLabel(team.name)} · ${escapeHtml(team.potLabel)} · ${team.sweepstakePoints} pts</span>`).join('')}
           </div>

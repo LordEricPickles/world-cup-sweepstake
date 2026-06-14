@@ -314,12 +314,13 @@ input {
 
 .player-card-header {
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
 
 .player-card h3 {
+  margin: 0;
   font-size: 1.35rem;
 }
 
@@ -684,15 +685,6 @@ footer p {
   .primary {
     flex: 1 1 auto;
     min-width: min(140px, 100%);
-  }
-
-  .player-card-header {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .score-pill {
-    width: fit-content;
   }
 
   .responsive-table {

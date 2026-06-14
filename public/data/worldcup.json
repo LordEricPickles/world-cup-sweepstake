@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-13T22:08:47.528Z",
+  "updatedAt": "2026-06-14T00:46:39.146Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -179,10 +179,10 @@
       "time": "18:00 UTC-4",
       "home": "Brazil",
       "away": "Morocco",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 1,
+      "awayScore": 1,
       "winner": null,
-      "status": "SCHEDULED",
+      "status": "FINISHED",
       "group": "Group C",
       "ground": "New York/New Jersey (East Rutherford)",
       "source": "openfootball"

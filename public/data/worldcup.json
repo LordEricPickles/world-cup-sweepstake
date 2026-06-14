@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-14T00:46:39.146Z",
+  "updatedAt": "2026-06-14T05:10:28.985Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -193,10 +193,10 @@
       "time": "21:00 UTC-4",
       "home": "Haiti",
       "away": "Scotland",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": null,
-      "status": "SCHEDULED",
+      "homeScore": 0,
+      "awayScore": 1,
+      "winner": "Scotland",
+      "status": "FINISHED",
       "group": "Group C",
       "ground": "Boston (Foxborough)",
       "source": "openfootball"

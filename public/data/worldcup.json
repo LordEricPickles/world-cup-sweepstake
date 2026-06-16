@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-16T05:36:03.198Z",
+  "updatedAt": "2026-06-16T21:20:49.518Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -683,10 +683,10 @@
       "time": "15:00 UTC-4",
       "home": "France",
       "away": "Senegal",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": null,
-      "status": "SCHEDULED",
+      "homeScore": 3,
+      "awayScore": 1,
+      "winner": "France",
+      "status": "FINISHED",
       "group": "Group I",
       "ground": "New York/New Jersey (East Rutherford)",
       "source": "openfootball"

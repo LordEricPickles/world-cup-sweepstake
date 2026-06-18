@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-18T18:36:56.599Z",
+  "updatedAt": "2026-06-18T22:26:17.446Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -123,10 +123,10 @@
       "time": "12:00 UTC-7",
       "home": "Switzerland",
       "away": "Bosnia & Herzegovina",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": null,
-      "status": "SCHEDULED",
+      "homeScore": 4,
+      "awayScore": 1,
+      "winner": "Switzerland",
+      "status": "FINISHED",
       "group": "Group B",
       "ground": "Los Angeles (Inglewood)",
       "source": "openfootball"

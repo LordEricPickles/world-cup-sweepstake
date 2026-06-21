@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-21T10:06:36.469Z",
+  "updatedAt": "2026-06-21T20:04:35.652Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -627,10 +627,10 @@
       "time": "12:00 UTC-4",
       "home": "Spain",
       "away": "Saudi Arabia",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": null,
-      "status": "SCHEDULED",
+      "homeScore": 4,
+      "awayScore": 0,
+      "winner": "Spain",
+      "status": "FINISHED",
       "group": "Group H",
       "ground": "Atlanta",
       "source": "openfootball"

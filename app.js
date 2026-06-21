@@ -774,10 +774,18 @@ function formatPlacingTotal(value) {
   return value >= FALLBACK_FINAL_PLACING ? 'TBC' : value;
 }
 
-function fixtureTimeMinutes(match) {
-  const [, hours, minutes] = String(match.time ?? '').match(/^(\d{1,2}):(\d{2})/) ?? [];
-  if (hours === undefined) return Number.POSITIVE_INFINITY;
-  return Number(hours) * 60 + Number(minutes);
+function fixtureDateValue(match) {
+  const [, year, month, day] = String(match.date ?? '').match(/^(\d{4})-(\d{2})-(\d{2})$/) ?? [];
+  const [, hours, minutes, utcOffset] = String(match.time ?? '').match(/^(\d{1,2}):(\d{2}) UTC([+-]\d{1,2})$/) ?? [];
+  if (year === undefined || hours === undefined) return Number.POSITIVE_INFINITY;
+
+  return Date.UTC(
+    Number(year),
+    Number(month) - 1,
+    Number(day),
+    Number(hours) - Number(utcOffset),
+    Number(minutes)
+  );
 }
 
 function ukFixtureDateTime(match) {
@@ -790,13 +798,7 @@ function ukFixtureDateTime(match) {
     };
   }
 
-  const utcDate = new Date(Date.UTC(
-    Number(year),
-    Number(month) - 1,
-    Number(day),
-    Number(hours) - Number(utcOffset),
-    Number(minutes)
-  ));
+  const utcDate = new Date(fixtureDateValue(match));
   const dateParts = Object.fromEntries(new Intl.DateTimeFormat('en-GB', {
     timeZone: 'Europe/London',
     year: 'numeric',
@@ -835,11 +837,7 @@ function compactFixtureDate(date) {
 }
 
 function compareFixturesByDateTime(left, right) {
-  const leftDate = left.match.date ?? '9999-12-31';
-  const rightDate = right.match.date ?? '9999-12-31';
-  if (leftDate !== rightDate) return leftDate.localeCompare(rightDate);
-
-  const timeDiff = fixtureTimeMinutes(left.match) - fixtureTimeMinutes(right.match);
+  const timeDiff = fixtureDateValue(left.match) - fixtureDateValue(right.match);
   if (timeDiff !== 0) return timeDiff;
 
   return left.index - right.index;

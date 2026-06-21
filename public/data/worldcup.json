@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-21T20:04:35.652Z",
+  "updatedAt": "2026-06-21T21:43:05.782Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -543,10 +543,10 @@
       "time": "12:00 UTC-7",
       "home": "Belgium",
       "away": "Iran",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 0,
+      "awayScore": 0,
       "winner": null,
-      "status": "SCHEDULED",
+      "status": "FINISHED",
       "group": "Group G",
       "ground": "Los Angeles (Inglewood)",
       "source": "openfootball"

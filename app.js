@@ -68,6 +68,7 @@ const TEAM_FLAGS = {
 
 const state = { sweepstake: null, worldcup: null, overrides: null };
 let activeFixtureFilter = 'all';
+let fixtureSortDescending = false;
 const money = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' });
 
 const byId = (id) => document.getElementById(id);
@@ -254,21 +255,305 @@ function automaticStage(teamName) {
   return stage;
 }
 
-function getTeamStats(teamName) {
+function groupFixtures() {
+  return (state.worldcup.fixtures ?? []).filter((match) => match.group);
+}
+
+function isCompletedMatch(match) {
+  return String(match.status ?? '').toLowerCase() === 'finished'
+    && match.homeScore !== null
+    && match.homeScore !== undefined
+    && match.awayScore !== null
+    && match.awayScore !== undefined;
+}
+
+function hasCompletedGroupFixtures() {
+  return groupFixtures().some(isCompletedMatch);
+}
+
+function allGroupFixturesComplete() {
+  const fixtures = groupFixtures();
+  return fixtures.length > 0 && fixtures.every(isCompletedMatch);
+}
+
+function hasConfirmedRoundOf32Field() {
+  const qualified = new Set();
+  for (const assignment of allocatedTeams()) {
+    const manualStage = manualResultMap().get(assignment.name)?.stageReached;
+    const stage = manualStage ?? automaticStage(assignment.name);
+    if (stageRank(stage) > 0) qualified.add(assignment.name);
+  }
+  return qualified.size >= 32;
+}
+
+function useGroupDerivedScoring() {
+  return hasCompletedGroupFixtures() && !hasConfirmedRoundOf32Field();
+}
+
+function provisionalScoringLabelActive() {
+  return useGroupDerivedScoring() && !allGroupFixturesComplete();
+}
+
+function provisionalScoringNotice() {
+  return '<p class="notice provisional-notice"><strong>Provisional scoring:</strong> Round of 32 qualification is assumed based on current group standings.</p>';
+}
+
+function activeScoringOptions() {
+  return { provisional: useGroupDerivedScoring() };
+}
+
+function emptyGroupTeam(group, name) {
+  return {
+    group,
+    name,
+    played: 0,
+    wins: 0,
+    draws: 0,
+    losses: 0,
+    goalsFor: 0,
+    goalsAgainst: 0,
+    goalDifference: 0,
+    points: 0,
+    position: null
+  };
+}
+
+function addGroupMatchStats(team, goalsFor, goalsAgainst) {
+  team.played += 1;
+  team.goalsFor += goalsFor;
+  team.goalsAgainst += goalsAgainst;
+  team.goalDifference = team.goalsFor - team.goalsAgainst;
+
+  if (goalsFor > goalsAgainst) {
+    team.wins += 1;
+    team.points += 3;
+  } else if (goalsFor === goalsAgainst) {
+    team.draws += 1;
+    team.points += 1;
+  } else {
+    team.losses += 1;
+  }
+}
+
+function groupSortValue(groupName) {
+  const [, letter] = String(groupName ?? '').match(/^Group ([A-Z])$/i) ?? [];
+  return letter ? letter.toUpperCase().charCodeAt(0) : Number.POSITIVE_INFINITY;
+}
+
+function groupStandings() {
+  const groups = new Map();
+  const completedMatchesByGroup = new Map();
+
+  for (const match of groupFixtures()) {
+    if (!groups.has(match.group)) groups.set(match.group, new Map());
+    if (!completedMatchesByGroup.has(match.group)) completedMatchesByGroup.set(match.group, []);
+
+    const teams = groups.get(match.group);
+    for (const teamName of [match.home, match.away]) {
+      if (!teamName || isPlaceholderTeam(teamName)) continue;
+      if (!teams.has(teamName)) teams.set(teamName, emptyGroupTeam(match.group, teamName));
+    }
+
+    if (!isCompletedMatch(match)) continue;
+
+    completedMatchesByGroup.get(match.group).push(match);
+    const home = teams.get(match.home);
+    const away = teams.get(match.away);
+    if (!home || !away) continue;
+
+    addGroupMatchStats(home, Number(match.homeScore), Number(match.awayScore));
+    addGroupMatchStats(away, Number(match.awayScore), Number(match.homeScore));
+  }
+
+  return [...groups.entries()]
+    .sort(([left], [right]) => groupSortValue(left) - groupSortValue(right) || left.localeCompare(right))
+    .map(([group, teams]) => {
+      const completedMatches = completedMatchesByGroup.get(group) ?? [];
+      const sortedTeams = sortGroupTeams([...teams.values()], completedMatches)
+        .map((team, index) => ({ ...team, position: index + 1 }));
+
+      return {
+        group,
+        teams: sortedTeams,
+        hasPlayed: sortedTeams.some((team) => team.played > 0)
+      };
+    });
+}
+
+function sortGroupTeams(teams, completedMatches) {
+  const teamsByPoints = new Map();
+  for (const team of teams) {
+    if (!teamsByPoints.has(team.points)) teamsByPoints.set(team.points, []);
+    teamsByPoints.get(team.points).push(team);
+  }
+
+  return [...teamsByPoints.entries()]
+    .sort(([left], [right]) => Number(right) - Number(left))
+    .flatMap(([, tiedTeams]) => sortTeamsTiedOnPoints(tiedTeams, completedMatches));
+}
+
+function sortTeamsTiedOnPoints(teams, completedMatches) {
+  const overallCriteria = [
+    (team) => team.goalDifference,
+    (team) => team.goalsFor
+  ];
+  const headToHeadCriteria = [
+    (team, tiedTeams) => headToHeadStats(team.name, tiedTeams, completedMatches).points,
+    (team, tiedTeams) => headToHeadStats(team.name, tiedTeams, completedMatches).goalDifference,
+    (team, tiedTeams) => headToHeadStats(team.name, tiedTeams, completedMatches).goalsFor
+  ];
+  const criteria = hasCompleteHeadToHeadMiniTable(teams, completedMatches)
+    ? [...headToHeadCriteria, ...overallCriteria]
+    : overallCriteria;
+
+  return sortByDescendingCriteria(teams, criteria);
+}
+
+function hasCompleteHeadToHeadMiniTable(teams, completedMatches) {
+  if (teams.length <= 1) return true;
+
+  const matches = completedMatches.filter((match) => isCompletedMatch(match));
+  for (let leftIndex = 0; leftIndex < teams.length - 1; leftIndex += 1) {
+    for (let rightIndex = leftIndex + 1; rightIndex < teams.length; rightIndex += 1) {
+      const leftName = teams[leftIndex].name;
+      const rightName = teams[rightIndex].name;
+      const hasMatch = matches.some((match) => (
+        (match.home === leftName && match.away === rightName)
+        || (match.home === rightName && match.away === leftName)
+      ));
+      if (!hasMatch) return false;
+    }
+  }
+
+  return true;
+}
+
+function compareGroupTeams(a, b) {
+  return b.points - a.points
+    || b.goalDifference - a.goalDifference
+    || b.goalsFor - a.goalsFor
+    || a.name.localeCompare(b.name);
+}
+
+function sortByDescendingCriteria(items, criteria, index = 0) {
+  if (items.length <= 1) return items;
+  if (index >= criteria.length) return [...items].sort((a, b) => a.name.localeCompare(b.name));
+
+  const grouped = new Map();
+  for (const item of items) {
+    const value = criteria[index](item, items);
+    if (!grouped.has(value)) grouped.set(value, []);
+    grouped.get(value).push(item);
+  }
+
+  return [...grouped.entries()]
+    .sort(([left], [right]) => Number(right) - Number(left))
+    .flatMap(([, tiedItems]) => sortByDescendingCriteria(tiedItems, criteria, index + 1));
+}
+
+function headToHeadStats(teamName, tiedTeams, completedMatches) {
+  const tiedNames = new Set(tiedTeams.map((team) => team.name));
+  const stats = { points: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0 };
+
+  for (const match of completedMatches) {
+    if (!tiedNames.has(match.home) || !tiedNames.has(match.away)) continue;
+    if (match.home !== teamName && match.away !== teamName) continue;
+
+    const isHome = match.home === teamName;
+    const goalsFor = Number(isHome ? match.homeScore : match.awayScore);
+    const goalsAgainst = Number(isHome ? match.awayScore : match.homeScore);
+    stats.goalsFor += goalsFor;
+    stats.goalsAgainst += goalsAgainst;
+    if (goalsFor > goalsAgainst) stats.points += 3;
+    if (goalsFor === goalsAgainst) stats.points += 1;
+  }
+
+  stats.goalDifference = stats.goalsFor - stats.goalsAgainst;
+  return stats;
+}
+
+function thirdPlaceStandings(standings = groupStandings()) {
+  return standings
+    .filter((group) => group.hasPlayed)
+    .map((group) => group.teams[2])
+    .filter((team) => team && team.played > 0)
+    .sort(compareThirdPlacedTeams)
+    .map((team, index) => ({ ...team, thirdPlaceRank: index + 1 }));
+}
+
+function compareThirdPlacedTeams(a, b) {
+  return b.points - a.points
+    || b.goalDifference - a.goalDifference
+    || b.goalsFor - a.goalsFor
+    || a.name.localeCompare(b.name);
+}
+
+function provisionalQualificationMap() {
+  const standings = groupStandings();
+  const thirds = thirdPlaceStandings(standings);
+  const bestThirdNames = new Set(thirds.slice(0, 8).map((team) => team.name));
+  const thirdRanks = new Map(thirds.map((team) => [team.name, team.thirdPlaceRank]));
+  const map = new Map();
+
+  for (const group of standings) {
+    for (const team of group.teams) {
+      if (!group.hasPlayed || team.played === 0) {
+        map.set(team.name, {
+          qualified: false,
+          reason: 'tbc',
+          group: group.group,
+          groupPosition: team.position,
+          thirdPlaceRank: null
+        });
+        continue;
+      }
+
+      const isTopTwo = team.position <= 2;
+      const thirdPlaceRank = thirdRanks.get(team.name) ?? null;
+      const isBestThird = team.position === 3 && bestThirdNames.has(team.name);
+
+      map.set(team.name, {
+        qualified: isTopTwo || isBestThird,
+        reason: isTopTwo ? 'group-top-two' : isBestThird ? 'best-third' : team.position === 3 ? 'third-place-outside-top-eight' : 'outside-qualifying',
+        group: group.group,
+        groupPosition: team.position,
+        thirdPlaceRank
+      });
+    }
+  }
+
+  return map;
+}
+
+function effectiveStage(teamName, { provisional = false } = {}) {
+  const manualStage = manualResultMap().get(teamName)?.stageReached;
+  if (manualStage) return manualStage;
+
+  const officialStage = automaticStage(teamName);
+  if (stageRank(officialStage) > 0) return officialStage;
+
+  if (provisional && provisionalQualificationMap().get(teamName)?.qualified) {
+    return 'roundOf32';
+  }
+
+  return officialStage;
+}
+
+function getTeamStats(teamName, options = {}) {
   const manual = manualResultMap().get(teamName) ?? {};
   const finalPlacing = Number(manual.finalPlacing);
   return {
     ...manual,
     name: teamName,
-    stageReached: manual.stageReached ?? automaticStage(teamName),
+    stageReached: effectiveStage(teamName, options),
     finalPlacing: Number.isFinite(finalPlacing)
       ? finalPlacing
       : FALLBACK_FINAL_PLACING
   };
 }
 
-function teamContribution(assignment) {
-  const team = getTeamStats(assignment.name);
+function teamContribution(assignment, options = {}) {
+  const team = getTeamStats(assignment.name, options);
   const pot = potMap().get(assignment.name) ?? {
     id: assignment.pot,
     label: assignment.pot ? `Pot ${assignment.pot}` : 'Pot TBC',
@@ -287,9 +572,9 @@ function teamContribution(assignment) {
   };
 }
 
-function playerRows() {
+function playerRows(options = {}) {
   const rows = state.sweepstake.players.map((player) => {
-    const teams = player.teams.map((entry) => teamContribution({ player: player.name, ...normaliseAssignment(entry) }));
+    const teams = player.teams.map((entry) => teamContribution({ player: player.name, ...normaliseAssignment(entry) }, options));
     const stageTieBreakers = [...teams].sort(compareTeamsForTieBreak).map((team) => team.stageRank);
     const totalPoints = teams.reduce((sum, team) => sum + team.sweepstakePoints, 0);
     const combinedFinalPlacing = teams.reduce((sum, team) => sum + team.finalPlacing, 0);
@@ -346,23 +631,31 @@ function comparePlayerStanding(a, b) {
 function renderAll() {
   renderOverview();
   renderLeaderboards();
+  renderGroups();
   renderFixtures();
   renderRules();
 }
 
 function renderOverview() {
   const config = state.sweepstake;
-  const rows = playerRows();
+  const scoringOptions = activeScoringOptions();
+  const rows = playerRows(scoringOptions);
+  const isProvisional = provisionalScoringLabelActive();
   const leaderNames = rows[0]?.totalPoints > 0
     ? rows.filter((player) => player.rank === 1).map((player) => player.name).join(', ')
     : 'N/A';
+  const provisionalNotice = isProvisional ? provisionalScoringNotice() : '';
 
   byId('overview').innerHTML = `
     <h2>Overview</h2>
     <div class="grid overview-grid">
-      <article class="card stat-card leader-card"><span class="label">Current leader</span><div class="stat small-stat">${escapeHtml(leaderNames)}</div></article>
+      <article class="card stat-card leader-card">
+        <span class="label">Current leader ${isProvisional ? '<span class="provisional-chip">Provisional</span>' : ''}</span>
+        <div class="stat small-stat">${escapeHtml(leaderNames)}</div>
+      </article>
       <article class="card stat-card pot-card"><span class="label">Pot</span><div class="stat">${money.format(config.potTotal ?? 0)}</div></article>
     </div>
+    ${provisionalNotice}
     <h2>Players</h2>
     <div class="grid players-grid">
       ${rows.map((player) => `
@@ -372,7 +665,7 @@ function renderOverview() {
             <strong class="score-pill">${player.totalPoints} pts</strong>
           </div>
           <div class="tag-list">
-            ${player.teams.map((team) => `<span class="tag ${escapeHtml(team.stageReached)}">${teamLabel(team.name)} · ${escapeHtml(team.potLabel)} · ${team.sweepstakePoints} pts</span>`).join('')}
+            ${player.teams.map((team) => `<span class="tag ${escapeHtml(team.stageReached)}"><span class="player-team-summary">${teamLabel(team.name)} · ${escapeHtml(team.potLabel)}</span><strong class="player-team-points">${team.sweepstakePoints} pts</strong></span>`).join('')}
           </div>
         </article>
       `).join('')}
@@ -382,19 +675,95 @@ function renderOverview() {
 }
 
 function renderLeaderboards() {
-  const teams = allocatedTeams().map(teamContribution).sort(compareTeamsByScore);
+  const scoringOptions = activeScoringOptions();
+  const isProvisional = provisionalScoringLabelActive();
+  const teams = allocatedTeams().map((team) => teamContribution(team, scoringOptions)).sort(compareTeamsByScore);
+  const provisionalNotice = isProvisional ? provisionalScoringNotice() : '';
 
   byId('leaderboards').innerHTML = `
-    <h2>Team scores</h2>
-    ${table(['Team', 'Score', 'Owner', 'Pot', 'Stage', 'Final placing'], teams.map((team) => [
+    <h2>Team scores ${isProvisional ? '<span class="provisional-chip">Provisional</span>' : ''}</h2>
+    ${provisionalNotice}
+    ${table(['Team', 'Score', 'Owner', 'Pot', 'Stage'], teams.map((team) => [
     htmlCell(teamLabel(team.name)),
     team.sweepstakePoints,
     team.owner,
     team.potLabel,
-    stageLabel(team.stageReached),
-    formatPlacing(team.finalPlacing)
-  ]), 'responsive-table')}
+    htmlCell(leaderboardStageLabel(team.stageReached, isProvisional))
+  ]), 'leaderboard-table')}
   `;
+}
+
+function leaderboardStageLabel(stage, isProvisional) {
+  const isGroupStage = stage === 'groupStage' || (isProvisional && stage === 'pending');
+  const desktopLabel = isGroupStage ? 'Group stage' : stageLabel(stage);
+  const mobileLabels = {
+    groupStage: 'GS',
+    roundOf32: 'Ro32',
+    roundOf16: 'Ro16',
+    quarterFinal: 'QF',
+    semiFinal: 'SF'
+  };
+  const mobileLabel = isGroupStage ? mobileLabels.groupStage : (mobileLabels[stage] ?? desktopLabel);
+
+  return `<span class="leaderboard-stage-desktop">${escapeHtml(desktopLabel)}</span><span class="leaderboard-stage-mobile">${escapeHtml(mobileLabel)}</span>`;
+}
+
+function renderGroups() {
+  const standings = groupStandings();
+  const qualification = provisionalQualificationMap();
+
+  byId('groups').innerHTML = `
+    <h2>Group standings</h2>
+    <div class="groups-grid">
+      ${standings.map((group) => {
+    const headingId = `group-${String(group.group).toLowerCase().replace(/[^a-z0-9]+/g, '-')}-heading`;
+    return `
+        <section class="group-section" aria-labelledby="${headingId}">
+          <h3 id="${headingId}">${escapeHtml(group.group)}</h3>
+          ${groupStandingsTable(group.teams, qualification)}
+        </section>
+      `;
+  }).join('')}
+    </div>
+  `;
+}
+
+function groupStandingsTable(teams, qualification) {
+  return `
+    <div class="table-wrap group-table-wrap">
+      <table class="group-table">
+        <thead>
+          <tr><th>Team</th><th class="mobile-hidden">Owner</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GLS</th><th>PTS</th><th class="mobile-hidden">Status</th></tr>
+        </thead>
+        <tbody>
+          ${teams.map((team) => {
+    const meta = qualification.get(team.name);
+    const rowClass = meta?.qualified ? 'group-qualified' : 'group-not-qualified';
+    return `
+              <tr class="${rowClass}">
+                <td>${groupTeamLabel(team)}</td>
+                <td class="mobile-hidden">${escapeHtml(teamOwner(team.name))}</td>
+                <td>${team.played}</td><td>${team.wins}</td><td>${team.draws}</td><td>${team.losses}</td>
+                <td>${team.goalsFor}:${team.goalsAgainst}</td><td>${team.points}</td>
+                <td class="mobile-hidden">${qualificationBadge(meta)}</td>
+              </tr>`;
+  }).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function groupTeamLabel(team) {
+  return `<span class="group-team-item"><span class="group-position">${team.position}</span>${teamLabel(team.name)}<span class="group-team-owner">${escapeHtml(teamOwner(team.name))}</span></span>`;
+}
+
+function qualificationBadge(meta) {
+  if (!meta || meta.reason === 'tbc') return '<span class="qualification-badge tbc">TBC</span>';
+  if (meta.reason === 'group-top-two') return '<span class="qualification-badge qualified">Qualified</span>';
+  if (meta.reason === 'best-third') return `<span class="qualification-badge best-third">Best 3rd #${escapeHtml(meta.thirdPlaceRank)}</span>`;
+  if (meta.reason === 'third-place-outside-top-eight') return `<span class="qualification-badge outside-qualifying">3rd, #${escapeHtml(meta.thirdPlaceRank)}</span>`;
+  return '<span class="qualification-badge outside-qualifying">Outside</span>';
 }
 
 function formatPlacing(value) {
@@ -524,12 +893,17 @@ function renderFixtures() {
     .map((match, index) => ({ match, index }))
     .sort(compareFixturesByDateTime)
     .map(({ match }) => match);
+  if (fixtureSortDescending) fixtures.reverse();
   const filters = ['all', 'finished', 'scheduled'];
+  const filterLabel = (filter) => filter.charAt(0).toUpperCase() + filter.slice(1);
   const filtered = fixtures.filter((match) => activeFixtureFilter === 'all' || match.status.toLowerCase() === activeFixtureFilter);
 
   byId('fixtures').innerHTML = `
     <h2>Fixtures</h2>
-    <div class="tabs">${filters.map((filter) => `<button class="fixture-filter ${activeFixtureFilter === filter ? 'active' : ''}" data-filter="${filter}">${filter}</button>`).join('')}</div>
+    <div class="fixture-controls">
+      <div class="tabs">${filters.map((filter) => `<button class="fixture-filter ${activeFixtureFilter === filter ? 'active' : ''}" data-filter="${filter}">${filterLabel(filter)}</button>`).join('')}</div>
+      <button class="fixture-sort-toggle" id="fixtureSortToggle" type="button" aria-pressed="${fixtureSortDescending}">${fixtureSortDescending ? 'Newest first' : 'Oldest first'}</button>
+    </div>
     ${filtered.length ? `
       <div class="fixture-desktop-table">
         ${table(['Date', { label: 'Time', hideOnMobile: true }, { label: 'Round', hideOnMobile: true }, 'Home', 'Score', 'Away', { label: 'Group', hideOnMobile: true }, { label: 'Venue', hideOnMobile: true }], filtered.map((match) => [
@@ -552,6 +926,10 @@ function renderFixtures() {
       activeFixtureFilter = button.dataset.filter;
       renderFixtures();
     });
+  });
+  byId('fixtureSortToggle').addEventListener('click', () => {
+    fixtureSortDescending = !fixtureSortDescending;
+    renderFixtures();
   });
 }
 

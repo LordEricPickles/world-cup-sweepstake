@@ -960,6 +960,62 @@ footer p {
     text-transform: uppercase;
   }
 
+  .milestone-table {
+    min-width: 0;
+    table-layout: fixed;
+    font-size: .72rem;
+  }
+
+  .milestone-table thead {
+    display: table-header-group;
+  }
+
+  .milestone-table tbody {
+    display: table-row-group;
+    width: auto;
+  }
+
+  .milestone-table tr {
+    display: table-row;
+    width: auto;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .milestone-table th,
+  .milestone-table td {
+    display: table-cell;
+    width: auto;
+    padding: 8px 3px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .milestone-table th:not(:first-child) {
+    width: 15%;
+    line-height: 1.15;
+    white-space: normal;
+  }
+
+  .milestone-table td::before {
+    display: none;
+  }
+
+  .milestone-table th:first-child,
+  .milestone-table td:first-child {
+    width: 40%;
+    padding-left: 7px;
+    text-align: left;
+    white-space: normal;
+  }
+
+  #rules .card > ul {
+    margin: 0 0 16px;
+    padding-left: 20px;
+    font-size: .88rem;
+    line-height: 1.45;
+  }
+
   .fixture-team-item,
   .team-label {
     white-space: normal;

@@ -954,7 +954,7 @@ function renderRules() {
       <h3>Current setup</h3>
       <ul>${(config.rulesSummary ?? []).map((rule) => `<li>${escapeHtml(rule)}</li>`).join('')}</ul>
       <h3>Scoring milestones</h3>
-      ${table(['Milestone', ...pots.map((pot) => pot.label ?? `Pot ${pot.id}`)], scoringRows, 'responsive-table')}
+      ${table(['Milestone', ...pots.map((pot) => pot.label ?? `Pot ${pot.id}`)], scoringRows, 'responsive-table milestone-table')}
       <h3 style="margin-top:20px">Pots</h3>
       <div class="grid">
         ${pots.map((pot) => `

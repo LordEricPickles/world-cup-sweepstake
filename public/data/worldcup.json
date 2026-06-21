@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-21T05:19:49.287Z",
+  "updatedAt": "2026-06-21T10:06:36.469Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -473,10 +473,10 @@
       "time": "22:00 UTC-6",
       "home": "Tunisia",
       "away": "Japan",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": null,
-      "status": "SCHEDULED",
+      "homeScore": 0,
+      "awayScore": 4,
+      "winner": "Japan",
+      "status": "FINISHED",
       "group": "Group F",
       "ground": "Monterrey (Guadalupe)",
       "source": "openfootball"

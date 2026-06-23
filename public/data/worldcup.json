@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-23T04:31:14.977Z",
+  "updatedAt": "2026-06-23T07:25:35.511Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -809,10 +809,10 @@
       "time": "20:00 UTC-7",
       "home": "Jordan",
       "away": "Algeria",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": null,
-      "status": "SCHEDULED",
+      "homeScore": 1,
+      "awayScore": 2,
+      "winner": "Algeria",
+      "status": "FINISHED",
       "group": "Group J",
       "ground": "San Francisco Bay Area (Santa Clara)",
       "source": "openfootball"

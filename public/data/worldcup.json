@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-23T07:25:35.511Z",
+  "updatedAt": "2026-06-23T20:24:03.091Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -879,10 +879,10 @@
       "time": "12:00 UTC-5",
       "home": "Portugal",
       "away": "Uzbekistan",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": null,
-      "status": "SCHEDULED",
+      "homeScore": 5,
+      "awayScore": 0,
+      "winner": "Portugal",
+      "status": "FINISHED",
       "group": "Group K",
       "ground": "Houston",
       "source": "openfootball"

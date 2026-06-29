@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-28T21:31:00.657Z",
+  "updatedAt": "2026-06-29T16:12:57.296Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -1255,7 +1255,7 @@
       "round": "Round of 16",
       "date": "2026-07-04",
       "time": "12:00 UTC-5",
-      "home": "W73",
+      "home": "Canada",
       "away": "W75",
       "homeScore": null,
       "awayScore": null,

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-29T16:12:57.296Z",
+  "updatedAt": "2026-06-29T21:45:11.768Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -1061,10 +1061,10 @@
       "time": "12:00 UTC-5",
       "home": "Brazil",
       "away": "Japan",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": null,
-      "status": "SCHEDULED",
+      "homeScore": 2,
+      "awayScore": 1,
+      "winner": "Brazil",
+      "status": "FINISHED",
       "group": null,
       "ground": "Houston",
       "source": "openfootball"

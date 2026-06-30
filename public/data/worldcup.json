@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-30T20:20:26.049Z",
+  "updatedAt": "2026-06-30T23:38:01.587Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -1075,10 +1075,10 @@
       "time": "17:00 UTC-4",
       "home": "France",
       "away": "Sweden",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": null,
-      "status": "SCHEDULED",
+      "homeScore": 3,
+      "awayScore": 0,
+      "winner": "France",
+      "status": "FINISHED",
       "group": null,
       "ground": "New York/New Jersey (East Rutherford)",
       "source": "openfootball"

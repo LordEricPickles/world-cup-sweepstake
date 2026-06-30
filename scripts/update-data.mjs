@@ -27,13 +27,17 @@ async function readCurrentData() {
   }
 }
 
-function normaliseMatch(match) {
-  const homeScore = match.score?.ft?.[0] ?? null;
-  const awayScore = match.score?.ft?.[1] ?? null;
+function normaliseMatch(match, index) {
+  const displayScore = match.score?.et ?? match.score?.ft ?? [];
+  const homeScore = displayScore[0] ?? null;
+  const awayScore = displayScore[1] ?? null;
+  const homePenaltyScore = match.score?.p?.[0] ?? null;
+  const awayPenaltyScore = match.score?.p?.[1] ?? null;
   const hasScore = homeScore !== null && awayScore !== null;
-  const winner = decisiveWinner(match, homeScore, awayScore);
+  const winner = decisiveWinner(match);
 
   return {
+    matchNumber: match.num ?? index + 1,
     round: match.round ?? null,
     date: match.date ?? null,
     time: match.time ?? null,
@@ -41,6 +45,9 @@ function normaliseMatch(match) {
     away: match.team2 ?? null,
     homeScore,
     awayScore,
+    homePenaltyScore,
+    awayPenaltyScore,
+    decidedBy: decisionType(match),
     winner,
     status: hasScore ? 'FINISHED' : 'SCHEDULED',
     group: match.group ?? null,
@@ -49,8 +56,16 @@ function normaliseMatch(match) {
   };
 }
 
-function decisiveWinner(match, homeScore, awayScore) {
-  if (homeScore === null || awayScore === null) return null;
+function decisionType(match) {
+  if (match.score?.p) return 'penalties';
+  if (match.score?.et) return 'extraTime';
+  if (match.score?.ft) return 'regularTime';
+  return null;
+}
+
+function decisiveWinner(match) {
+  const [homeScore, awayScore] = match.score?.ft ?? [];
+  if (homeScore === null || homeScore === undefined || awayScore === null || awayScore === undefined) return null;
   if (homeScore > awayScore) return match.team1 ?? null;
   if (awayScore > homeScore) return match.team2 ?? null;
 

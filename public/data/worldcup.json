@@ -1,11 +1,12 @@
 {
-  "updatedAt": "2026-07-01T18:35:02.320Z",
+  "updatedAt": "2026-07-01T20:57:46.308Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
   "season": "2026",
   "fixtures": [
     {
+      "matchNumber": 1,
       "round": "Matchday 1",
       "date": "2026-06-11",
       "time": "13:00 UTC-6",
@@ -13,6 +14,9 @@
       "away": "South Africa",
       "homeScore": 2,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Mexico",
       "status": "FINISHED",
       "group": "Group A",
@@ -20,6 +24,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 2,
       "round": "Matchday 1",
       "date": "2026-06-11",
       "time": "20:00 UTC-6",
@@ -27,6 +32,9 @@
       "away": "Czech Republic",
       "homeScore": 2,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "South Korea",
       "status": "FINISHED",
       "group": "Group A",
@@ -34,6 +42,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 3,
       "round": "Matchday 8",
       "date": "2026-06-18",
       "time": "12:00 UTC-4",
@@ -41,6 +50,9 @@
       "away": "South Africa",
       "homeScore": 1,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group A",
@@ -48,6 +60,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 4,
       "round": "Matchday 8",
       "date": "2026-06-18",
       "time": "19:00 UTC-6",
@@ -55,6 +68,9 @@
       "away": "South Korea",
       "homeScore": 1,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Mexico",
       "status": "FINISHED",
       "group": "Group A",
@@ -62,6 +78,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 5,
       "round": "Matchday 14",
       "date": "2026-06-24",
       "time": "19:00 UTC-6",
@@ -69,6 +86,9 @@
       "away": "Mexico",
       "homeScore": 0,
       "awayScore": 3,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Mexico",
       "status": "FINISHED",
       "group": "Group A",
@@ -76,6 +96,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 6,
       "round": "Matchday 14",
       "date": "2026-06-24",
       "time": "19:00 UTC-6",
@@ -83,6 +104,9 @@
       "away": "South Korea",
       "homeScore": 1,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "South Africa",
       "status": "FINISHED",
       "group": "Group A",
@@ -90,6 +114,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 7,
       "round": "Matchday 2",
       "date": "2026-06-12",
       "time": "15:00 UTC-4",
@@ -97,6 +122,9 @@
       "away": "Bosnia & Herzegovina",
       "homeScore": 1,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group B",
@@ -104,6 +132,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 8,
       "round": "Matchday 3",
       "date": "2026-06-13",
       "time": "12:00 UTC-7",
@@ -111,6 +140,9 @@
       "away": "Switzerland",
       "homeScore": 1,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group B",
@@ -118,6 +150,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 9,
       "round": "Matchday 8",
       "date": "2026-06-18",
       "time": "12:00 UTC-7",
@@ -125,6 +158,9 @@
       "away": "Bosnia & Herzegovina",
       "homeScore": 4,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Switzerland",
       "status": "FINISHED",
       "group": "Group B",
@@ -132,6 +168,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 10,
       "round": "Matchday 8",
       "date": "2026-06-18",
       "time": "15:00 UTC-7",
@@ -139,6 +176,9 @@
       "away": "Qatar",
       "homeScore": 6,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Canada",
       "status": "FINISHED",
       "group": "Group B",
@@ -146,6 +186,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 11,
       "round": "Matchday 14",
       "date": "2026-06-24",
       "time": "12:00 UTC-7",
@@ -153,6 +194,9 @@
       "away": "Canada",
       "homeScore": 2,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Switzerland",
       "status": "FINISHED",
       "group": "Group B",
@@ -160,6 +204,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 12,
       "round": "Matchday 14",
       "date": "2026-06-24",
       "time": "12:00 UTC-7",
@@ -167,6 +212,9 @@
       "away": "Qatar",
       "homeScore": 3,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Bosnia & Herzegovina",
       "status": "FINISHED",
       "group": "Group B",
@@ -174,6 +222,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 13,
       "round": "Matchday 3",
       "date": "2026-06-13",
       "time": "18:00 UTC-4",
@@ -181,6 +230,9 @@
       "away": "Morocco",
       "homeScore": 1,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group C",
@@ -188,6 +240,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 14,
       "round": "Matchday 3",
       "date": "2026-06-13",
       "time": "21:00 UTC-4",
@@ -195,6 +248,9 @@
       "away": "Scotland",
       "homeScore": 0,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Scotland",
       "status": "FINISHED",
       "group": "Group C",
@@ -202,6 +258,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 15,
       "round": "Matchday 9",
       "date": "2026-06-19",
       "time": "18:00 UTC-4",
@@ -209,6 +266,9 @@
       "away": "Morocco",
       "homeScore": 0,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Morocco",
       "status": "FINISHED",
       "group": "Group C",
@@ -216,6 +276,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 16,
       "round": "Matchday 9",
       "date": "2026-06-19",
       "time": "20:30 UTC-4",
@@ -223,6 +284,9 @@
       "away": "Haiti",
       "homeScore": 3,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Brazil",
       "status": "FINISHED",
       "group": "Group C",
@@ -230,6 +294,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 17,
       "round": "Matchday 14",
       "date": "2026-06-24",
       "time": "18:00 UTC-4",
@@ -237,6 +302,9 @@
       "away": "Brazil",
       "homeScore": 0,
       "awayScore": 3,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Brazil",
       "status": "FINISHED",
       "group": "Group C",
@@ -244,6 +312,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 18,
       "round": "Matchday 14",
       "date": "2026-06-24",
       "time": "18:00 UTC-4",
@@ -251,6 +320,9 @@
       "away": "Haiti",
       "homeScore": 4,
       "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Morocco",
       "status": "FINISHED",
       "group": "Group C",
@@ -258,6 +330,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 19,
       "round": "Matchday 2",
       "date": "2026-06-12",
       "time": "18:00 UTC-7",
@@ -265,6 +338,9 @@
       "away": "Paraguay",
       "homeScore": 4,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "USA",
       "status": "FINISHED",
       "group": "Group D",
@@ -272,6 +348,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 20,
       "round": "Matchday 3",
       "date": "2026-06-13",
       "time": "21:00 UTC-7",
@@ -279,6 +356,9 @@
       "away": "Turkey",
       "homeScore": 2,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Australia",
       "status": "FINISHED",
       "group": "Group D",
@@ -286,6 +366,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 21,
       "round": "Matchday 9",
       "date": "2026-06-19",
       "time": "12:00 UTC-7",
@@ -293,6 +374,9 @@
       "away": "Australia",
       "homeScore": 2,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "USA",
       "status": "FINISHED",
       "group": "Group D",
@@ -300,6 +384,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 22,
       "round": "Matchday 9",
       "date": "2026-06-19",
       "time": "20:00 UTC-7",
@@ -307,6 +392,9 @@
       "away": "Paraguay",
       "homeScore": 0,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Paraguay",
       "status": "FINISHED",
       "group": "Group D",
@@ -314,6 +402,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 23,
       "round": "Matchday 15",
       "date": "2026-06-25",
       "time": "19:00 UTC-7",
@@ -321,6 +410,9 @@
       "away": "USA",
       "homeScore": 3,
       "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Turkey",
       "status": "FINISHED",
       "group": "Group D",
@@ -328,6 +420,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 24,
       "round": "Matchday 15",
       "date": "2026-06-25",
       "time": "19:00 UTC-7",
@@ -335,6 +428,9 @@
       "away": "Australia",
       "homeScore": 0,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group D",
@@ -342,6 +438,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 25,
       "round": "Matchday 4",
       "date": "2026-06-14",
       "time": "12:00 UTC-5",
@@ -349,6 +446,9 @@
       "away": "Curaçao",
       "homeScore": 7,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Germany",
       "status": "FINISHED",
       "group": "Group E",
@@ -356,6 +456,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 26,
       "round": "Matchday 4",
       "date": "2026-06-14",
       "time": "19:00 UTC-4",
@@ -363,6 +464,9 @@
       "away": "Ecuador",
       "homeScore": 1,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Ivory Coast",
       "status": "FINISHED",
       "group": "Group E",
@@ -370,6 +474,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 27,
       "round": "Matchday 10",
       "date": "2026-06-20",
       "time": "16:00 UTC-4",
@@ -377,6 +482,9 @@
       "away": "Ivory Coast",
       "homeScore": 2,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Germany",
       "status": "FINISHED",
       "group": "Group E",
@@ -384,6 +492,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 28,
       "round": "Matchday 10",
       "date": "2026-06-20",
       "time": "19:00 UTC-5",
@@ -391,6 +500,9 @@
       "away": "Curaçao",
       "homeScore": 0,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group E",
@@ -398,6 +510,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 29,
       "round": "Matchday 15",
       "date": "2026-06-25",
       "time": "16:00 UTC-4",
@@ -405,6 +518,9 @@
       "away": "Ivory Coast",
       "homeScore": 0,
       "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Ivory Coast",
       "status": "FINISHED",
       "group": "Group E",
@@ -412,6 +528,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 30,
       "round": "Matchday 15",
       "date": "2026-06-25",
       "time": "16:00 UTC-4",
@@ -419,6 +536,9 @@
       "away": "Germany",
       "homeScore": 2,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Ecuador",
       "status": "FINISHED",
       "group": "Group E",
@@ -426,6 +546,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 31,
       "round": "Matchday 4",
       "date": "2026-06-14",
       "time": "15:00 UTC-5",
@@ -433,6 +554,9 @@
       "away": "Japan",
       "homeScore": 2,
       "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group F",
@@ -440,6 +564,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 32,
       "round": "Matchday 4",
       "date": "2026-06-14",
       "time": "20:00 UTC-6",
@@ -447,6 +572,9 @@
       "away": "Tunisia",
       "homeScore": 5,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Sweden",
       "status": "FINISHED",
       "group": "Group F",
@@ -454,6 +582,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 33,
       "round": "Matchday 10",
       "date": "2026-06-20",
       "time": "12:00 UTC-5",
@@ -461,6 +590,9 @@
       "away": "Sweden",
       "homeScore": 5,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Netherlands",
       "status": "FINISHED",
       "group": "Group F",
@@ -468,6 +600,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 34,
       "round": "Matchday 10",
       "date": "2026-06-20",
       "time": "22:00 UTC-6",
@@ -475,6 +608,9 @@
       "away": "Japan",
       "homeScore": 0,
       "awayScore": 4,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Japan",
       "status": "FINISHED",
       "group": "Group F",
@@ -482,6 +618,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 35,
       "round": "Matchday 15",
       "date": "2026-06-25",
       "time": "18:00 UTC-5",
@@ -489,6 +626,9 @@
       "away": "Sweden",
       "homeScore": 1,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group F",
@@ -496,6 +636,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 36,
       "round": "Matchday 15",
       "date": "2026-06-25",
       "time": "18:00 UTC-5",
@@ -503,6 +644,9 @@
       "away": "Netherlands",
       "homeScore": 1,
       "awayScore": 3,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Netherlands",
       "status": "FINISHED",
       "group": "Group F",
@@ -510,6 +654,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 37,
       "round": "Matchday 5",
       "date": "2026-06-15",
       "time": "12:00 UTC-7",
@@ -517,6 +662,9 @@
       "away": "Egypt",
       "homeScore": 1,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group G",
@@ -524,6 +672,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 38,
       "round": "Matchday 5",
       "date": "2026-06-15",
       "time": "18:00 UTC-7",
@@ -531,6 +680,9 @@
       "away": "New Zealand",
       "homeScore": 2,
       "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group G",
@@ -538,6 +690,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 39,
       "round": "Matchday 11",
       "date": "2026-06-21",
       "time": "12:00 UTC-7",
@@ -545,6 +698,9 @@
       "away": "Iran",
       "homeScore": 0,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group G",
@@ -552,6 +708,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 40,
       "round": "Matchday 11",
       "date": "2026-06-21",
       "time": "18:00 UTC-7",
@@ -559,6 +716,9 @@
       "away": "Egypt",
       "homeScore": 1,
       "awayScore": 3,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Egypt",
       "status": "FINISHED",
       "group": "Group G",
@@ -566,6 +726,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 41,
       "round": "Matchday 16",
       "date": "2026-06-26",
       "time": "20:00 UTC-7",
@@ -573,6 +734,9 @@
       "away": "Iran",
       "homeScore": 1,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group G",
@@ -580,6 +744,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 42,
       "round": "Matchday 16",
       "date": "2026-06-26",
       "time": "20:00 UTC-7",
@@ -587,6 +752,9 @@
       "away": "Belgium",
       "homeScore": 1,
       "awayScore": 5,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Belgium",
       "status": "FINISHED",
       "group": "Group G",
@@ -594,6 +762,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 43,
       "round": "Matchday 5",
       "date": "2026-06-15",
       "time": "12:00 UTC-4",
@@ -601,6 +770,9 @@
       "away": "Cape Verde",
       "homeScore": 0,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group H",
@@ -608,6 +780,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 44,
       "round": "Matchday 5",
       "date": "2026-06-15",
       "time": "18:00 UTC-4",
@@ -615,6 +788,9 @@
       "away": "Uruguay",
       "homeScore": 1,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group H",
@@ -622,6 +798,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 45,
       "round": "Matchday 11",
       "date": "2026-06-21",
       "time": "12:00 UTC-4",
@@ -629,6 +806,9 @@
       "away": "Saudi Arabia",
       "homeScore": 4,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Spain",
       "status": "FINISHED",
       "group": "Group H",
@@ -636,6 +816,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 46,
       "round": "Matchday 11",
       "date": "2026-06-21",
       "time": "18:00 UTC-4",
@@ -643,6 +824,9 @@
       "away": "Cape Verde",
       "homeScore": 2,
       "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group H",
@@ -650,6 +834,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 47,
       "round": "Matchday 16",
       "date": "2026-06-26",
       "time": "19:00 UTC-5",
@@ -657,6 +842,9 @@
       "away": "Saudi Arabia",
       "homeScore": 0,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group H",
@@ -664,6 +852,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 48,
       "round": "Matchday 16",
       "date": "2026-06-26",
       "time": "18:00 UTC-6",
@@ -671,6 +860,9 @@
       "away": "Spain",
       "homeScore": 0,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Spain",
       "status": "FINISHED",
       "group": "Group H",
@@ -678,6 +870,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 49,
       "round": "Matchday 6",
       "date": "2026-06-16",
       "time": "15:00 UTC-4",
@@ -685,6 +878,9 @@
       "away": "Senegal",
       "homeScore": 3,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "France",
       "status": "FINISHED",
       "group": "Group I",
@@ -692,6 +888,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 50,
       "round": "Matchday 6",
       "date": "2026-06-16",
       "time": "18:00 UTC-4",
@@ -699,6 +896,9 @@
       "away": "Norway",
       "homeScore": 1,
       "awayScore": 4,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Norway",
       "status": "FINISHED",
       "group": "Group I",
@@ -706,6 +906,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 51,
       "round": "Matchday 12",
       "date": "2026-06-22",
       "time": "17:00 UTC-4",
@@ -713,6 +914,9 @@
       "away": "Iraq",
       "homeScore": 3,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "France",
       "status": "FINISHED",
       "group": "Group I",
@@ -720,6 +924,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 52,
       "round": "Matchday 12",
       "date": "2026-06-22",
       "time": "20:00 UTC-4",
@@ -727,6 +932,9 @@
       "away": "Senegal",
       "homeScore": 3,
       "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Norway",
       "status": "FINISHED",
       "group": "Group I",
@@ -734,6 +942,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 53,
       "round": "Matchday 16",
       "date": "2026-06-26",
       "time": "15:00 UTC-4",
@@ -741,6 +950,9 @@
       "away": "France",
       "homeScore": 1,
       "awayScore": 4,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "France",
       "status": "FINISHED",
       "group": "Group I",
@@ -748,6 +960,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 54,
       "round": "Matchday 16",
       "date": "2026-06-26",
       "time": "15:00 UTC-4",
@@ -755,6 +968,9 @@
       "away": "Iraq",
       "homeScore": 5,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Senegal",
       "status": "FINISHED",
       "group": "Group I",
@@ -762,6 +978,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 55,
       "round": "Matchday 6",
       "date": "2026-06-16",
       "time": "20:00 UTC-5",
@@ -769,6 +986,9 @@
       "away": "Algeria",
       "homeScore": 3,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Argentina",
       "status": "FINISHED",
       "group": "Group J",
@@ -776,6 +996,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 56,
       "round": "Matchday 6",
       "date": "2026-06-16",
       "time": "21:00 UTC-7",
@@ -783,6 +1004,9 @@
       "away": "Jordan",
       "homeScore": 3,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Austria",
       "status": "FINISHED",
       "group": "Group J",
@@ -790,6 +1014,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 57,
       "round": "Matchday 12",
       "date": "2026-06-22",
       "time": "12:00 UTC-5",
@@ -797,6 +1022,9 @@
       "away": "Austria",
       "homeScore": 2,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Argentina",
       "status": "FINISHED",
       "group": "Group J",
@@ -804,6 +1032,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 58,
       "round": "Matchday 12",
       "date": "2026-06-22",
       "time": "20:00 UTC-7",
@@ -811,6 +1040,9 @@
       "away": "Algeria",
       "homeScore": 1,
       "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Algeria",
       "status": "FINISHED",
       "group": "Group J",
@@ -818,6 +1050,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 59,
       "round": "Matchday 17",
       "date": "2026-06-27",
       "time": "21:00 UTC-5",
@@ -825,6 +1058,9 @@
       "away": "Austria",
       "homeScore": 3,
       "awayScore": 3,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group J",
@@ -832,6 +1068,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 60,
       "round": "Matchday 17",
       "date": "2026-06-27",
       "time": "21:00 UTC-5",
@@ -839,6 +1076,9 @@
       "away": "Argentina",
       "homeScore": 1,
       "awayScore": 3,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Argentina",
       "status": "FINISHED",
       "group": "Group J",
@@ -846,6 +1086,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 61,
       "round": "Matchday 7",
       "date": "2026-06-17",
       "time": "12:00 UTC-5",
@@ -853,6 +1094,9 @@
       "away": "DR Congo",
       "homeScore": 1,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group K",
@@ -860,6 +1104,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 62,
       "round": "Matchday 7",
       "date": "2026-06-17",
       "time": "20:00 UTC-6",
@@ -867,6 +1112,9 @@
       "away": "Colombia",
       "homeScore": 1,
       "awayScore": 3,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Colombia",
       "status": "FINISHED",
       "group": "Group K",
@@ -874,6 +1122,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 63,
       "round": "Matchday 13",
       "date": "2026-06-23",
       "time": "12:00 UTC-5",
@@ -881,6 +1130,9 @@
       "away": "Uzbekistan",
       "homeScore": 5,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Portugal",
       "status": "FINISHED",
       "group": "Group K",
@@ -888,6 +1140,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 64,
       "round": "Matchday 13",
       "date": "2026-06-23",
       "time": "20:00 UTC-6",
@@ -895,6 +1148,9 @@
       "away": "DR Congo",
       "homeScore": 1,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Colombia",
       "status": "FINISHED",
       "group": "Group K",
@@ -902,6 +1158,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 65,
       "round": "Matchday 17",
       "date": "2026-06-27",
       "time": "19:30 UTC-4",
@@ -909,6 +1166,9 @@
       "away": "Portugal",
       "homeScore": 0,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group K",
@@ -916,6 +1176,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 66,
       "round": "Matchday 17",
       "date": "2026-06-27",
       "time": "19:30 UTC-4",
@@ -923,6 +1184,9 @@
       "away": "Uzbekistan",
       "homeScore": 3,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "DR Congo",
       "status": "FINISHED",
       "group": "Group K",
@@ -930,6 +1194,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 67,
       "round": "Matchday 7",
       "date": "2026-06-17",
       "time": "15:00 UTC-5",
@@ -937,6 +1202,9 @@
       "away": "Croatia",
       "homeScore": 4,
       "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "England",
       "status": "FINISHED",
       "group": "Group L",
@@ -944,6 +1212,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 68,
       "round": "Matchday 7",
       "date": "2026-06-17",
       "time": "19:00 UTC-4",
@@ -951,6 +1220,9 @@
       "away": "Panama",
       "homeScore": 1,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Ghana",
       "status": "FINISHED",
       "group": "Group L",
@@ -958,6 +1230,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 69,
       "round": "Matchday 13",
       "date": "2026-06-23",
       "time": "16:00 UTC-4",
@@ -965,6 +1238,9 @@
       "away": "Ghana",
       "homeScore": 0,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": null,
       "status": "FINISHED",
       "group": "Group L",
@@ -972,6 +1248,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 70,
       "round": "Matchday 13",
       "date": "2026-06-23",
       "time": "19:00 UTC-4",
@@ -979,6 +1256,9 @@
       "away": "Croatia",
       "homeScore": 0,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Croatia",
       "status": "FINISHED",
       "group": "Group L",
@@ -986,6 +1266,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 71,
       "round": "Matchday 17",
       "date": "2026-06-27",
       "time": "17:00 UTC-4",
@@ -993,6 +1274,9 @@
       "away": "England",
       "homeScore": 0,
       "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "England",
       "status": "FINISHED",
       "group": "Group L",
@@ -1000,6 +1284,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 72,
       "round": "Matchday 17",
       "date": "2026-06-27",
       "time": "17:00 UTC-4",
@@ -1007,6 +1292,9 @@
       "away": "Ghana",
       "homeScore": 2,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Croatia",
       "status": "FINISHED",
       "group": "Group L",
@@ -1014,6 +1302,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 73,
       "round": "Round of 32",
       "date": "2026-06-28",
       "time": "12:00 UTC-7",
@@ -1021,6 +1310,9 @@
       "away": "Canada",
       "homeScore": 0,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Canada",
       "status": "FINISHED",
       "group": null,
@@ -1028,6 +1320,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 74,
       "round": "Round of 32",
       "date": "2026-06-29",
       "time": "16:30 UTC-4",
@@ -1035,6 +1328,9 @@
       "away": "Paraguay",
       "homeScore": 1,
       "awayScore": 1,
+      "homePenaltyScore": 3,
+      "awayPenaltyScore": 4,
+      "decidedBy": "penalties",
       "winner": "Paraguay",
       "status": "FINISHED",
       "group": null,
@@ -1042,6 +1338,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 75,
       "round": "Round of 32",
       "date": "2026-06-29",
       "time": "19:00 UTC-6",
@@ -1049,6 +1346,9 @@
       "away": "Morocco",
       "homeScore": 1,
       "awayScore": 1,
+      "homePenaltyScore": 2,
+      "awayPenaltyScore": 3,
+      "decidedBy": "penalties",
       "winner": "Morocco",
       "status": "FINISHED",
       "group": null,
@@ -1056,6 +1356,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 76,
       "round": "Round of 32",
       "date": "2026-06-29",
       "time": "12:00 UTC-5",
@@ -1063,6 +1364,9 @@
       "away": "Japan",
       "homeScore": 2,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Brazil",
       "status": "FINISHED",
       "group": null,
@@ -1070,6 +1374,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 77,
       "round": "Round of 32",
       "date": "2026-06-30",
       "time": "17:00 UTC-4",
@@ -1077,6 +1382,9 @@
       "away": "Sweden",
       "homeScore": 3,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "France",
       "status": "FINISHED",
       "group": null,
@@ -1084,6 +1392,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 78,
       "round": "Round of 32",
       "date": "2026-06-30",
       "time": "12:00 UTC-5",
@@ -1091,6 +1400,9 @@
       "away": "Norway",
       "homeScore": 1,
       "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Norway",
       "status": "FINISHED",
       "group": null,
@@ -1098,6 +1410,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 79,
       "round": "Round of 32",
       "date": "2026-06-30",
       "time": "19:00 UTC-6",
@@ -1105,6 +1418,9 @@
       "away": "Ecuador",
       "homeScore": 2,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "Mexico",
       "status": "FINISHED",
       "group": null,
@@ -1112,6 +1428,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 80,
       "round": "Round of 32",
       "date": "2026-07-01",
       "time": "12:00 UTC-4",
@@ -1119,6 +1436,9 @@
       "away": "DR Congo",
       "homeScore": 2,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": "regularTime",
       "winner": "England",
       "status": "FINISHED",
       "group": null,
@@ -1126,6 +1446,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 81,
       "round": "Round of 32",
       "date": "2026-07-01",
       "time": "17:00 UTC-7",
@@ -1133,6 +1454,9 @@
       "away": "Bosnia & Herzegovina",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1140,6 +1464,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 82,
       "round": "Round of 32",
       "date": "2026-07-01",
       "time": "13:00 UTC-7",
@@ -1147,6 +1472,9 @@
       "away": "Senegal",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1154,6 +1482,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 83,
       "round": "Round of 32",
       "date": "2026-07-02",
       "time": "19:00 UTC-4",
@@ -1161,6 +1490,9 @@
       "away": "Croatia",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1168,6 +1500,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 84,
       "round": "Round of 32",
       "date": "2026-07-02",
       "time": "12:00 UTC-7",
@@ -1175,6 +1508,9 @@
       "away": "Austria",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1182,6 +1518,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 85,
       "round": "Round of 32",
       "date": "2026-07-02",
       "time": "20:00 UTC-7",
@@ -1189,6 +1526,9 @@
       "away": "Algeria",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1196,6 +1536,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 86,
       "round": "Round of 32",
       "date": "2026-07-03",
       "time": "18:00 UTC-4",
@@ -1203,6 +1544,9 @@
       "away": "Cape Verde",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1210,6 +1554,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 87,
       "round": "Round of 32",
       "date": "2026-07-03",
       "time": "20:30 UTC-5",
@@ -1217,6 +1562,9 @@
       "away": "Ghana",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1224,6 +1572,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 88,
       "round": "Round of 32",
       "date": "2026-07-03",
       "time": "13:00 UTC-5",
@@ -1231,6 +1580,9 @@
       "away": "Egypt",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1238,6 +1590,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 89,
       "round": "Round of 16",
       "date": "2026-07-04",
       "time": "17:00 UTC-4",
@@ -1245,6 +1598,9 @@
       "away": "France",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1252,6 +1608,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 90,
       "round": "Round of 16",
       "date": "2026-07-04",
       "time": "12:00 UTC-5",
@@ -1259,6 +1616,9 @@
       "away": "Morocco",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1266,6 +1626,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 91,
       "round": "Round of 16",
       "date": "2026-07-05",
       "time": "16:00 UTC-4",
@@ -1273,6 +1634,9 @@
       "away": "Norway",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1280,6 +1644,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 92,
       "round": "Round of 16",
       "date": "2026-07-05",
       "time": "18:00 UTC-6",
@@ -1287,6 +1652,9 @@
       "away": "W80",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1294,6 +1662,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 93,
       "round": "Round of 16",
       "date": "2026-07-06",
       "time": "14:00 UTC-5",
@@ -1301,6 +1670,9 @@
       "away": "W84",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1308,6 +1680,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 94,
       "round": "Round of 16",
       "date": "2026-07-06",
       "time": "17:00 UTC-7",
@@ -1315,6 +1688,9 @@
       "away": "W82",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1322,6 +1698,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 95,
       "round": "Round of 16",
       "date": "2026-07-07",
       "time": "12:00 UTC-4",
@@ -1329,6 +1706,9 @@
       "away": "W88",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1336,6 +1716,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 96,
       "round": "Round of 16",
       "date": "2026-07-07",
       "time": "13:00 UTC-7",
@@ -1343,6 +1724,9 @@
       "away": "W87",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1350,6 +1734,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 97,
       "round": "Quarter-final",
       "date": "2026-07-09",
       "time": "16:00 UTC-4",
@@ -1357,6 +1742,9 @@
       "away": "W90",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1364,6 +1752,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 98,
       "round": "Quarter-final",
       "date": "2026-07-10",
       "time": "12:00 UTC-7",
@@ -1371,6 +1760,9 @@
       "away": "W94",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1378,6 +1770,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 99,
       "round": "Quarter-final",
       "date": "2026-07-11",
       "time": "17:00 UTC-4",
@@ -1385,6 +1778,9 @@
       "away": "W92",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1392,6 +1788,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 100,
       "round": "Quarter-final",
       "date": "2026-07-11",
       "time": "20:00 UTC-5",
@@ -1399,6 +1796,9 @@
       "away": "W96",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1406,6 +1806,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 101,
       "round": "Semi-final",
       "date": "2026-07-14",
       "time": "14:00 UTC-5",
@@ -1413,6 +1814,9 @@
       "away": "W98",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1420,6 +1824,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 102,
       "round": "Semi-final",
       "date": "2026-07-15",
       "time": "15:00 UTC-4",
@@ -1427,6 +1832,9 @@
       "away": "W100",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1434,6 +1842,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 103,
       "round": "Match for third place",
       "date": "2026-07-18",
       "time": "17:00 UTC-4",
@@ -1441,6 +1850,9 @@
       "away": "L102",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,
@@ -1448,6 +1860,7 @@
       "source": "openfootball"
     },
     {
+      "matchNumber": 104,
       "round": "Final",
       "date": "2026-07-19",
       "time": "15:00 UTC-4",
@@ -1455,6 +1868,9 @@
       "away": "W102",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "decidedBy": null,
       "winner": null,
       "status": "SCHEDULED",
       "group": null,

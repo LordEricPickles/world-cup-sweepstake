@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-01T10:16:04.719Z",
+  "updatedAt": "2026-07-01T13:13:28.297Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -1283,7 +1283,7 @@
       "round": "Round of 16",
       "date": "2026-07-05",
       "time": "18:00 UTC-6",
-      "home": "W79",
+      "home": "Mexico",
       "away": "W80",
       "homeScore": null,
       "awayScore": null,

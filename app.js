@@ -100,6 +100,12 @@ function fixtureTeamLabel(teamName) {
   return `<span class="fixture-team-item">${teamLabel(teamName)} <span class="team-owner">(${escapeHtml(teamOwner(teamName))})</span></span>`;
 }
 
+function fixtureMatchTeamLabel(match, side) {
+  const teamName = side === 'home' ? match.home : match.away;
+  const winnerClass = matchWinnerSide(match) === side ? ' fixture-winner' : '';
+  return `<span class="fixture-team-item${winnerClass}">${teamLabel(teamName)} <span class="team-owner">(${escapeHtml(teamOwner(teamName))})</span></span>`;
+}
+
 async function loadJson(path) {
   const response = await fetch(path, { cache: 'no-store' });
   if (!response.ok) throw new Error(`Failed to load ${path}: ${response.status}`);
@@ -108,7 +114,6 @@ async function loadJson(path) {
 
 async function init() {
   setupTabs();
-  setupDrawTool();
 
   try {
     const [sweepstake, worldcup, overrides] = await Promise.all([
@@ -121,7 +126,6 @@ async function init() {
     state.worldcup = worldcup;
     state.overrides = overrides;
 
-    setupDrawTool();
     renderAll();
     byId('updatedText').textContent = worldcup.updatedAt ? `Data updated ${new Date(worldcup.updatedAt).toLocaleString('en-GB')} from ${worldcup.source ?? 'JSON'}` : 'No live data yet';
   } catch (error) {
@@ -135,6 +139,7 @@ function setupTabs() {
     button.addEventListener('click', () => {
       document.querySelectorAll('[data-tab]').forEach((item) => item.classList.toggle('active', item === button));
       document.querySelectorAll('.panel').forEach((panel) => panel.classList.toggle('active', panel.id === button.dataset.tab));
+      if (button.dataset.tab === 'knockout') requestAnimationFrame(drawBracketLines);
     });
   });
 }
@@ -233,6 +238,22 @@ function winnerName(match) {
   if (match.homeScore === null || match.homeScore === undefined || match.awayScore === null || match.awayScore === undefined) return null;
   if (match.homeScore === match.awayScore) return null;
   return match.homeScore > match.awayScore ? match.home : match.away;
+}
+
+function loserName(match) {
+  const winner = winnerName(match);
+  if (!winner) return null;
+  if (match.home === winner) return match.away;
+  if (match.away === winner) return match.home;
+  return null;
+}
+
+function matchWinnerSide(match) {
+  const winner = winnerName(match);
+  if (!winner) return null;
+  if (match.home === winner) return 'home';
+  if (match.away === winner) return 'away';
+  return null;
 }
 
 function automaticStage(teamName) {
@@ -572,6 +593,23 @@ function teamContribution(assignment, options = {}) {
   };
 }
 
+function teamStatusClass(team) {
+  if (team.stageReached === 'winner') return 'team-alive';
+
+  const eliminatedInKnockout = (state.worldcup.fixtures ?? [])
+    .filter((match) => fixtureStage(match.round) && isCompletedMatch(match))
+    .some((match) => {
+      const teams = [match.home, match.away].filter((name) => name && !isPlaceholderTeam(name));
+      return teams.includes(team.name) && winnerName(match) !== team.name;
+    });
+  if (eliminatedInKnockout) return 'team-eliminated';
+
+  if (team.stageRank > 0) return 'team-alive';
+  if (allGroupFixturesComplete()) return 'team-eliminated';
+
+  return 'team-pending';
+}
+
 function playerRows(options = {}) {
   const rows = state.sweepstake.players.map((player) => {
     const teams = player.teams.map((entry) => teamContribution({ player: player.name, ...normaliseAssignment(entry) }, options));
@@ -633,6 +671,7 @@ function renderAll() {
   renderLeaderboards();
   renderGroups();
   renderFixtures();
+  renderKnockout();
   renderRules();
 }
 
@@ -665,7 +704,7 @@ function renderOverview() {
             <strong class="score-pill">${player.totalPoints} pts</strong>
           </div>
           <div class="tag-list">
-            ${player.teams.map((team) => `<span class="tag ${escapeHtml(team.stageReached)}"><span class="player-team-summary">${teamLabel(team.name)} · ${escapeHtml(team.potLabel)}</span><strong class="player-team-points">${team.sweepstakePoints} pts</strong></span>`).join('')}
+            ${player.teams.map((team) => `<span class="tag ${escapeHtml(team.stageReached)} ${teamStatusClass(team)}"><span class="player-team-summary">${teamLabel(team.name)} · ${escapeHtml(team.potLabel)}</span><strong class="player-team-points">${team.sweepstakePoints} pts</strong></span>`).join('')}
           </div>
         </article>
       `).join('')}
@@ -845,19 +884,31 @@ function compareFixturesByDateTime(left, right) {
 
 function fixtureScoreMarkup(match) {
   if (match.homeScore === null || match.homeScore === undefined) return '<span class="fixture-score fixture-score-pending">v</span>';
-  return `<span class="fixture-score">${escapeHtml(match.homeScore)}-${escapeHtml(match.awayScore)}</span>`;
+  const hasPenalties = match.decidedBy === 'penalties'
+    || (match.homePenaltyScore !== null && match.homePenaltyScore !== undefined && match.awayPenaltyScore !== null && match.awayPenaltyScore !== undefined);
+  const penalty = hasPenalties
+    ? `<span class="fixture-penalties">pens ${escapeHtml(match.homePenaltyScore)}-${escapeHtml(match.awayPenaltyScore)}</span>`
+    : '';
+
+  return `
+    <span class="fixture-score-stack">
+      <span class="fixture-score">${escapeHtml(match.homeScore)}-${escapeHtml(match.awayScore)}</span>
+      ${penalty}
+    </span>
+  `;
 }
 
 function mobileFixtureTeam(match, side) {
   const teamName = side === 'home' ? match.home : match.away;
   const team = `<span class="fixture-card-team-name">${escapeHtml(teamName)}</span>`;
   const flag = teamFlag(teamName);
+  const winnerClass = matchWinnerSide(match) === side ? ' fixture-winner' : '';
 
   if (side === 'home') {
-    return `<span class="fixture-card-team fixture-card-team-home">${team} ${flag}</span>`;
+    return `<span class="fixture-card-team fixture-card-team-home${winnerClass}">${team} ${flag}</span>`;
   }
 
-  return `<span class="fixture-card-team fixture-card-team-away">${flag} ${team}</span>`;
+  return `<span class="fixture-card-team fixture-card-team-away${winnerClass}">${flag} ${team}</span>`;
 }
 
 function mobileFixtureOwner(match, side) {
@@ -908,9 +959,9 @@ function renderFixtures() {
     htmlCell(fixtureDateCell(match)),
     ukFixtureDateTime(match).time,
     match.round ?? '',
-    htmlCell(fixtureTeamLabel(match.home)),
+    htmlCell(fixtureMatchTeamLabel(match, 'home')),
     score(match),
-    htmlCell(fixtureTeamLabel(match.away)),
+    htmlCell(fixtureMatchTeamLabel(match, 'away')),
     match.group ?? '',
     match.ground ?? ''
   ]), 'responsive-table fixture-table')}
@@ -934,6 +985,226 @@ function renderFixtures() {
 function score(match) {
   return htmlCell(fixtureScoreMarkup(match));
 }
+
+const KNOCKOUT_ROUNDS = [
+  { id: 'roundOf32', label: 'Round of 32' },
+  { id: 'roundOf16', label: 'Round of 16' },
+  { id: 'quarterFinal', label: 'Quarter Final' },
+  { id: 'semiFinal', label: 'Semi Final' },
+  { id: 'final', label: 'Final' }
+];
+
+const BRACKET_FEEDERS = new Map(Object.entries({
+  89: [74, 77],
+  90: [73, 75],
+  91: [76, 78],
+  92: [79, 80],
+  93: [83, 84],
+  94: [81, 82],
+  95: [86, 88],
+  96: [85, 87],
+  97: [89, 90],
+  98: [93, 94],
+  99: [91, 92],
+  100: [95, 96],
+  101: [97, 98],
+  102: [99, 100],
+  104: [101, 102]
+}).map(([matchNumber, feeders]) => [Number(matchNumber), feeders]));
+
+const BRACKET_LEAF_ORDER = [74, 77, 73, 75, 83, 84, 81, 82, 76, 78, 79, 80, 86, 88, 85, 87];
+function knockoutFixtures() {
+  return (state.worldcup.fixtures ?? [])
+    .filter((match) => fixtureStage(match.round))
+    .map((match, index) => ({ match, index }))
+    .sort(compareFixturesByDateTime)
+    .map(({ match }) => match);
+}
+
+function fixtureNumberMap() {
+  return new Map((state.worldcup.fixtures ?? [])
+    .filter((match) => match.matchNumber !== null && match.matchNumber !== undefined)
+    .map((match) => [String(match.matchNumber), match]));
+}
+
+function resolveBracketTeam(teamName, matchesByNumber = fixtureNumberMap()) {
+  const [, type, matchNumber] = String(teamName ?? '').match(/^([WL])(\d+)$/i) ?? [];
+  if (!type) return teamName ?? 'TBC';
+
+  const sourceMatch = matchesByNumber.get(matchNumber);
+  if (!sourceMatch) return teamName;
+
+  if (type.toUpperCase() === 'W') return winnerName(sourceMatch) ?? teamName;
+  return loserName(sourceMatch) ?? teamName;
+}
+
+function bracketTeam(match, side, matchesByNumber) {
+  const rawName = side === 'home' ? match.home : match.away;
+  const teamName = resolveBracketTeam(rawName, matchesByNumber);
+  const resolvedMatch = {
+    ...match,
+    home: resolveBracketTeam(match.home, matchesByNumber),
+    away: resolveBracketTeam(match.away, matchesByNumber)
+  };
+  const winnerClass = matchWinnerSide(resolvedMatch) === side ? ' bracket-team-winner' : '';
+
+  return `
+    <span class="bracket-team${winnerClass}">
+      <span>${teamLabel(teamName)}</span>
+      <span class="bracket-owner">${escapeHtml(teamOwner(teamName))}</span>
+    </span>
+  `;
+}
+
+function bracketMatchCard(match, matchesByNumber, placement) {
+  const { date, time } = ukFixtureDateTime(match);
+  const meta = [compactFixtureDate(date), time].filter(Boolean).map(escapeHtml).join(' · ');
+  const matchNumber = bracketMatchNumber(match);
+  const matchAttribute = matchNumber === null ? '' : ` data-match-number="${escapeHtml(matchNumber)}"`;
+
+  return `
+    <article class="bracket-match"${matchAttribute} style="grid-column: ${placement.column}; grid-row: ${placement.row} / span ${placement.span};">
+      <div class="bracket-match-meta">${meta}</div>
+      <div class="bracket-match-teams">
+        ${bracketTeam(match, 'home', matchesByNumber)}
+        <span class="bracket-score">${fixtureScoreMarkup(match)}</span>
+        ${bracketTeam(match, 'away', matchesByNumber)}
+      </div>
+    </article>
+  `;
+}
+
+function bracketMatchNumber(match) {
+  return match.matchNumber === null || match.matchNumber === undefined ? null : Number(match.matchNumber);
+}
+
+function bracketFeederNumbers(match) {
+  const number = bracketMatchNumber(match);
+  if (number !== null && BRACKET_FEEDERS.has(number)) return BRACKET_FEEDERS.get(number);
+
+  return [match.home, match.away]
+    .map((teamName) => String(teamName ?? '').match(/^W(\d+)$/i)?.[1])
+    .filter(Boolean)
+    .map(Number);
+}
+
+function buildBracketLayout(matches, matchesByNumber) {
+  const roundOf32Numbers = matches
+    .filter((match) => fixtureStage(match.round) === 'roundOf32')
+    .map(bracketMatchNumber)
+    .filter((number) => number !== null);
+  const bracketLeafOrder = BRACKET_LEAF_ORDER.filter((number) => roundOf32Numbers.includes(number));
+  const remainingLeaves = roundOf32Numbers.filter((number) => !bracketLeafOrder.includes(number));
+  const leafOrder = [...bracketLeafOrder, ...remainingLeaves];
+  const leafSlots = new Map(leafOrder.map((number, index) => [number, index + 1]));
+  const ranges = new Map();
+
+  function matchRange(match) {
+    const matchNumber = bracketMatchNumber(match);
+    if (matchNumber === null) return { start: 1, end: 1 };
+    if (ranges.has(matchNumber)) return ranges.get(matchNumber);
+    if (leafSlots.has(matchNumber)) {
+      const slot = leafSlots.get(matchNumber);
+      const range = { start: slot, end: slot };
+      ranges.set(matchNumber, range);
+      return range;
+    }
+
+    const feederRanges = bracketFeederNumbers(match)
+      .map((number) => matchesByNumber.get(String(number)))
+      .filter(Boolean)
+      .map(matchRange);
+    const range = feederRanges.length
+      ? {
+        start: Math.min(...feederRanges.map((feederRange) => feederRange.start)),
+        end: Math.max(...feederRanges.map((feederRange) => feederRange.end))
+      }
+      : { start: 1, end: 1 };
+
+    ranges.set(matchNumber, range);
+    return range;
+  }
+
+  return new Map(matches.map((match) => {
+    const range = matchRange(match);
+    const roundIndex = KNOCKOUT_ROUNDS.findIndex((round) => round.id === fixtureStage(match.round));
+    return [bracketMatchNumber(match), {
+      column: Math.max(1, roundIndex + 1),
+      row: range.start + 1,
+      span: Math.max(1, range.end - range.start + 1)
+    }];
+  }));
+}
+
+function bracketCardCenter(card, bracketRect, scrollLeft, scrollTop) {
+  const rect = card.getBoundingClientRect();
+  return {
+    left: rect.left - bracketRect.left + scrollLeft,
+    right: rect.right - bracketRect.left + scrollLeft,
+    centerY: rect.top - bracketRect.top + scrollTop + rect.height / 2
+  };
+}
+
+function drawBracketLines() {
+  const bracket = document.querySelector('.knockout-bracket');
+  const svg = bracket?.querySelector('.bracket-lines');
+  if (!bracket || !svg || bracket.offsetParent === null) return;
+
+  svg.setAttribute('width', bracket.scrollWidth);
+  svg.setAttribute('height', bracket.scrollHeight);
+  svg.setAttribute('viewBox', `0 0 ${bracket.scrollWidth} ${bracket.scrollHeight}`);
+
+  const bracketRect = bracket.getBoundingClientRect();
+  const paths = [];
+
+  for (const [destinationNumber, feederNumbers] of BRACKET_FEEDERS) {
+    const destination = bracket.querySelector(`[data-match-number="${destinationNumber}"]`);
+    const feeders = feederNumbers
+      .map((number) => bracket.querySelector(`[data-match-number="${number}"]`))
+      .filter(Boolean);
+
+    if (!destination || feeders.length === 0) continue;
+
+    const destinationPoint = bracketCardCenter(destination, bracketRect, bracket.scrollLeft, bracket.scrollTop);
+    const feederPoints = feeders.map((feeder) => bracketCardCenter(feeder, bracketRect, bracket.scrollLeft, bracket.scrollTop));
+    const feederRight = Math.max(...feederPoints.map((point) => point.right));
+    const joinX = feederRight + (destinationPoint.left - feederRight) / 2;
+    const verticalStart = Math.min(destinationPoint.centerY, ...feederPoints.map((point) => point.centerY));
+    const verticalEnd = Math.max(destinationPoint.centerY, ...feederPoints.map((point) => point.centerY));
+
+    paths.push(`M ${joinX} ${verticalStart} V ${verticalEnd}`);
+    paths.push(`M ${joinX} ${destinationPoint.centerY} H ${destinationPoint.left}`);
+    feederPoints.forEach((point) => {
+      paths.push(`M ${point.right} ${point.centerY} H ${joinX}`);
+    });
+  }
+
+  svg.innerHTML = paths.map((path) => `<path d="${path}"></path>`).join('');
+}
+
+function renderKnockout() {
+  const matches = knockoutFixtures();
+  const matchesByNumber = fixtureNumberMap();
+  const layout = buildBracketLayout(matches, matchesByNumber);
+
+  byId('knockout').innerHTML = `
+    <h2>Knockout</h2>
+    ${matches.length ? `
+      <div class="knockout-bracket">
+        <svg class="bracket-lines" aria-hidden="true" focusable="false"></svg>
+        ${KNOCKOUT_ROUNDS.map((round, index) => `<h3 class="bracket-round-heading" style="grid-column: ${index + 1};">${escapeHtml(round.label)}</h3>`).join('')}
+        ${matches
+    .map((match) => ({ match, placement: layout.get(bracketMatchNumber(match)) ?? { column: 1, row: 2, span: 1 } }))
+    .sort((left, right) => left.placement.column - right.placement.column || left.placement.row - right.placement.row)
+    .map(({ match, placement }) => bracketMatchCard(match, matchesByNumber, placement))
+    .join('')}
+      </div>
+    ` : '<p>No knockout fixtures loaded yet.</p>'}
+  `;
+  requestAnimationFrame(drawBracketLines);
+}
+
+window.addEventListener('resize', drawBracketLines);
 
 function renderRules() {
   const config = state.sweepstake;
@@ -986,6 +1257,8 @@ function table(headers, rows, tableClass = '') {
   `;
 }
 
+// Hidden legacy/admin draw tool. Keep these helpers with the hidden #draw panel
+// in index.html so the original workflow can be re-enabled without rebuilding it.
 function setupDrawTool() {
   const playerNames = state.sweepstake?.players?.map((player) => player.name)
     ?? Array.from({ length: 12 }, (_, index) => `Player ${index + 1}`);

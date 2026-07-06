@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-06T04:40:41.423Z",
+  "updatedAt": "2026-07-06T15:55:27.037Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -1774,8 +1774,8 @@
       "round": "Quarter-final",
       "date": "2026-07-11",
       "time": "17:00 UTC-4",
-      "home": "W91",
-      "away": "W92",
+      "home": "Norway",
+      "away": "England",
       "homeScore": null,
       "awayScore": null,
       "homePenaltyScore": null,

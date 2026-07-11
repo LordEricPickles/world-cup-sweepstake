@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-10T21:28:43.480Z",
+  "updatedAt": "2026-07-11T13:55:55.251Z",
   "source": "openfootball/worldcup.json",
   "sourceUrl": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   "competition": "World Cup 2026",
@@ -1810,8 +1810,8 @@
       "round": "Semi-final",
       "date": "2026-07-14",
       "time": "14:00 UTC-5",
-      "home": "W97",
-      "away": "W98",
+      "home": "France",
+      "away": "Spain",
       "homeScore": null,
       "awayScore": null,
       "homePenaltyScore": null,

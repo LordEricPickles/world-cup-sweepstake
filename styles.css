@@ -393,12 +393,6 @@ input {
   white-space: nowrap;
 }
 
-.player-card .tag.winner .player-team-points,
-.player-card .tag.final .player-team-points,
-.player-card .tag.semiFinal .player-team-points {
-  color: var(--ink);
-}
-
 .score-pill {
   flex: 0 0 auto;
   border: 1px solid #fff1a7;

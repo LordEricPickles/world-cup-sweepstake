@@ -11,8 +11,6 @@ on:
         description: Optional override URL for a compatible worldcup.json file
         required: false
         default: ''
-  schedule:
-    - cron: '17 */2 * * *'
 
 permissions:
   contents: write
